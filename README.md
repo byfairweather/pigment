@@ -1,1 +1,1 @@
-# pigment
+# pigment-ui
