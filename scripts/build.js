@@ -1,9 +1,8 @@
 import fs from "fs-extra";
-import path from "path";
 import { build } from "esbuild";
 import vue from "esbuild-plugin-vue3";
 import { sassPlugin as sass } from "esbuild-sass-plugin";
-import { htmlPlugin } from "@craftamap/esbuild-plugin-html";
+import copy from "esbuild-copy-static-files";
 
 await fs.remove("dist/pigment");
 await fs.remove("dist/docs");
@@ -23,20 +22,12 @@ Promise.all([
     entryPoints: ["docs/index.ts"],
     outdir: "dist/docs",
     bundle: true,
-    minify: true,
     metafile: true,
+    minify: true,
     plugins: [
       vue(),
       sass(),
-      htmlPlugin({
-        files: [
-          {
-            entryPoints: ["docs/index.ts"],
-            filename: "index.html",
-            title: "Pigment Docs",
-          },
-        ],
-      }),
+      copy({ src: "./docs/public", dest: "./dist/docs" }),
     ],
   }),
 ])
