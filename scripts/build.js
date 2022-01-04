@@ -1,4 +1,5 @@
 import fs from "fs-extra";
+import path from "path";
 import { build } from "esbuild";
 import vue from "esbuild-plugin-vue3";
 import { sassPlugin as sass } from "esbuild-sass-plugin";
@@ -10,7 +11,7 @@ await fs.remove("dist/docs");
 Promise.all([
   build({
     entryPoints: ["src/index.ts"],
-    outfile: "dist/pigment/pigment.js",
+    outfile: "/dist/pigment/pigment.js",
     bundle: true,
     format: "esm",
     minify: true,

@@ -1,0 +1,79 @@
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+
+@function generate-color-shades($color, $contrast: 75%) {
+  $shade: math.div(math.clamp(0%, $contrast, 100%), 4);
+
+  @return (
+    "100": color.scale($color, $lightness: $shade * 4),
+    "200": color.scale($color, $lightness: $shade * 3),
+    "300": color.scale($color, $lightness: $shade * 2),
+    "400": color.scale($color, $lightness: $shade * 1),
+    "500": $color,
+    "600": color.scale($color, $lightness: $shade * -1),
+    "700": color.scale($color, $lightness: $shade * -2),
+    "800": color.scale($color, $lightness: $shade * -3),
+    "900": color.scale($color, $lightness: $shade * -4)
+  );
+}
+
+$color-primary: #25689b !default;
+$color-primary-shades: generate-color-shades($color-primary) !default;
+$color-primary-100: map.get($color-primary-shades, "100") !default;
+$color-primary-200: map.get($color-primary-shades, "200") !default;
+$color-primary-300: map.get($color-primary-shades, "300") !default;
+$color-primary-400: map.get($color-primary-shades, "400") !default;
+$color-primary-500: map.get($color-primary-shades, "500") !default;
+$color-primary-600: map.get($color-primary-shades, "600") !default;
+$color-primary-700: map.get($color-primary-shades, "700") !default;
+$color-primary-800: map.get($color-primary-shades, "800") !default;
+$color-primary-900: map.get($color-primary-shades, "900") !default;
+
+$color-success: #75993a !default;
+$color-success-shades: generate-color-shades($color-success) !default;
+$color-success-100: map.get($color-success-shades, "100") !default;
+$color-success-200: map.get($color-success-shades, "200") !default;
+$color-success-300: map.get($color-success-shades, "300") !default;
+$color-success-400: map.get($color-success-shades, "400") !default;
+$color-success-500: map.get($color-success-shades, "500") !default;
+$color-success-600: map.get($color-success-shades, "600") !default;
+$color-success-700: map.get($color-success-shades, "700") !default;
+$color-success-800: map.get($color-success-shades, "800") !default;
+$color-success-900: map.get($color-success-shades, "900") !default;
+
+$color-warning: #ebb236 !default;
+$color-warning-shades: generate-color-shades($color-warning) !default;
+$color-warning-100: map.get($color-warning-shades, "100") !default;
+$color-warning-200: map.get($color-warning-shades, "200") !default;
+$color-warning-300: map.get($color-warning-shades, "300") !default;
+$color-warning-400: map.get($color-warning-shades, "400") !default;
+$color-warning-500: map.get($color-warning-shades, "500") !default;
+$color-warning-600: map.get($color-warning-shades, "600") !default;
+$color-warning-700: map.get($color-warning-shades, "700") !default;
+$color-warning-800: map.get($color-warning-shades, "800") !default;
+$color-warning-900: map.get($color-warning-shades, "900") !default;
+
+$color-danger: #c0443b !default;
+$color-danger-shades: generate-color-shades($color-danger) !default;
+$color-danger-100: map.get($color-danger-shades, "100") !default;
+$color-danger-200: map.get($color-danger-shades, "200") !default;
+$color-danger-300: map.get($color-danger-shades, "300") !default;
+$color-danger-400: map.get($color-danger-shades, "400") !default;
+$color-danger-500: map.get($color-danger-shades, "500") !default;
+$color-danger-600: map.get($color-danger-shades, "600") !default;
+$color-danger-700: map.get($color-danger-shades, "700") !default;
+$color-danger-800: map.get($color-danger-shades, "800") !default;
+$color-danger-900: map.get($color-danger-shades, "900") !default;
+
+$color-grey: #afafaf !default;
+$color-grey-shades: generate-color-shades($color-grey, 90%) !default;
+$color-grey-100: map.get($color-grey-shades, "100") !default;
+$color-grey-200: map.get($color-grey-shades, "200") !default;
+$color-grey-300: map.get($color-grey-shades, "300") !default;
+$color-grey-400: map.get($color-grey-shades, "400") !default;
+$color-grey-500: map.get($color-grey-shades, "500") !default;
+$color-grey-600: map.get($color-grey-shades, "600") !default;
+$color-grey-700: map.get($color-grey-shades, "700") !default;
+$color-grey-800: map.get($color-grey-shades, "800") !default;
+$color-grey-900: map.get($color-grey-shades, "900") !default;

@@ -3,7 +3,7 @@ import { build } from "esbuild";
 import vue from "esbuild-plugin-vue3";
 import server from "live-server";
 import { sassPlugin as sass } from "esbuild-sass-plugin";
-import { htmlPlugin } from "@craftamap/esbuild-plugin-html";
+import copy from "esbuild-copy-static-files";
 
 await fs.remove("dist/docs");
 
@@ -13,19 +13,7 @@ build({
   bundle: true,
   metafile: true,
   watch: true,
-  plugins: [
-    vue(),
-    sass(),
-    htmlPlugin({
-      files: [
-        {
-          entryPoints: ["docs/index.ts"],
-          filename: "index.html",
-          title: "Pigment Docs",
-        },
-      ],
-    }),
-  ],
+  plugins: [vue(), sass(), copy({ src: "./docs/public", dest: "./dist/docs" })],
 })
   .then((result) => {
     server.start({
@@ -34,6 +22,7 @@ build({
       root: "dist/docs",
       open: true,
       logLevel: 1,
+      file: "index.html",
     });
   })
   .catch((error) => {
