@@ -1,0 +1,193 @@
+@use "sass:math";
+@use "color" as *;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+$font: "Roboto", sans-serif !default;
+$font-scale: 1.2 !default;
+$font-size: 1.1rem !default;
+$font-weight: 400 !default;
+$font-weight-thin: 100 !default;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-bold: 700 !default;
+$font-weight-black: 900 !default;
+
+@function scale-font($scale) {
+  @return $font-size * math.pow($font-scale, $scale);
+}
+
+body {
+  font-family: $font;
+  font-size: $font-size;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 1em 0 0.3em;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+h1 {
+  font-size: scale-font(6);
+  font-weight: 900;
+}
+
+h2 {
+  font-size: scale-font(5);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: scale-font(4);
+  font-weight: 500;
+}
+
+h4 {
+  font-size: scale-font(3);
+  font-weight: 500;
+}
+
+h5 {
+  font-size: scale-font(2);
+  font-weight: 500;
+}
+
+h6 {
+  font-size: scale-font(1);
+  font-weight: 500;
+}
+
+p,
+span,
+li {
+  letter-spacing: 0.005em;
+  line-height: 1.4;
+  word-spacing: 0.025rem;
+}
+
+p,
+ul,
+ol {
+  margin-bottom: 1.5em;
+}
+
+ul,
+ol {
+  margin-left: 1em;
+
+  li {
+    margin-bottom: 0.5em;
+  }
+
+  ul,
+  ol {
+    margin-bottom: 0;
+    margin-top: 0.5em;
+
+    li {
+      font-size: scale-font(-1);
+    }
+  }
+}
+
+.font-thin {
+  font-weight: $font-weight-thin;
+}
+
+.font-light {
+  font-weight: $font-weight-light;
+}
+
+.font-normal {
+  font-weight: $font-weight-normal;
+}
+
+.font-medium {
+  font-weight: $font-weight-medium;
+}
+
+.font-bold {
+  font-weight: $font-weight-bold;
+}
+
+.font-black {
+  font-weight: $font-weight-black;
+}
+
+.font-xs {
+  font-size: scale-font(-2);
+}
+
+.font-sm {
+  font-size: scale-font(0);
+}
+
+.font-md {
+  font-size: scale-font(2);
+}
+
+.font-lg {
+  font-size: scale-font(4);
+}
+
+.font-xl {
+  font-size: scale-font(6);
+}
+
+.font-italic {
+  font-style: italic;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-strikethrough {
+  text-decoration: line-through;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+  text-decoration: wavy;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

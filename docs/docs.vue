@@ -4,6 +4,9 @@
     <div class="navigation">
       <ul>
         <li><router-link :to="'/styles/color'">Color</router-link></li>
+        <li>
+          <router-link :to="'/styles/typography'">Typography</router-link>
+        </li>
       </ul>
     </div>
     <div class="content">
@@ -23,6 +26,7 @@ export default {
   display: flex;
 
   .navigation {
+    flex-shrink: 0;
     width: 200px;
   }
 

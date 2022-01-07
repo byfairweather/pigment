@@ -13,7 +13,13 @@ build({
   bundle: true,
   metafile: true,
   watch: true,
-  plugins: [vue(), sass(), copy({ src: "./docs/public", dest: "./dist/docs" })],
+  plugins: [
+    vue(),
+    sass({
+      exclude: /^https:\/\//,
+    }),
+    copy({ src: "./docs/public", dest: "./dist/docs" }),
+  ],
 })
   .then((result) => {
     server.start({

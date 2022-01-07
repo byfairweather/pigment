@@ -56,22 +56,32 @@
       <td></td>
       <td></td>
     </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
   </table>
+
+  <ul>
+    <li class="text-white background-black">Text White</li>
+    <li class="text-light background-black">Text Light</li>
+    <li class="text-dark">Text Dark</li>
+    <li class="text-black">Text Black</li>
+    <li class="text-primary">Text Primary</li>
+    <li class="text-success">Text Success</li>
+    <li class="text-warning">Text Warning</li>
+    <li class="text-danger">Text Danger</li>
+  </ul>
+
+  <ul>
+    <li class="background-white">Background White</li>
+    <li class="background-light">Background Light</li>
+    <li class="background-dark text-light">Background Dark</li>
+    <li class="background-black">Background Black</li>
+    <li class="background-primary text-white">Background Primary</li>
+    <li class="background-success text-white">Background Success</li>
+    <li class="background-warning text-white">Background Warning</li>
+    <li class="background-danger text-white">Background Danger</li>
+  </ul>
 </template>
 
 <script lang="ts">
-console.log("Test");
 export default {
   name: "Color",
 };
