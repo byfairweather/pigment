@@ -1,9 +1,11 @@
 import fs from "fs-extra";
+import path from "path";
 import { build } from "esbuild";
 import vue from "esbuild-plugin-vue3";
 import server from "live-server";
 import { sassPlugin as sass } from "esbuild-sass-plugin";
 import copy from "esbuild-copy-static-files";
+import inlineImportPlugin from "esbuild-plugin-inline-import";
 
 await fs.remove("dist/docs");
 
@@ -14,10 +16,9 @@ build({
   metafile: true,
   watch: true,
   plugins: [
+    inlineImportPlugin(),
     vue(),
-    sass({
-      exclude: /^https:\/\//,
-    }),
+    sass({ includePaths: [path.resolve("node_modules")] }),
     copy({ src: "./docs/public", dest: "./dist/docs" }),
   ],
 })

@@ -1,4 +1,5 @@
 import fs from "fs-extra";
+import path from "path";
 import { build } from "esbuild";
 import vue from "esbuild-plugin-vue3";
 import { sassPlugin as sass } from "esbuild-sass-plugin";
