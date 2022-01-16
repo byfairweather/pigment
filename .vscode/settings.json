@@ -2,5 +2,6 @@
   "git.enableCommitSigning": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "editor.formatOnPaste": true
+  "editor.formatOnPaste": true,
+  "editor.codeLens": false
 }

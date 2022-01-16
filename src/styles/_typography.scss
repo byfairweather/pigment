@@ -2,9 +2,18 @@
 @use "color" as *;
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
+@function scale-font($scale) {
+  @return $font-size * math.pow($font-scale, $scale);
+}
+
 $font: "Roboto", sans-serif !default;
 $font-scale: 1.2 !default;
 $font-size: 1.1rem !default;
+$font-size-xs: scale-font(-2) !default;
+$font-size-sm: scale-font(0) !default;
+$font-size-md: scale-font(2) !default;
+$font-size-lg: scale-font(4) !default;
+$font-size-xl: scale-font(6) !default;
 $font-weight: 400 !default;
 $font-weight-thin: 100 !default;
 $font-weight-light: 300 !default;
@@ -12,10 +21,6 @@ $font-weight-normal: 400 !default;
 $font-weight-medium: 500 !default;
 $font-weight-bold: 700 !default;
 $font-weight-black: 900 !default;
-
-@function scale-font($scale) {
-  @return $font-size * math.pow($font-scale, $scale);
-}
 
 body {
   font-family: $font;
@@ -126,23 +131,23 @@ ol {
 }
 
 .font-xs {
-  font-size: scale-font(-2);
+  font-size: $font-size-xs;
 }
 
 .font-sm {
-  font-size: scale-font(0);
+  font-size: $font-size-sm;
 }
 
 .font-md {
-  font-size: scale-font(2);
+  font-size: $font-size-md;
 }
 
 .font-lg {
-  font-size: scale-font(4);
+  font-size: $font-size-lg;
 }
 
 .font-xl {
-  font-size: scale-font(6);
+  font-size: $font-size-xl;
 }
 
 .font-italic {

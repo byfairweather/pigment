@@ -1,0 +1,51 @@
+@use "sass:math";
+@use "../../styles/utilities" as *;
+
+$tab-view-color: $color-grey-700 !default;
+$tab-view-font-size: $font-size-sm !default;
+$tab-view-hovered-color: $color-primary-500 !default;
+$tab-view-selected-color: $color-primary-500 !default;
+$tab-view-tab-padding-bottom: 1em !default;
+$tab-view-tab-spacing: 1em !default;
+$tab-view-tab-animation-duration: $animation-duration-fast !default;
+$tab-view-tab-underline-thickness: 3px !default;
+$tab-view-tab-underline-color: $color-primary-500 !default;
+
+.p.tab-view {
+  .tabs {
+    font-size: $tab-view-font-size;
+    overflow: hidden;
+    user-select: none;
+
+    .tab {
+      border-bottom: 0 solid transparent;
+      color: $tab-view-color;
+      cursor: pointer;
+      display: inline-block;
+      padding: 0 math.div($tab-view-tab-spacing, 2) $tab-view-tab-padding-bottom;
+      position: relative;
+
+      .underline {
+        height: 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0px;
+        transition: all $tab-view-tab-animation-duration ease;
+      }
+
+      &:hover {
+        color: $tab-view-hovered-color;
+      }
+
+      &.selected {
+        color: $tab-view-selected-color;
+
+        .underline {
+          background-color: $tab-view-tab-underline-color;
+          height: $tab-view-tab-underline-thickness;
+        }
+      }
+    }
+  }
+}
