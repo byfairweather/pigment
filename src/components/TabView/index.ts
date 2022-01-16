@@ -11,8 +11,7 @@ export default {
 
 export const TabViewProvider: InjectionKey<{
   mounted: Ref<boolean>;
-  selectedTab: Ref<number | undefined>;
-  contentSelector: string;
-  register: (tabId: number) => void;
-  select: (tabId: number) => void;
+  selectedTab: Ref<HTMLElement | undefined>;
+  viewSelector: string;
+  select: (tab: HTMLElement | undefined) => void;
 }> = Symbol();

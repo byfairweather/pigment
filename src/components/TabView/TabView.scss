@@ -7,12 +7,14 @@ $tab-view-hovered-color: $color-primary-500 !default;
 $tab-view-selected-color: $color-primary-500 !default;
 $tab-view-tab-padding-bottom: 1em !default;
 $tab-view-tab-spacing: 1em !default;
-$tab-view-tab-animation-duration: $animation-duration-fast !default;
+$tab-view-tab-animation-duration: $animation-duration-normal !default;
 $tab-view-tab-underline-thickness: 3px !default;
 $tab-view-tab-underline-color: $color-primary-500 !default;
+$tab-view-slide-animation-duration: $animation-duration-fast !default;
+$tab-view-resize-animation-duration: $animation-duration-slow !default;
 
 .p.tab-view {
-  .tabs {
+  & > .tabs {
     font-size: $tab-view-font-size;
     overflow: hidden;
     user-select: none;
@@ -46,6 +48,19 @@ $tab-view-tab-underline-color: $color-primary-500 !default;
           height: $tab-view-tab-underline-thickness;
         }
       }
+    }
+  }
+
+  & > .view > .content {
+    align-items: flex-start;
+    display: flex;
+    margin-left: -100%;
+    transition: height $tab-view-resize-animation-duration ease-in-out,
+      margin-left $tab-view-slide-animation-duration ease-in-out;
+    width: 100%;
+
+    .content {
+      flex: 0 0 100%;
     }
   }
 }

@@ -27,10 +27,13 @@ $vue-example-code-padding: 1em !default;
           padding-top: 1em;
         }
       }
+
+      .view {
+        background: $vue-example-code-background;
+      }
     }
 
     pre {
-      background: $vue-example-code-background;
       border-top: $vue-example-border-thickness solid $vue-example-border-color;
       color: $color-grey-800;
       font-family: $vue-example-code-font-family;

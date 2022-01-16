@@ -1,4 +1,6 @@
 import { Plugin } from "vue";
+
+// Components
 import TabView from "./components/TabView/TabView.vue";
 import Tab from "./components/TabView/Tab.vue";
 import VueExample from "./components/VueExample/VueExample.vue";

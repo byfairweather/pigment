@@ -3,7 +3,16 @@
     <div class="tabs">
       <slot></slot>
     </div>
-    <div class="content"></div>
+    <div class="view">
+      <div
+        class="content"
+        ref="tabs"
+        :style="{
+          height: (selectedTab?.scrollHeight ?? 0) + 'px',
+          marginLeft: `-${selectedIndex}00%`,
+        }"
+      ></div>
+    </div>
   </div>
 </template>
 
@@ -12,10 +21,10 @@ import {
   defineComponent,
   provide,
   ref,
-  toRef,
   onMounted,
   getCurrentInstance,
   nextTick,
+  computed,
 } from "vue";
 import { TabViewProvider } from ".";
 
@@ -33,21 +42,19 @@ export default defineComponent({
   },
   setup(props, context) {
     const id = getCurrentInstance()!.uid;
-    const selectedTab = ref<number>();
     const mounted = ref(false);
+    const tabs = ref<HTMLElement>();
+    const selectedTab = ref<HTMLElement>();
+    const selectedIndex = computed(() => {
+      if (tabs.value && selectedTab.value) {
+        return Array.from(tabs.value.children).indexOf(selectedTab.value);
+      }
+    });
 
     onMounted(() => (mounted.value = true));
 
-    function register(tab: number) {
-      nextTick().then(() => {
-        if (!selectedTab.value && props.open) {
-          select(tab);
-        }
-      });
-    }
-
-    function select(tab: number | undefined): void {
-      if (tab == selectedTab.value && props.collapsible) {
+    function select(tab: HTMLElement | undefined): void {
+      if (tab && selectedTab.value?.isSameNode(tab) && props.collapsible) {
         tab = undefined;
       }
       selectedTab.value = tab;
@@ -57,13 +64,15 @@ export default defineComponent({
     provide(TabViewProvider, {
       mounted,
       selectedTab,
-      contentSelector: `#tab-view-${id} .content`,
-      register,
+      viewSelector: `#tab-view-${id} .view .content`,
       select,
     });
 
     return {
       id,
+      tabs,
+      selectedTab,
+      selectedIndex,
     };
   },
 });
