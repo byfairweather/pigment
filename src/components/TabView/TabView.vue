@@ -6,6 +6,7 @@
     <div class="view">
       <div
         class="content"
+        :class="{ open }"
         ref="tabs"
         :style="{
           height: (selectedTab?.scrollHeight ?? 0) + 'px',
@@ -44,6 +45,7 @@ export default defineComponent({
     const id = getCurrentInstance()!.uid;
     const mounted = ref(false);
     const tabs = ref<HTMLElement>();
+    const open = ref(false);
     const selectedTab = ref<HTMLElement>();
     const selectedIndex = computed(() => {
       if (tabs.value && selectedTab.value) {
@@ -58,7 +60,10 @@ export default defineComponent({
         tab = undefined;
       }
       selectedTab.value = tab;
-      nextTick().then(() => context.emit("change"));
+      nextTick().then(() => {
+        context.emit("change");
+        open.value = !!selectedTab.value;
+      });
     }
 
     provide(TabViewProvider, {
@@ -70,6 +75,7 @@ export default defineComponent({
 
     return {
       id,
+      open,
       tabs,
       selectedTab,
       selectedIndex,

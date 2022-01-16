@@ -11,7 +11,7 @@ $tab-view-tab-animation-duration: $animation-duration-normal !default;
 $tab-view-tab-underline-thickness: 3px !default;
 $tab-view-tab-underline-color: $color-primary-500 !default;
 $tab-view-slide-animation-duration: $animation-duration-fast !default;
-$tab-view-resize-animation-duration: $animation-duration-slow !default;
+$tab-view-resize-animation-duration: $animation-duration-normal !default;
 
 .p.tab-view {
   & > .tabs {
@@ -55,9 +55,13 @@ $tab-view-resize-animation-duration: $animation-duration-slow !default;
     align-items: flex-start;
     display: flex;
     margin-left: -100%;
-    transition: height $tab-view-resize-animation-duration ease-in-out,
-      margin-left $tab-view-slide-animation-duration ease-in-out;
+    transition: height $tab-view-resize-animation-duration ease-in-out;
     width: 100%;
+
+    &.open {
+      transition: height $tab-view-resize-animation-duration ease-in-out,
+        margin-left $tab-view-slide-animation-duration ease-in-out;
+    }
 
     .content {
       flex: 0 0 100%;
