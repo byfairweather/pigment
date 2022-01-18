@@ -3,17 +3,15 @@
     <div class="tabs">
       <slot></slot>
     </div>
-    <div class="view">
-      <div
-        class="content"
-        :class="{ open }"
-        ref="tabs"
-        :style="{
-          height: (selectedTab?.scrollHeight ?? 0) + 'px',
-          marginLeft: `-${selectedIndex}00%`,
-        }"
-      ></div>
-    </div>
+    <div
+      class="view"
+      :class="{ open }"
+      ref="view"
+      :style="{
+        height: (selectedTab?.scrollHeight ?? 0) + 'px',
+        marginLeft: `-${selectedIndex}00%`,
+      }"
+    ></div>
   </div>
 </template>
 
@@ -44,19 +42,20 @@ export default defineComponent({
   setup(props, context) {
     const id = getCurrentInstance()!.uid;
     const mounted = ref(false);
-    const tabs = ref<HTMLElement>();
+    const view = ref<HTMLElement>();
     const open = ref(false);
     const selectedTab = ref<HTMLElement>();
     const selectedIndex = computed(() => {
-      if (tabs.value && selectedTab.value) {
-        return Array.from(tabs.value.children).indexOf(selectedTab.value);
+      if (view.value && selectedTab.value) {
+        return Array.from(view.value.children).indexOf(selectedTab.value);
       }
     });
 
     onMounted(() => (mounted.value = true));
 
     function select(tab: HTMLElement | undefined): void {
-      if (tab && selectedTab.value?.isSameNode(tab) && props.collapsible) {
+      console.log(tab);
+      if (selectedTab.value === tab && props.collapsible) {
         tab = undefined;
       }
       selectedTab.value = tab;
@@ -69,14 +68,14 @@ export default defineComponent({
     provide(TabViewProvider, {
       mounted,
       selectedTab,
-      viewSelector: `#tab-view-${id} .view .content`,
+      viewSelector: `#tab-view-${id} .view`,
       select,
     });
 
     return {
       id,
       open,
-      tabs,
+      view,
       selectedTab,
       selectedIndex,
     };

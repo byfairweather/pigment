@@ -1,10 +1,10 @@
 <template>
-  <div class="p tab" :class="{ selected }" @click="provider?.select(tab)">
+  <div class="p tab" :class="{ selected }" @click="provider?.select(content)">
     {{ label }}
     <slot name="label"></slot>
     <div class="underline"></div>
     <teleport :to="provider?.viewSelector" v-if="provider?.mounted.value">
-      <div class="content" ref="tab">
+      <div class="content" ref="content" :class="{ selected }">
         <slot></slot>
       </div>
     </teleport>
@@ -24,14 +24,14 @@ export default defineComponent({
     },
   },
   setup(props, context) {
-    const tab = ref<HTMLElement>();
     const provider = inject(TabViewProvider);
-    const selected = computed(() =>
-      provider?.selectedTab.value?.isSameNode(tab.value ?? null)
+    const content = ref<HTMLElement>();
+    const selected = computed(
+      () => provider?.selectedTab.value === content.value
     );
 
     return {
-      tab,
+      content,
       provider,
       selected,
     };

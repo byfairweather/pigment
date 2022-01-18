@@ -58,6 +58,12 @@
   </table>
 </template>
 
+<script lang="ts">
+function HelloWorld() {
+  console.log("Hello World!");
+}
+</script>
+
 <style lang="scss">
 @use "../../../styles" as *;
 

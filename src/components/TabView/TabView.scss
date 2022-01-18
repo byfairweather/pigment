@@ -5,35 +5,34 @@ $tab-view-color: $color-grey-700 !default;
 $tab-view-font-size: $font-size-sm !default;
 $tab-view-hovered-color: $color-primary-500 !default;
 $tab-view-selected-color: $color-primary-500 !default;
-$tab-view-tab-padding-bottom: 1em !default;
+$tab-view-underline-spacing: 0.5em !default;
+$tab-view-content-spacing: 1.5em !default;
 $tab-view-tab-spacing: 1em !default;
-$tab-view-tab-animation-duration: $animation-duration-normal !default;
-$tab-view-tab-underline-thickness: 3px !default;
-$tab-view-tab-underline-color: $color-primary-500 !default;
-$tab-view-slide-animation-duration: $animation-duration-fast !default;
+$tab-view-underline-thickness: 3px !default;
+$tab-view-underline-animation-duration: $animation-duration-normal !default;
+$tab-view-slide-animation-duration: $animation-duration-normal !default;
 $tab-view-resize-animation-duration: $animation-duration-normal !default;
 
 .p.tab-view {
   & > .tabs {
     font-size: $tab-view-font-size;
-    overflow: hidden;
+    margin: 0 math.div($tab-view-tab-spacing, -2);
     user-select: none;
 
-    .tab {
-      border-bottom: 0 solid transparent;
+    & > .tab {
       color: $tab-view-color;
       cursor: pointer;
       display: inline-block;
-      padding: 0 math.div($tab-view-tab-spacing, 2) $tab-view-tab-padding-bottom;
+      margin: 0 math.div($tab-view-tab-spacing, 2);
       position: relative;
 
-      .underline {
+      & > .underline {
         height: 0;
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 0px;
-        transition: all $tab-view-tab-animation-duration ease;
+        bottom: -$tab-view-underline-spacing;
+        transition: all $tab-view-underline-animation-duration ease;
       }
 
       &:hover {
@@ -43,28 +42,39 @@ $tab-view-resize-animation-duration: $animation-duration-normal !default;
       &.selected {
         color: $tab-view-selected-color;
 
-        .underline {
-          background-color: $tab-view-tab-underline-color;
-          height: $tab-view-tab-underline-thickness;
+        & > .underline {
+          background-color: $tab-view-selected-color;
+          height: $tab-view-underline-thickness;
         }
       }
     }
   }
 
-  & > .view > .content {
+  & > .view {
     align-items: flex-start;
     display: flex;
-    margin-left: -100%;
+    overflow: hidden;
     transition: height $tab-view-resize-animation-duration ease-in-out;
-    width: 100%;
 
     &.open {
       transition: height $tab-view-resize-animation-duration ease-in-out,
         margin-left $tab-view-slide-animation-duration ease-in-out;
+
+      & > .content.selected {
+        transition-delay: math.div($tab-view-slide-animation-duration, 2);
+      }
     }
 
-    .content {
+    & > .content {
       flex: 0 0 100%;
+      padding-top: $tab-view-content-spacing;
+      opacity: 0;
+      transition: opacity $tab-view-slide-animation-duration ease-in-out;
+
+      &.selected {
+        opacity: 1;
+        transition: opacity $tab-view-slide-animation-duration ease-in-out;
+      }
     }
   }
 }

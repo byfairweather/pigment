@@ -1,8 +1,9 @@
 @use "../../styles/utilities" as *;
+@use "../TabView/TabView" as *;
 
 $vue-example-border-color: $color-grey-400 !default;
 $vue-example-border-thickness: 1px !default;
-$vue-example-border-radius: 8px !default;
+$vue-example-border-radius: 6px !default;
 $vue-example-code-background: $color-grey-200 !default;
 $vue-example-code-font-family: monospace !default;
 $vue-example-code-font-size: $font-size-sm !default;
@@ -19,27 +20,14 @@ $vue-example-code-padding: 1em !default;
   }
 
   .code {
-    .p.tab-view {
-      .tabs {
-        margin: 0 0.5em;
-
-        .tab {
-          padding-top: 1em;
-        }
-      }
-
-      .view {
-        background: $vue-example-code-background;
-      }
-    }
+    background: $vue-example-code-background;
+    padding: 1em;
+    width: 100%;
 
     pre {
-      border-top: $vue-example-border-thickness solid $vue-example-border-color;
       color: $color-grey-800;
       font-family: $vue-example-code-font-family;
       font-size: $vue-example-code-font-size;
-      padding: $vue-example-code-padding;
-      text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 
       .token.cdata,
       .token.comment,
