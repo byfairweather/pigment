@@ -4,6 +4,7 @@ import { build } from "esbuild";
 import vue from "esbuild-plugin-vue3";
 import { sassPlugin as sass } from "esbuild-sass-plugin";
 import copy from "esbuild-copy-static-files";
+import inlineImportPlugin from "esbuild-plugin-inline-import";
 
 await fs.remove("dist/pigment");
 await fs.remove("dist/docs");
@@ -26,6 +27,7 @@ Promise.all([
     metafile: true,
     minify: true,
     plugins: [
+      inlineImportPlugin(),
       vue(),
       sass(),
       copy({ src: "./docs/public", dest: "./dist/docs" }),

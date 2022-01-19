@@ -18,16 +18,9 @@ const routes: Array<RouteRecordRaw> = [
   },
 ];
 
-// This is a test
 const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-
-function test() {
-  const boom = false;
-  const testing = /ab+c/;
-  console.log("Another Test");
-}
 
 export default router;

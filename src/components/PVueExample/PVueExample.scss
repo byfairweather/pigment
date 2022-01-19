@@ -12,12 +12,12 @@ $vue-example-code-padding: 1em !default;
   border-radius: $vue-example-border-radius;
   overflow: hidden;
 
-  .example {
+  & > .example {
     border-bottom: $vue-example-border;
     padding: 1em;
   }
 
-  .code {
+  & > .code {
     background: $vue-example-code-background;
     padding: 1em;
     width: 100%;

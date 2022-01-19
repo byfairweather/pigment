@@ -9,8 +9,5 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "p-grid-item",
-  setup(props) {
-    return {};
-  },
 });
 </script>

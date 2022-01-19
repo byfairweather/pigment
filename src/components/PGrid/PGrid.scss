@@ -2,11 +2,11 @@
 @use "../../styles/layout" as *;
 
 $grid-columns: 12 !default;
-$grid-spacing-xs: 12px !default;
-$grid-spacing-sm: 16px !default;
-$grid-spacing-md: 24px !default;
-$grid-spacing-lg: 38px !default;
-$grid-spacing-xl: 48px !default;
+$grid-spacing-xs: 1rem !default;
+$grid-spacing-sm: 2rem !default;
+$grid-spacing-md: 3rem !default;
+$grid-spacing-lg: 5rem !default;
+$grid-spacing-xl: 7rem !default;
 
 .p.grid {
   display: flex;
@@ -28,22 +28,13 @@ $grid-spacing-xl: 48px !default;
 
       &.widths-grow-#{$screen} > .grid-item,
       & > .grid-item.width-grow-#{$screen} {
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: 1px;
+        flex: 1 1 1px;
       }
 
       &.widths-shrink-#{$screen} > .grid-item,
       & > .grid-item.width-shrink-#{$screen} {
-        flex-grow: 0;
-        flex-shrink: 1;
-        flex-basis: 1px;
+        flex: 0 1 1px;
         white-space: nowrap;
-      }
-
-      &.hidden-#{$screen} > .grid-item,
-      & > .grid-item.hidden-#{$screen} {
-        display: none;
       }
 
       &.spacing-none-#{$screen} {

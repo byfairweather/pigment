@@ -18,7 +18,7 @@ build({
   plugins: [
     inlineImportPlugin(),
     vue(),
-    sass({ includePaths: [path.resolve("node_modules")] }),
+    sass(),
     copy({ src: "./docs/public", dest: "./dist/docs" }),
   ],
 })

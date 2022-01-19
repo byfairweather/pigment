@@ -26,7 +26,7 @@
   </p-grid>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .grid-item {
   background-color: rgba(255, 0, 0, 0.25);
   background-clip: content-box;

@@ -54,7 +54,6 @@ export default defineComponent({
     onMounted(() => (mounted.value = true));
 
     function select(tab: HTMLElement | undefined): void {
-      console.log(tab);
       if (selectedTab.value === tab && props.collapsible) {
         tab = undefined;
       }

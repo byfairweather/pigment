@@ -15,7 +15,7 @@
     "esbuild-copy-static-files": "^0.1.0",
     "esbuild-plugin-inline-import": "^1.0.1",
     "esbuild-plugin-vue3": "^0.3.0",
-    "esbuild-sass-plugin": "^1.8.2",
+    "esbuild-sass-plugin": "^2.0.3",
     "fs-extra": "^10.0.0",
     "live-server": "^1.2.1",
     "prettier": "^2.5.1",
