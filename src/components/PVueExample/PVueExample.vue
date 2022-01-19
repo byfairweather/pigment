@@ -4,23 +4,23 @@
       <slot></slot>
     </div>
     <div class="code" ref="code" v-if="$props.code">
-      <TabView @change="formatCode()" :collapsible="true" :open="false">
-        <Tab label="Template" v-if="template">
+      <PTabView @change="formatCode()" :collapsible="true" :open="false">
+        <PTab label="Template" v-if="template">
           <pre>
             <code class="language-html">{{template}}</code>
           </pre>
-        </Tab>
-        <Tab label="Script" v-if="script">
+        </PTab>
+        <PTab label="Script" v-if="script">
           <pre>
             <code class="language-javascript ">{{script}}</code>
           </pre>
-        </Tab>
-        <Tab label="Style" v-if="style">
+        </PTab>
+        <PTab label="Style" v-if="style">
           <pre>
             <code class="language-css">{{style}}</code>
           </pre>
-        </Tab>
-      </TabView>
+        </PTab>
+      </PTabView>
     </div>
   </div>
 </template>
@@ -29,8 +29,8 @@
 import { defineComponent, ref } from "vue";
 import Prism from "prismjs";
 import "prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js";
-import TabView from "../TabView/TabView.vue";
-import Tab from "../TabView/Tab.vue";
+import PTabView from "../PTabView/PTabView.vue";
+import PTab from "../PTabView/PTab.vue";
 
 export default defineComponent({
   name: "p-vue-example",
@@ -62,6 +62,6 @@ export default defineComponent({
 
     return { code, template, script, style, formatCode };
   },
-  components: { TabView, Tab },
+  components: { PTabView, PTab },
 });
 </script>

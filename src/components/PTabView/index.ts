@@ -1,11 +1,11 @@
 import { InjectionKey, Ref, Plugin } from "vue";
-import TabView from "./TabView.vue";
-import Tab from "./Tab.vue";
+import PTabView from "./PTabView.vue";
+import PTab from "./PTab.vue";
 
 export default {
   install: (app, options) => {
-    app.component(TabView.name, TabView);
-    app.component(Tab.name, Tab);
+    app.component(PTabView.name, PTabView);
+    app.component(PTab.name, PTab);
   },
 } as Plugin;
 

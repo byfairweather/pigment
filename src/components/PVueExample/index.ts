@@ -1,8 +1,8 @@
 import { Plugin } from "vue";
-import VueExample from "./VueExample.vue";
+import PVueExample from "./PVueExample.vue";
 
 export default {
   install: (app, options) => {
-    app.component(VueExample.name, VueExample);
+    app.component(PVueExample.name, PVueExample);
   },
 } as Plugin;

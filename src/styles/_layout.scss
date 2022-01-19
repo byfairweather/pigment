@@ -1,3 +1,32 @@
-.mt {
-  margin-top: 1em;
+$layout-min-width: 300px !default;
+$layout-breakpoint-xs: 480px !default;
+$layout-breakpoint-sm: 640px !default;
+$layout-breakpoint-md: 800px !default;
+$layout-breakpoint-lg: 1024px !default;
+$layout-breakpoint-xl: 1280px !default;
+
+@mixin screen($size) {
+  @if $size == xs {
+    @media only screen and (max-width: $layout-breakpoint-xs) {
+      @content;
+    }
+  } @else if $size == sm {
+    @media only screen and (max-width: $layout-breakpoint-sm) {
+      @content;
+    }
+  } @else if $size == md {
+    @media only screen and (max-width: $layout-breakpoint-md) {
+      @content;
+    }
+  } @else if $size == lg {
+    @media only screen and (max-width: $layout-breakpoint-lg) {
+      @content;
+    }
+  } @else if $size == xl {
+    @media only screen and (min-width: $layout-breakpoint-xl) {
+      @content;
+    }
+  } @else if $size == all {
+    @content;
+  }
 }

@@ -7,7 +7,7 @@
         <li>
           <router-link :to="'/styles/typography'">Typography</router-link>
         </li>
-        <li><router-link :to="'/layout/grid'">Grid</router-link></li>
+        <li><router-link :to="'/styles/grid'">Grid</router-link></li>
       </ul>
     </div>
     <div class="content">

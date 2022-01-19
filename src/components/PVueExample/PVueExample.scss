@@ -1,21 +1,19 @@
 @use "../../styles/utilities" as *;
-@use "../TabView/TabView" as *;
 
-$vue-example-border-color: $color-grey-400 !default;
-$vue-example-border-thickness: 1px !default;
-$vue-example-border-radius: 6px !default;
+$vue-example-border: $surface-border !default;
+$vue-example-border-radius: $surface-border-radius !default;
 $vue-example-code-background: $color-grey-200 !default;
 $vue-example-code-font-family: monospace !default;
 $vue-example-code-font-size: $font-size-sm !default;
 $vue-example-code-padding: 1em !default;
 
 .p.vue-example {
-  border: $vue-example-border-thickness solid $vue-example-border-color;
+  border: $vue-example-border;
   border-radius: $vue-example-border-radius;
   overflow: hidden;
 
   .example {
-    border-bottom: $vue-example-border-thickness solid $vue-example-border-color;
+    border-bottom: $vue-example-border;
     padding: 1em;
   }
 

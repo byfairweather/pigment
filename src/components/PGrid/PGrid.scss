@@ -1,0 +1,99 @@
+@use "sass:math";
+@use "../../styles/layout" as *;
+
+$grid-columns: 12 !default;
+$grid-spacing-xs: 12px !default;
+$grid-spacing-sm: 16px !default;
+$grid-spacing-md: 24px !default;
+$grid-spacing-lg: 38px !default;
+$grid-spacing-xl: 48px !default;
+
+.p.grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > .grid-item {
+    box-sizing: border-box;
+  }
+
+  @each $screen in (all, xl, lg, md, sm, xs, xs) {
+    @include screen($screen) {
+      @for $width from 1 through $grid-columns {
+        &.widths-#{$width}-#{$screen} > .grid-item,
+        & > .grid-item.width-#{$width}-#{$screen} {
+          flex-basis: math.percentage(math.div($width, $grid-columns));
+          max-width: math.percentage(math.div($width, $grid-columns));
+        }
+      }
+
+      &.widths-grow-#{$screen} > .grid-item,
+      & > .grid-item.width-grow-#{$screen} {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 1px;
+      }
+
+      &.widths-shrink-#{$screen} > .grid-item,
+      & > .grid-item.width-shrink-#{$screen} {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: 1px;
+        white-space: nowrap;
+      }
+
+      &.hidden-#{$screen} > .grid-item,
+      & > .grid-item.hidden-#{$screen} {
+        display: none;
+      }
+
+      &.spacing-none-#{$screen} {
+        margin: 0;
+
+        & > .grid-item {
+          padding: 0;
+        }
+      }
+
+      &.spacing-xl-#{$screen} {
+        margin: calc(#{$grid-spacing-xl} / -2);
+
+        & > .grid-item {
+          padding: calc(#{$grid-spacing-xl} / 2);
+        }
+      }
+
+      &.spacing-lg-#{$screen} {
+        margin: calc(#{$grid-spacing-lg} / -2);
+
+        & > .grid-item {
+          padding: calc(#{$grid-spacing-lg} / 2);
+        }
+      }
+
+      &,
+      &.spacing-md-#{$screen} {
+        margin: calc(#{$grid-spacing-md} / -2);
+
+        & > .grid-item {
+          padding: calc(#{$grid-spacing-md} / 2);
+        }
+      }
+
+      &.spacing-sm-#{$screen} {
+        margin: calc(#{$grid-spacing-sm} / -2);
+
+        & > .grid-item {
+          padding: calc(#{$grid-spacing-sm} / 2);
+        }
+      }
+
+      &.spacing-xs-#{$screen} {
+        margin: calc(#{$grid-spacing-xs} / -2);
+
+        & > .grid-item {
+          padding: calc(#{$grid-spacing-xs} / 2);
+        }
+      }
+    }
+  }
+}
