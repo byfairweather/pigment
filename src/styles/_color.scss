@@ -18,7 +18,7 @@
   );
 }
 
-$color-primary: #3088cb !default;
+$color-primary: #25689b !default;
 $color-primary-shades: generate-color-shades($color-primary) !default;
 $color-primary-100: map.get($color-primary-shades, "100") !default;
 $color-primary-200: map.get($color-primary-shades, "200") !default;

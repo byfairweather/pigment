@@ -48,7 +48,7 @@ $vue-example-code-padding: 1em !default;
       }
       .token.boolean,
       .token.number {
-        color: $color-primary-400;
+        color: $color-primary-600;
       }
       .token.attr-name,
       .token.builtin,
@@ -70,7 +70,7 @@ $vue-example-code-padding: 1em !default;
       .token.attr-value,
       .token.class-name,
       .token.function {
-        color: $color-primary-400;
+        color: $color-warning-600;
       }
       .token.keyword {
         color: $color-primary-400;

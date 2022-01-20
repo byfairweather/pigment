@@ -1,0 +1,35 @@
+@use "../../styles/utilities.scss" as *;
+
+$button-background-color: $color-primary-500 !default;
+$button-background-color-hover: $color-primary-600 !default;
+$button-border-radius: $surface-border-radius !default;
+$button-color: $color-grey-100 !default;
+$button-color-hover: $color-grey-100 !default;
+$button-horizontal-padding: 1em !default;
+$button-height: $forms-control-height !default;
+$button-hover-animation-duration: $animation-duration-normal !default;
+
+.p.button {
+  background-color: $button-background-color;
+  border-radius: $button-border-radius;
+  color: $button-color;
+  cursor: pointer;
+  height: $button-height;
+  overflow: hidden;
+  padding: 0 $button-horizontal-padding;
+  position: relative;
+  transition-property: background-color, color;
+  transition-duration: $button-hover-animation-duration;
+  transition-timing-function: ease-in-out;
+
+  &:hover {
+    background-color: $button-background-color-hover;
+    color: $button-color-hover;
+  }
+
+  &.loading {
+    .label {
+      visibility: hidden;
+    }
+  }
+}
