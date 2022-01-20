@@ -12,7 +12,7 @@
   </p-grid>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .grid-item {
   height: 100px;
   position: relative;

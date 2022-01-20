@@ -86,7 +86,3 @@ export default defineComponent({
   name: "Color",
 });
 </script>
-
-<style lang="scss">
-@use "../../styles" as *;
-</style>
