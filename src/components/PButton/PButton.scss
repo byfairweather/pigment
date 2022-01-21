@@ -8,6 +8,22 @@ $button-color-hover: $color-grey-100 !default;
 $button-horizontal-padding: 1em !default;
 $button-height: $forms-control-height !default;
 $button-hover-animation-duration: $animation-duration-normal !default;
+$button-text-shadow: 0 0 3px rgba(0, 0, 0, 0.25) !default;
+
+$button-success-background-color: $color-success-500 !default;
+$button-success-background-color-hover: $color-success-600 !default;
+$button-success-color: $color-grey-100 !default;
+$button-success-color-hover: $color-grey-100 !default;
+
+$button-warning-background-color: $color-warning-500 !default;
+$button-warning-background-color-hover: $color-warning-600 !default;
+$button-warning-color: $color-grey-100 !default;
+$button-warning-color-hover: $color-grey-100 !default;
+
+$button-danger-background-color: $color-danger-500 !default;
+$button-danger-background-color-hover: $color-danger-600 !default;
+$button-danger-color: $color-grey-100 !default;
+$button-danger-color-hover: $color-grey-100 !default;
 
 .p.button {
   background-color: $button-background-color;
@@ -18,11 +34,14 @@ $button-hover-animation-duration: $animation-duration-normal !default;
   overflow: hidden;
   padding: 0 $button-horizontal-padding;
   position: relative;
+  text-shadow: $button-text-shadow;
   transition-property: background-color, color;
   transition-duration: $button-hover-animation-duration;
   transition-timing-function: ease-in-out;
+  user-select: none;
+  white-space: nowrap;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: $button-background-color-hover;
     color: $button-color-hover;
   }
@@ -30,6 +49,40 @@ $button-hover-animation-duration: $animation-duration-normal !default;
   &.loading {
     .label {
       visibility: hidden;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &.success {
+    background-color: $button-success-background-color;
+    color: $button-success-color;
+
+    &:hover:not(:disabled) {
+      background-color: $button-success-background-color-hover;
+      color: $button-success-color-hover;
+    }
+  }
+
+  &.warning {
+    background-color: $button-warning-background-color;
+    color: $button-warning-color;
+
+    &:hover:not(:disabled) {
+      background-color: $button-warning-background-color-hover;
+      color: $button-warning-color-hover;
+    }
+  }
+
+  &.danger {
+    background-color: $button-danger-background-color;
+    color: $button-danger-color;
+
+    &:hover:not(:disabled) {
+      background-color: $button-danger-background-color-hover;
+      color: $button-danger-color-hover;
     }
   }
 }
