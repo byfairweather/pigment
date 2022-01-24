@@ -28,6 +28,12 @@ $card-body-font-weight: 400;
   overflow: hidden;
   position: relative;
 
+  @at-root button#{&} {
+    display: block;
+    text-align: left;
+    width: 100%;
+  }
+
   img {
     width: 100%;
   }

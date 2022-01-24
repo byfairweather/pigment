@@ -1,5 +1,9 @@
 <template>
-  <div class="p-tab" :class="{ selected }" @click="provider?.select(content)">
+  <button
+    class="p-tab"
+    :class="{ selected }"
+    @click="provider?.select(content)"
+  >
     {{ label }}
     <slot name="label"></slot>
     <div class="underline"></div>
@@ -8,7 +12,7 @@
         <slot></slot>
       </div>
     </teleport>
-  </div>
+  </button>
 </template>
 
 <script lang="ts">

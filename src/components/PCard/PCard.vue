@@ -1,9 +1,8 @@
 <template>
-  <div
+  <component
     class="p-card"
     :class="{ clickable }"
-    :tabindex="clickable ? 0 : undefined"
-    :role="clickable ? 'button' : undefined"
+    :is="clickable ? 'button' : 'div'"
   >
     <div class="image" v-if="$slots.image">
       <slot name="image"></slot>
@@ -20,7 +19,7 @@
       </span>
     </div>
     <slot></slot>
-  </div>
+  </component>
 </template>
 
 <script lang="ts">
