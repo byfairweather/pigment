@@ -3,14 +3,15 @@
   <div class="layout">
     <div class="navigation">
       <ul>
-        <li><router-link :to="'/styles/color'">Color</router-link></li>
+        <li><router-link :to="'/color'">Color</router-link></li>
         <li>
-          <router-link :to="'/styles/typography'">Typography</router-link>
+          <router-link :to="'/typography'">Typography</router-link>
         </li>
-        <li><router-link :to="'/styles/grid'">Grid</router-link></li>
-        <li><router-link :to="'/styles/button'">Button</router-link></li>
-        <li><router-link :to="'/styles/card'">Card</router-link></li>
-        <li><router-link :to="'/styles/spinner'">Spinner</router-link></li>
+        <li><router-link :to="'/surfaces'">Surfaces</router-link></li>
+        <li><router-link :to="'/grid'">Grid</router-link></li>
+        <li><router-link :to="'/button'">Button</router-link></li>
+        <li><router-link :to="'/card'">Card</router-link></li>
+        <li><router-link :to="'/spinner'">Spinner</router-link></li>
       </ul>
     </div>
     <div class="content">

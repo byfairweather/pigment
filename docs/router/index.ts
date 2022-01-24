@@ -5,30 +5,35 @@ import Grid from "../pages/Grid/Grid.vue";
 import Button from "../pages/Button/Button.vue";
 import Card from "../pages/Card/Card.vue";
 import Spinner from "../pages/Spinner/Spinner.vue";
+import Surfaces from "../pages/Surfaces/Surfaces.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/styles/color",
+    path: "/color",
     component: Color,
   },
   {
-    path: "/styles/typography",
+    path: "/typography",
     component: Typography,
   },
   {
-    path: "/styles/grid",
+    path: "/surfaces",
+    component: Surfaces,
+  },
+  {
+    path: "/grid",
     component: Grid,
   },
   {
-    path: "/styles/button",
+    path: "/button",
     component: Button,
   },
   {
-    path: "/styles/card",
+    path: "/card",
     component: Card,
   },
   {
-    path: "/styles/spinner",
+    path: "/spinner",
     component: Spinner,
   },
 ];

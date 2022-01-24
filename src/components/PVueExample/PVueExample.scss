@@ -1,19 +1,20 @@
 @use "../../styles/utilities" as *;
 
-$vue-example-border: $surface-border !default;
+$vue-example-background-color: $color-grey-100 !default;
 $vue-example-border-radius: $surface-border-radius !default;
+$vue-example-box-shadow: $surface-box-shadow-sm !default;
 $vue-example-code-background: $color-grey-200 !default;
 $vue-example-code-font-family: monospace !default;
 $vue-example-code-font-size: $font-size-sm !default;
 $vue-example-code-padding: 1em !default;
 
 .p-vue-example {
-  border: $vue-example-border;
+  background-color: $vue-example-background-color;
+  box-shadow: $surface-box-shadow-sm;
   border-radius: $vue-example-border-radius;
   overflow: hidden;
 
   & > .example {
-    border-bottom: $vue-example-border;
     padding: 1em;
   }
 

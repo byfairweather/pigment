@@ -1,5 +1,32 @@
 @use "color" as *;
 
-$surface-border: 1px solid $color-grey-500 !default;
 $surface-border-radius: 7px !default;
-$surface-box-shadow: 0 2px 8px rgba($color-grey-900, 0.2) !default;
+$surface-box-shadow-xs: 0 1px 3px rgba($color-grey-900, 0.15) !default;
+$surface-box-shadow-sm: 0 2px 4px rgba($color-grey-900, 0.2) !default;
+$surface-box-shadow-md: 0 2px 5px rgba($color-grey-900, 0.25) !default;
+$surface-box-shadow-lg: 0 3px 6px rgba($color-grey-900, 0.3) !default;
+$surface-box-shadow-xl: 0 3px 7px rgba($color-grey-900, 0.35) !default;
+
+.rounded-corners {
+  border-radius: $surface-border-radius !important;
+}
+
+.shadow-xs {
+  box-shadow: $surface-box-shadow-xs !important;
+}
+
+.shadow-sm {
+  box-shadow: $surface-box-shadow-sm !important;
+}
+
+.shadow-md {
+  box-shadow: $surface-box-shadow-md !important;
+}
+
+.shadow-lg {
+  box-shadow: $surface-box-shadow-lg !important;
+}
+
+.shadow-xl {
+  box-shadow: $surface-box-shadow-xl !important;
+}

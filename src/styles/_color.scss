@@ -78,7 +78,7 @@ $color-grey-700: map.get($color-grey-shades, "700") !default;
 $color-grey-800: map.get($color-grey-shades, "800") !default;
 $color-grey-900: map.get($color-grey-shades, "900") !default;
 
-$background-color: $color-grey-100 !default;
+$background-color: $color-grey-200 !default;
 $background-color-white: $color-grey-100 !default;
 $background-color-light: $color-grey-300 !default;
 $background-color-dark: $color-grey-700 !default;
@@ -102,65 +102,65 @@ body {
 }
 
 .text-white {
-  color: $text-color-white;
+  color: $text-color-white !important;
 }
 
 .text-light {
-  color: $text-color-light;
+  color: $text-color-light !important;
 }
 
 .text-dark {
-  color: $text-color-dark;
+  color: $text-color-dark !important;
 }
 
 .text-black {
-  color: $text-color-black;
+  color: $text-color-black !important;
 }
 
 .text-primary {
-  color: $text-color-primary;
+  color: $text-color-primary !important;
 }
 
 .text-success {
-  color: $text-color-success;
+  color: $text-color-success !important;
 }
 
 .text-warning {
-  color: $text-color-warning;
+  color: $text-color-warning !important;
 }
 
 .text-danger {
-  color: $text-color-danger;
+  color: $text-color-danger !important;
 }
 
 .background-white {
-  background-color: $background-color-white;
+  background-color: $background-color-white !important;
 }
 
 .background-light {
-  background-color: $background-color-light;
+  background-color: $background-color-light !important;
 }
 
 .background-dark {
-  background-color: $background-color-dark;
+  background-color: $background-color-dark !important;
 }
 
 .background-black {
-  background-color: $background-color-black;
+  background-color: $background-color-black !important;
 }
 
 .background-primary {
-  background-color: $background-color-primary;
+  background-color: $background-color-primary !important;
 }
 
 .background-success {
-  background-color: $background-color-success;
+  background-color: $background-color-success !important;
 }
 
 .background-warning {
-  background-color: $background-color-warning;
+  background-color: $background-color-warning !important;
 }
 
 .background-danger {
-  background-color: $background-color-danger;
+  background-color: $background-color-danger !important;
 }

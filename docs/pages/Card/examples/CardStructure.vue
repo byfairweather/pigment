@@ -10,7 +10,7 @@
         <template v-slot:body>Body</template>
       </p-card>
     </p-grid-item>
-    <p-grid-item class="flex align-stretch justify-stretch">
+    <p-grid-item>
       <p-card>
         <template v-slot:image>
           <img src="https://via.placeholder.com/150" />
