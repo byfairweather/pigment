@@ -13,13 +13,13 @@ $tab-view-underline-animation-duration: $animation-duration-normal !default;
 $tab-view-slide-animation-duration: $animation-duration-normal !default;
 $tab-view-resize-animation-duration: $animation-duration-normal !default;
 
-.p.tab-view {
+.p-tab-view {
   & > .tabs {
     font-size: $tab-view-font-size;
     margin: 0 math.div($tab-view-tab-spacing, -2);
     user-select: none;
 
-    & > .tab {
+    & > .p-tab {
       color: $tab-view-color;
       cursor: pointer;
       display: inline-block;

@@ -1,0 +1,80 @@
+@use "../../styles/utilities.scss" as *;
+
+$card-background-color: $color-grey-100 !default;
+$card-border: $surface-border !default;
+$card-border-radius: $surface-border-radius !default;
+$card-box-shadow: $surface-box-shadow !default;
+$card-padding: 1em !default;
+
+$card-hover-transform: translateY(-2px) !default;
+$card-hover-animation-duration: $animation-duration-normal !default;
+
+$card-title-color: $color-primary;
+$card-title-font-size: $font-size-md;
+$card-title-font-weight: 400;
+
+$card-subtitle-color: $color-grey-600;
+$card-subtitle-font-size: $font-size-sm;
+$card-subtitle-font-weight: 300;
+
+$card-body-color: $color-grey-800;
+$card-body-font-size: $font-size-sm;
+$card-body-font-weight: 400;
+
+.p-card {
+  background-color: $card-background-color;
+  border: $card-border;
+  border-radius: $card-border-radius;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  & > .content {
+    padding: $card-padding;
+
+    &:empty {
+      padding: 0;
+    }
+
+    & > span {
+      display: block;
+    }
+
+    & > .title {
+      color: $card-title-color;
+      font-size: $card-title-font-size;
+      font-weight: $card-title-font-weight;
+    }
+
+    & > .subtitle {
+      color: $card-subtitle-color;
+      font-size: $card-subtitle-font-size;
+      font-weight: $card-subtitle-font-weight;
+    }
+
+    & > .body {
+      color: $card-body-color;
+      font-size: $card-body-font-size;
+      font-weight: $card-body-font-weight;
+
+      &:not(:only-child) {
+        margin-top: 12px;
+      }
+    }
+  }
+
+  &.clickable {
+    cursor: pointer;
+    transition-property: transform;
+    transition-duration: $card-hover-animation-duration;
+    transition-timing-function: ease-in-out;
+
+    &:hover,
+    &:focus-within {
+      transform: $card-hover-transform;
+    }
+  }
+}

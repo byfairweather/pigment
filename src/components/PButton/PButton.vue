@@ -1,6 +1,6 @@
 <template>
   <button
-    class="p button"
+    class="p-button"
     :class="{ loading }"
     @click.capture.stop="click()"
     @mousedown.prevent
@@ -24,7 +24,6 @@ export default defineComponent({
     async function click(): Promise<void> {
       if (!loading.value) {
         loading.value = true;
-        console.log("Clicked");
 
         try {
           await ((context.attrs.onClick as () => unknown) ?? (() => null))();

@@ -30,3 +30,43 @@ $layout-breakpoint-xl: 1280px !default;
     @content;
   }
 }
+
+.flex {
+  display: flex;
+
+  & > * {
+    flex-grow: 1;
+  }
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.align-stretch {
+  align-items: stretch;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-stretch {
+  justify-content: stretch;
+}

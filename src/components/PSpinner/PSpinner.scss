@@ -9,7 +9,7 @@ $spinner-thickness-sm: 0.2rem !default;
 $spinner-thickness-md: 0.3rem !default;
 $spinner-thickness-lg: 0.4rem !default;
 
-.p.spinner {
+.p-spinner {
   align-items: center;
   bottom: 0;
   display: flex;
@@ -51,6 +51,18 @@ $spinner-thickness-lg: 0.4rem !default;
       height: $spinner-size-lg;
       width: $spinner-size-lg;
     }
+  }
+
+  &.darken {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    border-radius: inherit;
+  }
+
+  &.lighten {
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(2px);
+    border-radius: inherit;
   }
 }
 

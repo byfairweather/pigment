@@ -9,6 +9,7 @@
         </li>
         <li><router-link :to="'/styles/grid'">Grid</router-link></li>
         <li><router-link :to="'/styles/button'">Button</router-link></li>
+        <li><router-link :to="'/styles/card'">Card</router-link></li>
         <li><router-link :to="'/styles/spinner'">Spinner</router-link></li>
       </ul>
     </div>

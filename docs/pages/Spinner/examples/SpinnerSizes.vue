@@ -25,7 +25,7 @@
 </template>
 
 <style lang="scss" scoped>
-.grid-item {
+.p-grid-item {
   height: 100px;
   position: relative;
 }

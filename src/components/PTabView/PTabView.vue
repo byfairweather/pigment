@@ -1,5 +1,5 @@
 <template>
-  <div class="p tab-view" :id="`tab-view-${id}`">
+  <div class="p-tab-view" :id="`tab-view-${id}`">
     <div class="tabs">
       <slot></slot>
     </div>

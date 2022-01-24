@@ -8,31 +8,31 @@ $grid-spacing-md: 3rem !default;
 $grid-spacing-lg: 5rem !default;
 $grid-spacing-xl: 7rem !default;
 
-.p.grid {
+.p-grid {
   display: flex;
   flex-wrap: wrap;
 
-  & > .grid-item {
+  & > .p-grid-item {
     box-sizing: border-box;
   }
 
   @each $screen in (all, xl, lg, md, sm, xs, xs) {
     @include screen($screen) {
       @for $width from 1 through $grid-columns {
-        &.widths-#{$width}-#{$screen} > .grid-item,
-        & > .grid-item.width-#{$width}-#{$screen} {
+        &.widths-#{$width}-#{$screen} > .p-grid-item,
+        & > .p-grid-item.width-#{$width}-#{$screen} {
           flex-basis: math.percentage(math.div($width, $grid-columns));
           max-width: math.percentage(math.div($width, $grid-columns));
         }
       }
 
-      &.widths-grow-#{$screen} > .grid-item,
-      & > .grid-item.width-grow-#{$screen} {
+      &.widths-grow-#{$screen} > .p-grid-item,
+      & > .p-grid-item.width-grow-#{$screen} {
         flex: 1 1 1px;
       }
 
-      &.widths-shrink-#{$screen} > .grid-item,
-      & > .grid-item.width-shrink-#{$screen} {
+      &.widths-shrink-#{$screen} > .p-grid-item,
+      & > .p-grid-item.width-shrink-#{$screen} {
         flex: 0 1 1px;
         white-space: nowrap;
       }
@@ -40,7 +40,7 @@ $grid-spacing-xl: 7rem !default;
       &.spacing-none-#{$screen} {
         margin: 0;
 
-        & > .grid-item {
+        & > .p-grid-item {
           padding: 0;
         }
       }
@@ -48,7 +48,7 @@ $grid-spacing-xl: 7rem !default;
       &.spacing-xl-#{$screen} {
         margin: calc(#{$grid-spacing-xl} / -2);
 
-        & > .grid-item {
+        & > .p-grid-item {
           padding: calc(#{$grid-spacing-xl} / 2);
         }
       }
@@ -56,7 +56,7 @@ $grid-spacing-xl: 7rem !default;
       &.spacing-lg-#{$screen} {
         margin: calc(#{$grid-spacing-lg} / -2);
 
-        & > .grid-item {
+        & > .p-grid-item {
           padding: calc(#{$grid-spacing-lg} / 2);
         }
       }
@@ -65,7 +65,7 @@ $grid-spacing-xl: 7rem !default;
       &.spacing-md-#{$screen} {
         margin: calc(#{$grid-spacing-md} / -2);
 
-        & > .grid-item {
+        & > .p-grid-item {
           padding: calc(#{$grid-spacing-md} / 2);
         }
       }
@@ -73,7 +73,7 @@ $grid-spacing-xl: 7rem !default;
       &.spacing-sm-#{$screen} {
         margin: calc(#{$grid-spacing-sm} / -2);
 
-        & > .grid-item {
+        & > .p-grid-item {
           padding: calc(#{$grid-spacing-sm} / 2);
         }
       }
@@ -81,7 +81,7 @@ $grid-spacing-xl: 7rem !default;
       &.spacing-xs-#{$screen} {
         margin: calc(#{$grid-spacing-xs} / -2);
 
-        & > .grid-item {
+        & > .p-grid-item {
           padding: calc(#{$grid-spacing-xs} / 2);
         }
       }

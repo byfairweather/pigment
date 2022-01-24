@@ -3,6 +3,7 @@ import Color from "../pages/styles/Color.vue";
 import Typography from "../pages/styles/Typography.vue";
 import Grid from "../pages/Grid/Grid.vue";
 import Button from "../pages/Button/Button.vue";
+import Card from "../pages/Card/Card.vue";
 import Spinner from "../pages/Spinner/Spinner.vue";
 
 const routes: Array<RouteRecordRaw> = [
@@ -21,6 +22,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/styles/button",
     component: Button,
+  },
+  {
+    path: "/styles/card",
+    component: Card,
   },
   {
     path: "/styles/spinner",

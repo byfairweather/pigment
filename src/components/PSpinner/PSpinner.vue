@@ -1,5 +1,5 @@
 <template>
-  <div class="p spinner">
+  <div class="p-spinner">
     <div class="wheel"></div>
   </div>
 </template>

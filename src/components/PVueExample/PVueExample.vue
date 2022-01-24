@@ -1,5 +1,5 @@
 <template>
-  <div class="p vue-example">
+  <div class="p-vue-example">
     <div class="example">
       <slot></slot>
     </div>

@@ -40,7 +40,7 @@
 </template>
 
 <style lang="scss" scoped>
-.grid-item .grid-item {
+.p-grid-item .p-grid-item {
   background-color: rgba(255, 0, 0, 0.25);
   background-clip: content-box;
   text-align: center;

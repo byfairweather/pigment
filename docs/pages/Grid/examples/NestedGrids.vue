@@ -27,15 +27,15 @@
 </template>
 
 <style lang="scss" scoped>
-.grid-item {
+.p-grid-item {
   background-color: rgba(255, 0, 0, 0.25);
   background-clip: content-box;
   text-align: center;
 
-  .grid-item {
+  .p-grid-item {
     background-color: rgba(0, 0, 255, 0.25);
 
-    .grid-item {
+    .p-grid-item {
       background-color: rgba(255, 0, 0, 0.25);
     }
   }
