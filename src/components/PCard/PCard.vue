@@ -24,7 +24,6 @@
 
 <script lang="ts">
 import { defineComponent, computed, ref } from "vue";
-import PSpinner from "../PSpinner/PSpinner.vue";
 
 export default defineComponent({
   name: "p-card",
@@ -33,6 +32,5 @@ export default defineComponent({
 
     return { clickable };
   },
-  components: { PSpinner },
 });
 </script>

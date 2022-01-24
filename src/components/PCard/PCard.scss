@@ -5,8 +5,9 @@ $card-border-radius: $surface-border-radius !default;
 $card-box-shadow: $surface-box-shadow-sm !default;
 $card-padding: 1em !default;
 
-$card-hover-transform: translateY(-2px) !default;
 $card-hover-animation-duration: $animation-duration-normal !default;
+$card-hover-box-shadow: $surface-box-shadow-md !default;
+$card-hover-transform: translateY(-2px) !default;
 
 $card-title-color: $color-primary;
 $card-title-font-size: $font-size-md;
@@ -75,12 +76,12 @@ $card-body-font-weight: 400;
 
   &.clickable {
     cursor: pointer;
-    transition-property: transform;
+    transition-property: transform, box-shadow;
     transition-duration: $card-hover-animation-duration;
     transition-timing-function: ease-in-out;
 
-    &:hover,
-    &:focus-within {
+    &:hover {
+      box-shadow: $card-hover-box-shadow;
       transform: $card-hover-transform;
     }
   }

@@ -78,7 +78,7 @@ $color-grey-700: map.get($color-grey-shades, "700") !default;
 $color-grey-800: map.get($color-grey-shades, "800") !default;
 $color-grey-900: map.get($color-grey-shades, "900") !default;
 
-$background-color: $color-grey-200 !default;
+$background-color: #f9f9f9 !default;
 $background-color-white: $color-grey-100 !default;
 $background-color-light: $color-grey-300 !default;
 $background-color-dark: $color-grey-700 !default;
