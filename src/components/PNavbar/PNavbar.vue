@@ -1,29 +1,32 @@
 <template>
-  <nav class="p-navbar">
-    <div class="logo">
-      <slot name="logo"></slot>
-    </div>
-    <div class="start">
-      <slot name="start"></slot>
-    </div>
-    <div class="end">
-      <slot name="end"></slot>
-    </div>
-    <div class="mobile">
-      <NavbarDropdown anchor="right">
-        <template #label>☰</template>
-        <slot name="mobile"></slot>
-      </NavbarDropdown>
-    </div>
-  </nav>
+  <PPanel class="p-navbar padding-vertical-sm margin-bottom-lg">
+    <nav>
+      <div class="logo">
+        <slot name="logo"></slot>
+      </div>
+      <div class="start">
+        <slot name="start"></slot>
+      </div>
+      <div class="end">
+        <slot name="end"></slot>
+      </div>
+      <div class="mobile">
+        <PNavbarDropdown anchor="right">
+          <template #label>☰</template>
+          <slot name="mobile"></slot>
+        </PNavbarDropdown>
+      </div>
+    </nav>
+  </PPanel>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import NavbarDropdown from "./PNavbarDropdown.vue";
+import PNavbarDropdown from "./PNavbarDropdown.vue";
+import PPanel from "../PPanel/PPanel.vue";
 
 export default defineComponent({
   name: "p-navbar",
-  components: { NavbarDropdown },
+  components: { PNavbarDropdown, PPanel },
 });
 </script>

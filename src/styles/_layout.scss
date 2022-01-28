@@ -4,13 +4,19 @@ $layout-breakpoint-sm: 640px !default;
 $layout-breakpoint-md: 800px !default;
 $layout-breakpoint-lg: 1024px !default;
 $layout-breakpoint-xl: 1280px !default;
+$layout-spacing-xs: 0.25em !default;
+$layout-spacing-sm: 0.5em !default;
+$layout-spacing-md: 1em !default;
+$layout-spacing-lg: 2em !default;
+$layout-spacing-xl: 4em !default;
+
 $layout-spacing: (
   "none": 0em,
-  "xs": 0.25em,
-  "sm": 0.5em,
-  "md": 1em,
-  "lg": 2em,
-  "xl": 4em,
+  "xs": $layout-spacing-xs,
+  "sm": $layout-spacing-sm,
+  "md": $layout-spacing-md,
+  "lg": $layout-spacing-lg,
+  "xl": $layout-spacing-xl,
 ) !default;
 
 @mixin screen($size) {

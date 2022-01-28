@@ -1,6 +1,8 @@
 @use "sass:math";
 @use "../../styles/utilities" as *;
 
+$navbar-background-color: transparent !default;
+$navbar-border-top: 5px solid $color-primary-500 !default;
 $navbar-item-active-color: $color-primary-500 !default;
 $navbar-item-color: $color-grey-700 !default;
 $navbar-item-font-size: $font-size-sm !default;
@@ -9,42 +11,47 @@ $navbar-item-spacing: 1em !default;
 $navbar-item-transition: all 200ms ease-in-out !default;
 
 .p-navbar {
-  display: flex;
-  align-items: baseline;
-  position: static;
+  background-color: $navbar-background-color;
+  border-top: $navbar-border-top;
 
-  & > .logo {
-    .p-navbar-item:first-child {
-      margin-left: -$navbar-item-spacing;
-    }
-  }
-
-  & > .start {
+  nav {
     display: flex;
-    flex-grow: 1;
-  }
+    align-items: baseline;
+    position: static;
 
-  & > .end,
-  & > .mobile {
-    display: flex;
-    .p-navbar-item:last-child {
-      margin-right: -$navbar-item-spacing;
+    & > .logo {
+      .p-navbar-item:first-child {
+        margin-left: -$navbar-item-spacing;
+      }
     }
-  }
 
-  & > .mobile {
-    display: none;
-  }
+    & > .start {
+      display: flex;
+      flex-grow: 1;
+    }
 
-  @include screen(xl) {
-    & > .start,
-    & > .end {
-      display: none;
+    & > .end,
+    & > .mobile {
+      display: flex;
+      .p-navbar-item:last-child {
+        margin-right: -$navbar-item-spacing;
+      }
     }
 
     & > .mobile {
-      display: flex;
-      margin-left: auto;
+      display: none;
+    }
+
+    @include screen(xl) {
+      & > .start,
+      & > .end {
+        display: none;
+      }
+
+      & > .mobile {
+        display: flex;
+        margin-left: auto;
+      }
     }
   }
 }

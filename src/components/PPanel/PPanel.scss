@@ -9,6 +9,8 @@ $panel-max-width: 1200px !default;
 $panel-min-width: $layout-min-width !default;
 
 .p-panel {
+  width: 100%;
+
   & > .content {
     margin: 0 auto;
     max-width: $panel-max-width;
@@ -35,7 +37,6 @@ $panel-min-width: $layout-min-width !default;
     }
   }
 
-  &,
   &.spacing-none {
     padding: 0;
     margin: 0;

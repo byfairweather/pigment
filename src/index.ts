@@ -1,9 +1,11 @@
 import { Plugin } from "vue";
 
 // Components
+import PApp from "./components/PApp/PApp.vue";
 import PButton from "./components/PButton/PButton.vue";
 import PBox from "./components/PBox/PBox.vue";
 import PCard from "./components/PCard/PCard.vue";
+import PFooter from "./components/PFooter/PFooter.vue";
 import PGrid from "./components/PGrid/PGrid.vue";
 import PGridItem from "./components/PGrid/PGridItem.vue";
 import PNavbar from "./components/PNavbar/PNavbar.vue";
@@ -19,9 +21,11 @@ import PVueExample from "./components/PVueExample/PVueExample.vue";
 export default {
   install: (app, options) => {
     // TODO: Can we delegate this to the component index.ts files?
+    app.component(PApp.name, PApp);
     app.component(PButton.name, PButton);
     app.component(PBox.name, PBox);
     app.component(PCard.name, PCard);
+    app.component(PFooter.name, PFooter);
     app.component(PGrid.name, PGrid);
     app.component(PGridItem.name, PGridItem);
     app.component(PNavbar.name, PNavbar);

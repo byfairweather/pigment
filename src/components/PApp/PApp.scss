@@ -1,0 +1,14 @@
+@use "../../styles/utilities.scss" as *;
+
+html,
+body,
+.p-app {
+  min-height: 100vh;
+}
+
+.p-app {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
