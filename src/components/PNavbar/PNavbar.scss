@@ -10,7 +10,7 @@ $navbar-item-transition: all 200ms ease-in-out !default;
 
 .p-navbar {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   position: static;
 
   & > .logo {

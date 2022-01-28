@@ -2,7 +2,9 @@
   <p-panel class="margin-vertical-md">
     <p-navbar>
       <template v-slot:logo>
-        <p-navbar-item><h1 class="font-md">Pigment</h1></p-navbar-item>
+        <p-navbar-item
+          ><h1 class="font-md margin-none">Pigment</h1></p-navbar-item
+        >
       </template>
       <template v-slot:start>
         <p-navbar-item>Item 1</p-navbar-item>
