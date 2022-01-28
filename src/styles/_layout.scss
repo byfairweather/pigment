@@ -4,6 +4,13 @@ $layout-breakpoint-sm: 640px !default;
 $layout-breakpoint-md: 800px !default;
 $layout-breakpoint-lg: 1024px !default;
 $layout-breakpoint-xl: 1280px !default;
+$layout-spacing: (
+  "xs": 0.25em,
+  "sm": 0.5em,
+  "md": 1em,
+  "lg": 2em,
+  "xl": 4em,
+) !default;
 
 @mixin screen($size) {
   @if $size == xs {
@@ -32,7 +39,7 @@ $layout-breakpoint-xl: 1280px !default;
 }
 
 .flex {
-  display: flex;
+  display: flex !important;
 
   & > * {
     flex-grow: 1;
@@ -40,33 +47,69 @@ $layout-breakpoint-xl: 1280px !default;
 }
 
 .align-start {
-  align-items: flex-start;
+  align-items: flex-start !important;
 }
 
 .align-center {
-  align-items: center;
+  align-items: center !important;
 }
 
 .align-end {
-  align-items: flex-end;
+  align-items: flex-end !important;
 }
 
 .align-stretch {
-  align-items: stretch;
+  align-items: stretch !important;
 }
 
 .justify-start {
-  justify-content: flex-start;
+  justify-content: flex-start !important;
 }
 
 .justify-center {
-  justify-content: center;
+  justify-content: center !important;
 }
 
 .justify-end {
-  justify-content: flex-end;
+  justify-content: flex-end !important;
 }
 
 .justify-stretch {
-  justify-content: stretch;
+  justify-content: stretch !important;
+}
+
+@each $size, $value in $layout-spacing {
+  .padding-#{$size} {
+    padding: $value !important;
+  }
+
+  .margin-#{$size} {
+    margin: $value !important;
+  }
+
+  .padding-vertical-#{$size} {
+    padding: $value 0 !important;
+  }
+
+  .margin-vertical-#{$size} {
+    margin: $value 0 !important;
+  }
+
+  .padding-horizontal-#{$size} {
+    padding: 0 $value !important;
+  }
+
+  .margin-horizontal-#{$size} {
+    margin: 0 $value !important;
+  }
+
+  @each $side in ("top", "bottom", "left", "right") {
+    .padding-#{$side}-#{$size} {
+      padding-#{$side}: $value !important;
+    }
+
+    .margin-#{$side}-#{$size} {
+      margin-#{$side}: $value !important;
+    }
+  }
 }

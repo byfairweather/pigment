@@ -35,6 +35,7 @@ $panel-min-width: $layout-min-width !default;
     }
   }
 
+  &,
   &.spacing-none {
     padding: 0;
     margin: 0;
@@ -50,7 +51,6 @@ $panel-min-width: $layout-min-width !default;
     margin: 38px unset;
   }
 
-  &,
   &.spacing-md {
     padding: 48px 0;
     margin: 48px unset;
