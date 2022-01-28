@@ -58,6 +58,12 @@ export default defineComponent({
       { immediate: true }
     );
 
+    window.addEventListener("resize", () => {
+      nextTick(() => {
+        setPosition();
+      });
+    });
+
     function setPosition() {
       horizontalAnchor.value = props.anchor.split(" ")[0] ?? "left";
       verticalAnchor.value = props.anchor.split(" ")[1] ?? "beneath";

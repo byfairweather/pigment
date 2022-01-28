@@ -42,7 +42,7 @@ $navbar-item-transition: all 200ms ease-in-out !default;
       display: none;
     }
 
-    @include screen(xl) {
+    @include screen(sm) {
       & > .start,
       & > .end {
         display: none;
