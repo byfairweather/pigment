@@ -1,0 +1,55 @@
+@use "../../styles/utilities.scss" as *;
+
+$popup-margin: 10px;
+$popup-enter-animation-duration: $animation-duration-fast;
+$popup-exit-animation-duration: $animation-duration-faster;
+
+.p-popup {
+  position: absolute;
+
+  &.popup-enter-active,
+  &.popup-leave-active {
+    transition-property: margin, opacity;
+    transition-duration: $popup-enter-animation-duration;
+    transition-timing-function: ease-in-out;
+  }
+
+  &.popup-leave-active {
+    transition-duration: $popup-exit-animation-duration;
+  }
+
+  &.open:not(.popup-enter-from):not(.popup-enter-to):not(.popup-leave-from):not(.popup-leave-to) {
+    opacity: 1;
+  }
+
+  &.open:not(.popup-enter-from):not(.popup-enter-to):not(.popup-leave-from):not(.popup-leave-to),
+  &.popup-enter-to,
+  &.popup-leave-from,
+  &.popup-leave-to {
+    &.above {
+      margin-top: -$popup-margin;
+    }
+
+    &.beneath {
+      margin-top: $popup-margin;
+    }
+
+    &.outside-left {
+      margin-left: -$popup-margin;
+    }
+
+    &.outside-right {
+      margin-left: $popup-margin;
+    }
+  }
+
+  &.popup-enter-to,
+  &.popup-leave-from {
+    opacity: 1;
+  }
+
+  &.popup-enter-from,
+  &.popup-leave-to {
+    opacity: 0;
+  }
+}

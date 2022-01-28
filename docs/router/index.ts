@@ -4,6 +4,7 @@ import Typography from "../pages/styles/Typography.vue";
 import Grid from "../pages/Grid/Grid.vue";
 import Button from "../pages/Button/Button.vue";
 import Card from "../pages/Card/Card.vue";
+import Navbar from "../pages/Navbar/Navbar.vue";
 import Spinner from "../pages/Spinner/Spinner.vue";
 import Surfaces from "../pages/Surfaces/Surfaces.vue";
 
@@ -31,6 +32,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/card",
     component: Card,
+  },
+  {
+    path: "/navbar",
+    component: Navbar,
   },
   {
     path: "/spinner",

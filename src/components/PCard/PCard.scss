@@ -22,67 +22,65 @@ $card-body-font-size: $font-size-sm;
 $card-body-font-weight: 400;
 
 .p-card {
-  background-color: $card-background-color;
-  box-shadow: $surface-box-shadow-sm;
-  border-radius: $card-border-radius;
-  overflow: hidden;
-  position: relative;
-
   @at-root button#{&} {
     display: block;
     text-align: left;
     width: 100%;
   }
 
-  & > .image {
-    & > img {
-      width: 100%;
-    }
-  }
-
-  & > .content {
-    padding: $card-padding;
-
-    &:empty {
-      padding: 0;
+  .p-box {
+    & > .image {
+      & > img {
+        width: 100%;
+      }
     }
 
-    & > span {
-      display: block;
-    }
+    & > .content {
+      padding: $card-padding;
 
-    & > .title {
-      color: $card-title-color;
-      font-size: $card-title-font-size;
-      font-weight: $card-title-font-weight;
-    }
+      &:empty {
+        padding: 0;
+      }
 
-    & > .subtitle {
-      color: $card-subtitle-color;
-      font-size: $card-subtitle-font-size;
-      font-weight: $card-subtitle-font-weight;
-    }
+      & > span {
+        display: block;
+      }
 
-    & > .body {
-      color: $card-body-color;
-      font-size: $card-body-font-size;
-      font-weight: $card-body-font-weight;
+      & > .title {
+        color: $card-title-color;
+        font-size: $card-title-font-size;
+        font-weight: $card-title-font-weight;
+      }
 
-      &:not(:only-child) {
-        margin-top: 12px;
+      & > .subtitle {
+        color: $card-subtitle-color;
+        font-size: $card-subtitle-font-size;
+        font-weight: $card-subtitle-font-weight;
+      }
+
+      & > .body {
+        color: $card-body-color;
+        font-size: $card-body-font-size;
+        font-weight: $card-body-font-weight;
+
+        &:not(:only-child) {
+          margin-top: 1em;
+        }
       }
     }
   }
 
   &.clickable {
-    cursor: pointer;
-    transition-property: transform, box-shadow;
-    transition-duration: $card-hover-animation-duration;
-    transition-timing-function: ease-in-out;
+    .p-box {
+      cursor: pointer;
+      transition-property: transform, box-shadow;
+      transition-duration: $card-hover-animation-duration;
+      transition-timing-function: ease-in-out;
 
-    &:hover {
-      box-shadow: $card-hover-box-shadow;
-      transform: $card-hover-transform;
+      &:hover {
+        box-shadow: $card-hover-box-shadow;
+        transform: $card-hover-transform;
+      }
     }
   }
 }

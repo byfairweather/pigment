@@ -1,0 +1,13 @@
+@use "../../styles/utilities.scss" as *;
+
+$box-background-color: $color-grey-100 !default;
+$box-border-radius: $surface-border-radius !default;
+$box-shadow: $surface-box-shadow-sm !default;
+
+.p-box {
+  background-color: $box-background-color;
+  box-shadow: $box-shadow;
+  border-radius: $box-border-radius;
+  overflow: hidden;
+  position: relative;
+}

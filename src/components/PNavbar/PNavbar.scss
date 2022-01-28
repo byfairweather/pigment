@@ -1,0 +1,105 @@
+@use "sass:math";
+@use "../../styles/utilities" as *;
+
+$navbar-item-active-color: $color-primary-500 !default;
+$navbar-item-color: $color-grey-700 !default;
+$navbar-item-font-size: $font-size-sm !default;
+$navbar-item-font-weight: $font-weight-normal !default;
+$navbar-item-spacing: 1em !default;
+$navbar-item-transition: all 200ms ease-in-out !default;
+
+.p-navbar {
+  display: flex;
+  align-items: center;
+  position: static;
+
+  & > .logo {
+    .p-navbar-item:first-child {
+      margin-left: -$navbar-item-spacing;
+    }
+  }
+
+  & > .start {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  & > .end,
+  & > .mobile {
+    display: flex;
+    .p-navbar-item:last-child {
+      margin-right: -$navbar-item-spacing;
+    }
+  }
+
+  & > .mobile {
+    display: none;
+  }
+
+  @include screen(xl) {
+    & > .start,
+    & > .end {
+      display: none;
+    }
+
+    & > .mobile {
+      display: flex;
+      margin-left: auto;
+    }
+  }
+}
+
+.p-navbar-item {
+  color: $navbar-item-color;
+  cursor: pointer;
+  display: block;
+  font-size: $navbar-item-font-size;
+  font-weight: $navbar-item-font-weight;
+  padding: 0 $navbar-item-spacing;
+  transition: $navbar-item-transition;
+  user-select: none;
+  white-space: nowrap;
+
+  a {
+    color: inherit;
+  }
+
+  &:hover,
+  &:focus {
+    color: $navbar-item-active-color;
+  }
+}
+
+.p-navbar-dropdown {
+  padding: calc($navbar-item-spacing / 2);
+
+  .p-navbar-item {
+    padding: calc($navbar-item-spacing / 2);
+  }
+}
+
+@keyframes navbar-dropdown-open {
+  0% {
+    transform: translateY(-10px) scale(0.96);
+    opacity: 0;
+    visibility: visible;
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes navbar-dropdown-close {
+  0% {
+    transform: translateY(0px) scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    transform: translateY(-10px) scale(0.96);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
