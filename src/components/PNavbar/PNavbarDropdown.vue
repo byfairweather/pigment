@@ -1,10 +1,10 @@
 <template>
-  <PNavbarItem @click="toggle()">
-    <PPopup :anchor="anchor" :open="isOpen">
+  <PNavbarItem>
+    <PPopup :anchor="anchor">
       <slot name="label"></slot>
 
       <template #popup>
-        <PBox class="p-navbar-dropdown" @click="close()">
+        <PBox class="p-navbar-dropdown">
           <slot></slot>
         </PBox>
       </template>
@@ -27,27 +27,8 @@ export default defineComponent({
   },
   setup(props) {
     let anchor = toRef(props, "anchor");
-    let isOpen = ref<boolean>(false);
 
-    function toggle(): void {
-      console.log("Toggle");
-      isOpen.value ? close() : open();
-    }
-
-    function open(): void {
-      if (!isOpen.value) {
-        console.log("Open!");
-        isOpen.value = true;
-      }
-    }
-
-    function close(): void {
-      if (isOpen.value) {
-        isOpen.value = false;
-      }
-    }
-
-    return { isOpen, toggle, open, close, anchor };
+    return { anchor };
   },
   components: { PBox, PNavbarItem, PPopup },
 });

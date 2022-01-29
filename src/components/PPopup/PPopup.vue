@@ -1,22 +1,29 @@
 <template>
-  <div ref="anchor" class="anchor">
+  <div ref="anchor" class="anchor" :class="{ open: isOpen }" @click="toggle()">
     <slot></slot>
   </div>
+
   <teleport to="body">
     <transition name="popup">
       <div
         class="p-popup"
-        :class="`${verticalAnchor} ${horizontalAnchor} ${open && 'open'}`"
+        :class="`${verticalAnchor} ${horizontalAnchor} ${isOpen && 'open'}`"
         ref="popup"
-        v-if="open"
+        v-if="isOpen"
         :style="{
           left: position.left,
           top: position.top,
           width: position.width,
         }"
+        @click="close()"
       >
         <slot name="popup"></slot>
       </div>
+    </transition>
+  </teleport>
+  <teleport to="body">
+    <transition name="shade">
+      <div class="shade" @click="close()" v-if="isOpen"></div>
     </transition>
   </teleport>
 </template>
@@ -26,10 +33,6 @@ import { defineComponent, nextTick, ref, watch } from "vue";
 
 export default defineComponent({
   props: {
-    open: {
-      type: Boolean,
-      default: false,
-    },
     anchor: {
       type: String,
       default: "left beneath",
@@ -41,6 +44,7 @@ export default defineComponent({
     const popup = ref<HTMLDivElement>();
     const verticalAnchor = ref("");
     const horizontalAnchor = ref("");
+    let isOpen = ref<boolean>(false);
 
     const position = ref<{
       top?: string;
@@ -48,8 +52,24 @@ export default defineComponent({
       width?: string;
     }>({});
 
+    function toggle(): void {
+      isOpen.value ? close() : open();
+    }
+
+    function open(): void {
+      if (!isOpen.value) {
+        isOpen.value = true;
+      }
+    }
+
+    function close(): void {
+      if (isOpen.value) {
+        isOpen.value = false;
+      }
+    }
+
     watch(
-      () => props.open,
+      () => isOpen.value,
       () => {
         nextTick(() => {
           setPosition();
@@ -120,7 +140,17 @@ export default defineComponent({
       }
     }
 
-    return { anchor, popup, position, verticalAnchor, horizontalAnchor };
+    return {
+      anchor,
+      popup,
+      position,
+      verticalAnchor,
+      horizontalAnchor,
+      isOpen,
+      toggle,
+      open,
+      close,
+    };
   },
 });
 </script>

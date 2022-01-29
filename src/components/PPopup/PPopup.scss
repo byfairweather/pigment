@@ -1,11 +1,18 @@
 @use "../../styles/utilities.scss" as *;
 
-$popup-margin: 10px;
+$popup-margin: 10px !default;
 $popup-enter-animation-duration: $animation-duration-fast;
 $popup-exit-animation-duration: $animation-duration-faster;
+$popup-z-index: 10000 !default;
+
+.anchor.open {
+  position: relative;
+  z-index: 10000;
+}
 
 .p-popup {
   position: absolute;
+  z-index: 10000;
 
   &.popup-enter-active,
   &.popup-leave-active {
@@ -51,5 +58,37 @@ $popup-exit-animation-duration: $animation-duration-faster;
   &.popup-enter-from,
   &.popup-leave-to {
     opacity: 0;
+  }
+}
+
+.shade {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9000;
+
+  &.shade-enter-active,
+  &.shade-leave-active {
+    transition-property: background-color, backdrop-filter;
+    transition-duration: $popup-enter-animation-duration;
+    transition-timing-function: ease-in-out;
+  }
+
+  &.shade-leave-active {
+    transition-duration: $popup-exit-animation-duration;
+  }
+
+  &:not(.shade-enter-active):not(.shade-leave-active),
+  &.shade-enter-to,
+  &.shade-leave-from {
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1px) saturate(55%);
+  }
+
+  &.shade-enter-from,
+  &.shade-leave-to {
+    backdrop-filter: blur(0) saturate(100%);
   }
 }

@@ -3,7 +3,6 @@ $layout-breakpoint-xs: 480px !default;
 $layout-breakpoint-sm: 640px !default;
 $layout-breakpoint-md: 800px !default;
 $layout-breakpoint-lg: 1024px !default;
-$layout-breakpoint-xl: 1280px !default;
 $layout-spacing-xs: 0.25em !default;
 $layout-spacing-sm: 0.5em !default;
 $layout-spacing-md: 1em !default;
@@ -37,7 +36,7 @@ $layout-spacing: (
       @content;
     }
   } @else if $size == xl {
-    @media only screen and (min-width: $layout-breakpoint-xl) {
+    @media only screen and (min-width: $layout-breakpoint-lg) {
       @content;
     }
   } @else if $size == all {
