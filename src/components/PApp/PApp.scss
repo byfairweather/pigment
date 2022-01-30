@@ -1,9 +1,10 @@
 @use "../../styles/utilities.scss" as *;
 
-html,
-body,
-.p-app {
-  min-height: 100vh;
+$app-background-color: $background-color !default;
+
+body {
+  background-color: $app-background-color;
+  overflow-y: scroll;
 }
 
 .p-app {
@@ -11,4 +12,5 @@ body,
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  min-height: 100vh;
 }
