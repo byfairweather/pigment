@@ -3,6 +3,7 @@
 
 $navbar-background-color: transparent !default;
 $navbar-border-top: 5px solid $color-primary-500 !default;
+$navbar-logo-color: $color-primary-500 !default;
 $navbar-item-active-color: $color-primary-500 !default;
 $navbar-item-color: $color-grey-700 !default;
 $navbar-item-font-size: $font-size-sm !default;
@@ -20,7 +21,10 @@ $navbar-item-transition: all 200ms ease-in-out !default;
     position: static;
 
     & > .logo {
-      .p-navbar-item:first-child {
+      color: $navbar-logo-color;
+
+      .p-navbar-item {
+        color: inherit;
         margin-left: -$navbar-item-spacing;
       }
     }
@@ -41,14 +45,16 @@ $navbar-item-transition: all 200ms ease-in-out !default;
     & > .mobile {
       display: none;
     }
+  }
 
-    @include screen(sm) {
-      & > .start,
-      & > .end {
+  @each $size in ("xs", "sm", "md", "lg", "xl", "all") {
+    @include screen($size) {
+      &.mobile-#{$size} nav > .start,
+      &.mobile-#{$size} nav > .end {
         display: none;
       }
 
-      & > .mobile {
+      &.mobile-#{$size} nav > .mobile {
         display: flex;
         margin-left: auto;
       }

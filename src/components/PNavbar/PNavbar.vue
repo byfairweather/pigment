@@ -1,5 +1,5 @@
 <template>
-  <PPanel class="p-navbar padding-vertical-sm margin-bottom-lg">
+  <PPanel class="p-navbar padding-vertical-md margin-bottom-lg">
     <nav>
       <div class="logo">
         <slot name="logo"></slot>

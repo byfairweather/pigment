@@ -1,8 +1,12 @@
 <template>
+  <teleport to="body">
+    <transition name="shade">
+      <div class="shade" @click="close()" v-if="isOpen"></div>
+    </transition>
+  </teleport>
   <div ref="anchor" class="anchor" :class="{ open: isOpen }" @click="toggle()">
     <slot></slot>
   </div>
-
   <teleport to="body">
     <transition name="popup">
       <div
@@ -19,11 +23,6 @@
       >
         <slot name="popup"></slot>
       </div>
-    </transition>
-  </teleport>
-  <teleport to="body">
-    <transition name="shade">
-      <div class="shade" @click="close()" v-if="isOpen"></div>
     </transition>
   </teleport>
 </template>

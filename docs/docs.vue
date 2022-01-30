@@ -1,6 +1,6 @@
 <template>
   <p-app>
-    <p-navbar>
+    <p-navbar class="mobile-md">
       <template v-slot:logo>
         <p-navbar-item
           ><h1 class="font-md margin-none">Pigment</h1></p-navbar-item
