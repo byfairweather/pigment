@@ -1,0 +1,139 @@
+@use "../../styles/utilities.scss" as *;
+
+$textarea-background-color: $form-control-background-color !default;
+$textarea-border: $form-control-border !default;
+$textarea-border-radius: $form-control-border-radius !default;
+$textarea-color: $form-control-color !default;
+$textarea-font-size: $form-control-font-size !default;
+$textarea-font-weight: $form-control-font-weight !default;
+$textarea-height: $form-control-height !default;
+$textarea-label-color: $form-control-label-color !default;
+$textarea-label-font-size: $form-control-label-font-size !default;
+$textarea-label-font-weight: $form-control-label-font-weight !default;
+$textarea-label-margin-bottom: $form-control-label-margin-bottom !default;
+$textarea-padding: $form-control-padding !default;
+$textarea-transition: all $animation-duration-normal ease-in-out !default;
+
+$textarea-active-background-color: $form-control-active-background-color !default;
+$textarea-active-border: $form-control-active-border !default;
+$textarea-active-color: $form-control-active-color !default;
+$textarea-active-label-color: $form-control-active-label-color !default;
+
+$textarea-hover-background-color: $form-control-hover-background-color !default;
+$textarea-hover-border: $form-control-hover-border !default;
+$textarea-hover-color: $form-control-hover-color !default;
+$textarea-hover-label-color: $form-control-hover-label-color !default;
+
+$textarea-disabled-background-color: $form-control-disabled-background-color !default;
+$textarea-disabled-border: $form-control-disabled-border !default;
+$textarea-disabled-color: $form-control-disabled-color !default;
+$textarea-disabled-label-color: $form-control-disabled-label-color !default;
+
+.p-textarea {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  & > .label {
+    color: $textarea-label-color;
+    display: block;
+    font-size: $textarea-label-font-size;
+    font-weight: $textarea-label-font-weight;
+    margin-bottom: $textarea-label-margin-bottom;
+    user-select: none;
+    order: 1;
+  }
+
+  & > .input {
+    align-content: stretch;
+    background-color: $textarea-background-color;
+    border: $textarea-border;
+    border-radius: $textarea-border-radius;
+    box-sizing: border-box;
+    color: $textarea-color;
+    display: flex;
+    order: 2;
+    overflow: hidden;
+    transition: $textarea-transition;
+
+    textarea {
+      background-color: transparent;
+      border: none;
+      box-sizing: border-box;
+      color: inherit;
+      flex-grow: 1;
+      font-size: $textarea-font-size;
+      font-weight: $textarea-font-weight;
+      margin: 0;
+      min-width: 0;
+      outline: none;
+      padding: $textarea-padding;
+      resize: none;
+      transition: $textarea-transition;
+
+      &::placeholder {
+        color: inherit;
+        opacity: 0.5;
+      }
+
+      &:-webkit-autofill::first-line,
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        font-size: $textarea-font-size;
+        font-weight: $textarea-font-weight;
+        transition: background-color 999999s ease-in-out 999999s;
+      }
+    }
+
+    .prefix,
+    .suffix {
+      align-items: center;
+      color: inherit;
+      display: flex;
+      font-size: $textarea-font-size;
+      font-weight: 500;
+      transition: $textarea-transition;
+      user-select: none;
+    }
+
+    .prefix {
+      padding-left: $textarea-padding;
+    }
+
+    .suffix {
+      padding-right: $textarea-padding;
+    }
+
+    &:focus-within:not(.disabled) {
+      border: $textarea-active-border;
+      background-color: $textarea-active-background-color;
+      color: $textarea-active-color;
+
+      & + .label {
+        color: $textarea-active-label-color;
+      }
+    }
+
+    &:hover:not(.disabled):not(:focus-within) {
+      border: $textarea-hover-border;
+      background-color: $textarea-hover-background-color;
+      color: $textarea-hover-color;
+
+      & + .label {
+        color: $textarea-hover-label-color;
+      }
+    }
+
+    &.disabled {
+      border: $textarea-disabled-border;
+      background-color: $textarea-disabled-background-color;
+      color: $textarea-disabled-color;
+
+      & + .label {
+        color: $textarea-disabled-label-color;
+      }
+    }
+  }
+}

@@ -33,6 +33,7 @@
               <li><router-link :to="'/grid'">Grid</router-link></li>
               <li><router-link :to="'/button'">Button</router-link></li>
               <li><router-link :to="'/card'">Card</router-link></li>
+              <li><router-link :to="'/forms'">Forms</router-link></li>
               <li><router-link :to="'/navbar'">Navbar</router-link></li>
               <li><router-link :to="'/spinner'">Spinner</router-link></li>
             </ul>

@@ -2,15 +2,13 @@
 
 $button-background-color: $color-primary-500 !default;
 $button-border-radius: $surface-border-radius !default;
-$button-box-shadow: $surface-box-shadow-xs !default;
 $button-color: $color-grey-100 !default;
 $button-horizontal-padding: 1em !default;
-$button-height: $forms-control-height !default;
+$button-height: $form-control-height !default;
 $button-text-shadow: 0 0 3px rgba(0, 0, 0, 0.25) !default;
 
 $button-hover-animation-duration: $animation-duration-normal !default;
 $button-hover-background-color: $color-primary-600 !default;
-$button-hover-box-shadow: $surface-box-shadow-sm !default;
 $button-hover-color: $color-grey-100 !default;
 
 $button-success-background-color: $color-success-500 !default;
@@ -31,7 +29,6 @@ $button-danger-hover-color: $color-grey-100 !default;
 .p-button {
   background-color: $button-background-color;
   border-radius: $button-border-radius;
-  box-shadow: $button-box-shadow;
   color: $button-color;
   cursor: pointer;
   height: $button-height;
@@ -47,7 +44,6 @@ $button-danger-hover-color: $color-grey-100 !default;
 
   &:hover:not(:disabled) {
     background-color: $button-hover-background-color;
-    box-shadow: $button-hover-box-shadow;
     color: $button-hover-color;
   }
 

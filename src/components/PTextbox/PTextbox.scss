@@ -1,0 +1,139 @@
+@use "../../styles/utilities.scss" as *;
+
+$textbox-background-color: $form-control-background-color !default;
+$textbox-border: $form-control-border !default;
+$textbox-border-radius: $form-control-border-radius !default;
+$textbox-color: $form-control-color !default;
+$textbox-font-size: $form-control-font-size !default;
+$textbox-font-weight: $form-control-font-weight !default;
+$textbox-height: $form-control-height !default;
+$textbox-label-color: $form-control-label-color !default;
+$textbox-label-font-size: $form-control-label-font-size !default;
+$textbox-label-font-weight: $form-control-label-font-weight !default;
+$textbox-label-margin-bottom: $form-control-label-margin-bottom !default;
+$textbox-padding: $form-control-padding !default;
+$textbox-transition: all $animation-duration-normal ease-in-out !default;
+
+$textbox-active-background-color: $form-control-active-background-color !default;
+$textbox-active-border: $form-control-active-border !default;
+$textbox-active-color: $form-control-active-color !default;
+$textbox-active-label-color: $form-control-active-label-color !default;
+
+$textbox-hover-background-color: $form-control-hover-background-color !default;
+$textbox-hover-border: $form-control-hover-border !default;
+$textbox-hover-color: $form-control-hover-color !default;
+$textbox-hover-label-color: $form-control-hover-label-color !default;
+
+$textbox-disabled-background-color: $form-control-disabled-background-color !default;
+$textbox-disabled-border: $form-control-disabled-border !default;
+$textbox-disabled-color: $form-control-disabled-color !default;
+$textbox-disabled-label-color: $form-control-disabled-label-color !default;
+
+.p-textbox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  & > .label {
+    color: $textbox-label-color;
+    display: block;
+    font-size: $textbox-label-font-size;
+    font-weight: $textbox-label-font-weight;
+    margin-bottom: $textbox-label-margin-bottom;
+    user-select: none;
+    order: 1;
+  }
+
+  & > .input {
+    align-content: stretch;
+    background-color: $textbox-background-color;
+    border: $textbox-border;
+    border-radius: $textbox-border-radius;
+    box-sizing: border-box;
+    color: $textbox-color;
+    display: flex;
+    height: $textbox-height;
+    order: 2;
+    overflow: hidden;
+    transition: $textbox-transition;
+
+    input {
+      background-color: transparent;
+      border: none;
+      box-sizing: border-box;
+      color: inherit;
+      flex-grow: 1;
+      font-size: $textbox-font-size;
+      font-weight: $textbox-font-weight;
+      margin: 0;
+      min-width: 0;
+      outline: none;
+      padding: 0 $textbox-padding;
+      transition: $textbox-transition;
+
+      &::placeholder {
+        color: inherit;
+        opacity: 0.5;
+      }
+
+      &:-webkit-autofill::first-line,
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        font-size: $textbox-font-size;
+        font-weight: $textbox-font-weight;
+        transition: background-color 999999s ease-in-out 999999s;
+      }
+    }
+
+    .prefix,
+    .suffix {
+      align-items: center;
+      color: inherit;
+      display: flex;
+      font-size: $textbox-font-size;
+      font-weight: 500;
+      transition: $textbox-transition;
+      user-select: none;
+    }
+
+    .prefix {
+      padding-left: $textbox-padding;
+    }
+
+    .suffix {
+      padding-right: $textbox-padding;
+    }
+
+    &:focus-within:not(.disabled) {
+      border: $textbox-active-border;
+      background-color: $textbox-active-background-color;
+      color: $textbox-active-color;
+
+      & + .label {
+        color: $textbox-active-label-color;
+      }
+    }
+
+    &:hover:not(.disabled):not(:focus-within) {
+      border: $textbox-hover-border;
+      background-color: $textbox-hover-background-color;
+      color: $textbox-hover-color;
+
+      & + .label {
+        color: $textbox-hover-label-color;
+      }
+    }
+
+    &.disabled {
+      border: $textbox-disabled-border;
+      background-color: $textbox-disabled-background-color;
+      color: $textbox-disabled-color;
+
+      & + .label {
+        color: $textbox-disabled-label-color;
+      }
+    }
+  }
+}

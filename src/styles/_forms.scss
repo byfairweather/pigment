@@ -1,1 +1,32 @@
-$forms-control-height: 2em !default;
+@use "./typography" as *;
+@use "./color" as *;
+@use "./surfaces" as *;
+@use "./layout" as *;
+
+$form-control-height: 2em !default;
+$form-control-background-color: $color-grey-100 !default;
+$form-control-border: 1px solid $color-grey-500 !default;
+$form-control-border-radius: $surface-border-radius !default;
+$form-control-color: $color-grey-700 !default;
+$form-control-font-size: $font-size-sm !default;
+$form-control-font-weight: $font-weight-normal !default;
+$form-control-padding: $layout-spacing-sm !default;
+$form-control-label-color: $color-grey-700 !default;
+$form-control-label-font-size: $font-size-sm !default;
+$form-control-label-font-weight: $font-weight-normal !default;
+$form-control-label-margin-bottom: $layout-spacing-xs !default;
+
+$form-control-active-background-color: $color-primary-100 !default;
+$form-control-active-border: 1px solid $color-primary-500 !default;
+$form-control-active-color: $color-primary-500 !default;
+$form-control-active-label-color: $color-primary !default;
+
+$form-control-hover-background-color: $color-grey-100 !default;
+$form-control-hover-border: 1px solid $color-primary-500 !default;
+$form-control-hover-color: $color-primary-500 !default;
+$form-control-hover-label-color: $color-primary !default;
+
+$form-control-disabled-background-color: $color-grey-100 !default;
+$form-control-disabled-border: 1px solid $color-grey-300 !default;
+$form-control-disabled-color: $color-grey-600 !default;
+$form-control-disabled-label-color: $color-grey-600 !default;

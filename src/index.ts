@@ -16,6 +16,8 @@ import PPopup from "./components/PPopup/PPopup.vue";
 import PSpinner from "./components/PSpinner/PSpinner.vue";
 import PTabView from "./components/PTabView/PTabView.vue";
 import PTab from "./components/PTabView/PTab.vue";
+import PTextarea from "./components/PTextarea/PTextarea.vue";
+import PTextbox from "./components/PTextbox/PTextbox.vue";
 import PVueExample from "./components/PVueExample/PVueExample.vue";
 
 export default {
@@ -36,6 +38,8 @@ export default {
     app.component(PSpinner.name, PSpinner);
     app.component(PTabView.name, PTabView);
     app.component(PTab.name, PTab);
+    app.component(PTextarea.name, PTextarea);
+    app.component(PTextbox.name, PTextbox);
     app.component(PVueExample.name, PVueExample);
   },
 } as Plugin;

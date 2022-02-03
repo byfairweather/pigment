@@ -2,7 +2,7 @@
 @use "sass:map";
 @use "sass:math";
 
-@function generate-color-shades($color, $contrast: 85%) {
+@function generate-color-shades($color, $contrast: 92%) {
   $shade: math.div(math.clamp(0%, $contrast, 100%), 4);
 
   @return (
@@ -78,7 +78,7 @@ $color-grey-700: map.get($color-grey-shades, "700") !default;
 $color-grey-800: map.get($color-grey-shades, "800") !default;
 $color-grey-900: map.get($color-grey-shades, "900") !default;
 
-$background-color: #f8f6f7 !default;
+$background-color: #f6f6f6 !default;
 $background-color-white: $color-grey-100 !default;
 $background-color-light: $color-grey-300 !default;
 $background-color-dark: $color-grey-700 !default;
