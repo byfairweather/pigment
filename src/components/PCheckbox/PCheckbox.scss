@@ -1,0 +1,92 @@
+@use "../../styles/utilities.scss" as *;
+
+$checkbox-background-color: $form-control-background-color !default;
+$checkbox-border: $form-control-border !default;
+$checkbox-border-radius: $form-control-border-radius !default;
+$checkbox-height: $form-control-height !default;
+$checkbox-label-color: $form-control-label-color !default;
+$checkbox-label-font-size: $form-control-label-font-size !default;
+$checkbox-label-font-weight: $form-control-label-font-weight !default;
+$checkbox-label-margin-left: $form-control-padding !default;
+$checkbox-size: 1.2em !default;
+$checkbox-transition: all $animation-duration-normal ease-in-out !default;
+
+$checkbox-check-color: $form-control-active-color !default;
+$checkbox-check-size: 0.92em !default;
+
+$checkbox-active-background-color: $form-control-active-background-color !default;
+$checkbox-active-border: $form-control-active-border !default;
+$checkbox-active-label-color: $form-control-active-label-color !default;
+
+$checkbox-hover-background-color: $form-control-hover-background-color !default;
+$checkbox-hover-border: $form-control-hover-border !default;
+$checkbox-hover-label-color: $form-control-hover-label-color !default;
+
+$checkbox-disabled-background-color: $form-control-disabled-background-color !default;
+$checkbox-disabled-border: $form-control-disabled-border !default;
+$checkbox-disabled-label-color: $form-control-disabled-label-color !default;
+
+.p-checkbox {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: $checkbox-height;
+  width: 100%;
+
+  & > .label {
+    color: $checkbox-label-color;
+    display: block;
+    font-size: $checkbox-label-font-size;
+    font-weight: $checkbox-label-font-weight;
+    margin-left: $checkbox-label-margin-left;
+    transition: $checkbox-transition;
+    user-select: none;
+  }
+
+  & > .box {
+    background-color: $checkbox-background-color;
+    background-clip: content-box;
+    border: $checkbox-border;
+    border-radius: $checkbox-border-radius;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $checkbox-size;
+    padding: 0.1em;
+    transition: $checkbox-transition;
+    outline: none;
+    width: $checkbox-size;
+
+    &:hover:not(.disabled):not(:focus-within) {
+      border: $checkbox-hover-border;
+      background-color: $checkbox-hover-background-color;
+
+      & + .label {
+        color: $checkbox-hover-label-color;
+      }
+    }
+
+    &:focus-within:not(.disabled) {
+      border: $checkbox-active-border;
+      background-color: $checkbox-active-background-color;
+
+      & + .label {
+        color: $checkbox-active-label-color;
+      }
+    }
+
+    &.disabled {
+      border: $checkbox-disabled-border;
+      background-color: $checkbox-disabled-background-color;
+
+      & + .label {
+        color: $checkbox-disabled-label-color;
+      }
+    }
+
+    &.checked {
+      background-color: $checkbox-check-color !important;
+    }
+  }
+}

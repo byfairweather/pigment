@@ -32,6 +32,13 @@
         v-model="value"
       />
     </p-grid-item>
+
+    <p-grid-item>
+      <p-checkbox label="Label" v-model="value" />
+    </p-grid-item>
+    <p-grid-item>
+      <p-checkbox label="Label" :disabled="true" v-model="value" />
+    </p-grid-item>
   </p-grid>
   <p class="margin-top-md" v-if="value.length > 0">Value: {{ value }}</p>
 </template>

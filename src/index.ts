@@ -4,6 +4,7 @@ import { Plugin } from "vue";
 import PApp from "./components/PApp/PApp.vue";
 import PButton from "./components/PButton/PButton.vue";
 import PBox from "./components/PBox/PBox.vue";
+import PCheckbox from "./components/PCheckbox/PCheckbox.vue";
 import PCard from "./components/PCard/PCard.vue";
 import PFooter from "./components/PFooter/PFooter.vue";
 import PGrid from "./components/PGrid/PGrid.vue";
@@ -27,6 +28,7 @@ export default {
     app.component(PButton.name, PButton);
     app.component(PBox.name, PBox);
     app.component(PCard.name, PCard);
+    app.component(PCheckbox.name, PCheckbox);
     app.component(PFooter.name, PFooter);
     app.component(PGrid.name, PGrid);
     app.component(PGridItem.name, PGridItem);
