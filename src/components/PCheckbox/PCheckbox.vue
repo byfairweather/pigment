@@ -6,7 +6,9 @@
       @click="toggle()"
       tabindex="0"
       @keydown.enter.exact.prevent="toggle()"
-    ></div>
+    >
+      <div class="check"></div>
+    </div>
     <label class="label" v-if="label">{{ label }}</label>
   </div>
 </template>

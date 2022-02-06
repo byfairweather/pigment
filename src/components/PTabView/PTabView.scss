@@ -26,6 +26,7 @@ $tab-view-resize-animation-duration: $animation-duration-normal !default;
       cursor: pointer;
       display: inline-block;
       margin: 0 math.div($tab-view-tab-spacing, 2);
+      outline: none;
       position: relative;
 
       & > .underline {
@@ -37,7 +38,8 @@ $tab-view-resize-animation-duration: $animation-duration-normal !default;
         transition: all $tab-view-underline-animation-duration ease;
       }
 
-      &:hover {
+      &:hover,
+      &:focus-within {
         color: $tab-view-hovered-color;
       }
 
@@ -71,6 +73,7 @@ $tab-view-resize-animation-duration: $animation-duration-normal !default;
       flex: 0 0 100%;
       padding-top: $tab-view-content-spacing;
       opacity: 0;
+      overflow-x: scroll;
       transition: opacity $tab-view-slide-animation-duration ease-in-out;
 
       &.selected {

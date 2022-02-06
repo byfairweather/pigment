@@ -13,6 +13,7 @@ $textarea-label-font-weight: $form-control-label-font-weight !default;
 $textarea-label-margin-bottom: $form-control-label-margin-bottom !default;
 $textarea-padding: $form-control-padding !default;
 $textarea-transition: all $animation-duration-normal ease-in-out !default;
+$textarea-disabled-opacity: $form-control-disabled-opacity !default;
 
 $textarea-active-background-color: $form-control-active-background-color !default;
 $textarea-active-border: $form-control-active-border !default;
@@ -23,11 +24,6 @@ $textarea-hover-background-color: $form-control-hover-background-color !default;
 $textarea-hover-border: $form-control-hover-border !default;
 $textarea-hover-color: $form-control-hover-color !default;
 $textarea-hover-label-color: $form-control-hover-label-color !default;
-
-$textarea-disabled-background-color: $form-control-disabled-background-color !default;
-$textarea-disabled-border: $form-control-disabled-border !default;
-$textarea-disabled-color: $form-control-disabled-color !default;
-$textarea-disabled-label-color: $form-control-disabled-label-color !default;
 
 .p-textarea {
   display: flex;
@@ -106,17 +102,7 @@ $textarea-disabled-label-color: $form-control-disabled-label-color !default;
       padding-right: $textarea-padding;
     }
 
-    &:focus-within:not(.disabled) {
-      border: $textarea-active-border;
-      background-color: $textarea-active-background-color;
-      color: $textarea-active-color;
-
-      & + .label {
-        color: $textarea-active-label-color;
-      }
-    }
-
-    &:hover:not(.disabled):not(:focus-within) {
+    &:hover:not(.disabled) {
       border: $textarea-hover-border;
       background-color: $textarea-hover-background-color;
       color: $textarea-hover-color;
@@ -126,14 +112,18 @@ $textarea-disabled-label-color: $form-control-disabled-label-color !default;
       }
     }
 
-    &.disabled {
-      border: $textarea-disabled-border;
-      background-color: $textarea-disabled-background-color;
-      color: $textarea-disabled-color;
+    &:focus-within {
+      border: $textarea-active-border;
+      background-color: $textarea-active-background-color;
+      color: $textarea-active-color;
 
       & + .label {
-        color: $textarea-disabled-label-color;
+        color: $textarea-active-label-color;
       }
+    }
+
+    &.disabled {
+      opacity: $textarea-disabled-opacity;
     }
   }
 }

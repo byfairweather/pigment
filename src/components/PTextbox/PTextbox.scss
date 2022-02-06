@@ -13,6 +13,7 @@ $textbox-label-font-weight: $form-control-label-font-weight !default;
 $textbox-label-margin-bottom: $form-control-label-margin-bottom !default;
 $textbox-padding: $form-control-padding !default;
 $textbox-transition: all $animation-duration-normal ease-in-out !default;
+$textbox-disabled-opacity: $form-control-disabled-opacity !default;
 
 $textbox-active-background-color: $form-control-active-background-color !default;
 $textbox-active-border: $form-control-active-border !default;
@@ -23,11 +24,6 @@ $textbox-hover-background-color: $form-control-hover-background-color !default;
 $textbox-hover-border: $form-control-hover-border !default;
 $textbox-hover-color: $form-control-hover-color !default;
 $textbox-hover-label-color: $form-control-hover-label-color !default;
-
-$textbox-disabled-background-color: $form-control-disabled-background-color !default;
-$textbox-disabled-border: $form-control-disabled-border !default;
-$textbox-disabled-color: $form-control-disabled-color !default;
-$textbox-disabled-label-color: $form-control-disabled-label-color !default;
 
 .p-textbox {
   display: flex;
@@ -106,6 +102,16 @@ $textbox-disabled-label-color: $form-control-disabled-label-color !default;
       padding-right: $textbox-padding;
     }
 
+    &:hover:not(.disabled) {
+      border: $textbox-hover-border;
+      background-color: $textbox-hover-background-color;
+      color: $textbox-hover-color;
+
+      & + .label {
+        color: $textbox-hover-label-color;
+      }
+    }
+
     &:focus-within:not(.disabled) {
       border: $textbox-active-border;
       background-color: $textbox-active-background-color;
@@ -116,24 +122,8 @@ $textbox-disabled-label-color: $form-control-disabled-label-color !default;
       }
     }
 
-    &:hover:not(.disabled):not(:focus-within) {
-      border: $textbox-hover-border;
-      background-color: $textbox-hover-background-color;
-      color: $textbox-hover-color;
-
-      & + .label {
-        color: $textbox-hover-label-color;
-      }
-    }
-
     &.disabled {
-      border: $textbox-disabled-border;
-      background-color: $textbox-disabled-background-color;
-      color: $textbox-disabled-color;
-
-      & + .label {
-        color: $textbox-disabled-label-color;
-      }
+      opacity: $textbox-disabled-opacity;
     }
   }
 }
