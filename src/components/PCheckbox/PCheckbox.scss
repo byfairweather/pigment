@@ -8,23 +8,23 @@ $checkbox-label-color: $form-control-label-color !default;
 $checkbox-label-font-size: $form-control-label-font-size !default;
 $checkbox-label-font-weight: $form-control-label-font-weight !default;
 $checkbox-label-margin-left: $form-control-padding !default;
-$checkbox-size: 1.2em !default;
+$checkbox-size: 1.5em !default;
 $checkbox-transition: all $animation-duration-normal ease-in-out !default;
-
-$checkbox-check-color: $form-control-active-color !default;
-$checkbox-check-size: 0.92em !default;
+$checkbox-disabled-opacity: $form-control-disabled-opacity !default;
+$checkbox-check-color: $color-grey-100 !default;
+$checkbox-check-size: 0.2em !default;
 
 $checkbox-active-background-color: $form-control-active-background-color !default;
 $checkbox-active-border: $form-control-active-border !default;
 $checkbox-active-label-color: $form-control-active-label-color !default;
 
+$checkbox-checked-background-color: $color-primary-500 !default;
+$checkbox-checked-border: $form-control-active-border !default;
+$checkbox-checked-label-color: $form-control-active-label-color !default;
+
 $checkbox-hover-background-color: $form-control-hover-background-color !default;
 $checkbox-hover-border: $form-control-hover-border !default;
 $checkbox-hover-label-color: $form-control-hover-label-color !default;
-
-$checkbox-disabled-background-color: $form-control-disabled-background-color !default;
-$checkbox-disabled-border: $form-control-disabled-border !default;
-$checkbox-disabled-label-color: $form-control-disabled-label-color !default;
 
 .p-checkbox {
   align-items: center;
@@ -45,20 +45,19 @@ $checkbox-disabled-label-color: $form-control-disabled-label-color !default;
 
   & > .box {
     background-color: $checkbox-background-color;
-    background-clip: content-box;
     border: $checkbox-border;
     border-radius: $checkbox-border-radius;
     box-sizing: border-box;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     height: $checkbox-size;
-    padding: 0.1em;
     transition: $checkbox-transition;
     outline: none;
     width: $checkbox-size;
 
-    &:hover:not(.disabled):not(:focus-within) {
+    &:hover:not(.disabled):not(:focus-within):not(.checked) {
       border: $checkbox-hover-border;
       background-color: $checkbox-hover-background-color;
 
@@ -67,7 +66,7 @@ $checkbox-disabled-label-color: $form-control-disabled-label-color !default;
       }
     }
 
-    &:focus-within:not(.disabled) {
+    &:focus-within:not(.disabled):not(.checked) {
       border: $checkbox-active-border;
       background-color: $checkbox-active-background-color;
 
@@ -77,16 +76,21 @@ $checkbox-disabled-label-color: $form-control-disabled-label-color !default;
     }
 
     &.disabled {
-      border: $checkbox-disabled-border;
-      background-color: $checkbox-disabled-background-color;
-
-      & + .label {
-        color: $checkbox-disabled-label-color;
-      }
+      opacity: $checkbox-disabled-opacity;
     }
 
     &.checked {
-      background-color: $checkbox-check-color !important;
+      border: $checkbox-checked-border;
+      background-color: $checkbox-checked-background-color;
+
+      & > .check {
+        border: $checkbox-check-size solid $checkbox-check-color;
+        border-right-width: 0;
+        border-top-width: 0;
+        height: calc($checkbox-size / 4.5);
+        width: calc($checkbox-size / 2.5);
+        transform: translateY(calc($checkbox-check-size / -3)) rotateZ(-50deg);
+      }
     }
   }
 }
