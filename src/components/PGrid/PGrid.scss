@@ -1,12 +1,13 @@
 @use "sass:math";
-@use "../../styles/layout" as *;
+@use "sass:map";
+@use "../../styles/utilities" as *;
 
 $grid-columns: 12 !default;
-$grid-spacing-xs: 1rem !default;
-$grid-spacing-sm: 2rem !default;
-$grid-spacing-md: 3rem !default;
-$grid-spacing-lg: 5rem !default;
-$grid-spacing-xl: 7rem !default;
+$grid-spacing-xs: spacing("xs") !default;
+$grid-spacing-sm: spacing("sm") !default;
+$grid-spacing-md: spacing("md") !default;
+$grid-spacing-lg: spacing("lg") !default;
+$grid-spacing-xl: spacing("xl") !default;
 
 .p-grid {
   display: flex;
@@ -16,28 +17,32 @@ $grid-spacing-xl: 7rem !default;
     box-sizing: border-box;
   }
 
-  @each $screen in (all, xl, lg, md, sm, xs, xs) {
-    @include screen($screen) {
+  @each $layout in map.keys($layouts) {
+    @include layout($layout) {
       @for $width from 1 through $grid-columns {
-        &.widths-#{$width}-#{$screen} > .p-grid-item,
-        & > .p-grid-item.width-#{$width}-#{$screen} {
+        &.widths-#{$width}-#{$layout} > .p-grid-item,
+        & > .p-grid-item.width-#{$width}-#{$layout} {
           flex-basis: math.percentage(math.div($width, $grid-columns));
           max-width: math.percentage(math.div($width, $grid-columns));
         }
       }
 
-      &.widths-grow-#{$screen} > .p-grid-item,
-      & > .p-grid-item.width-grow-#{$screen} {
-        flex: 1 1 1px;
+      &.widths-grow-#{$layout} > .p-grid-item,
+      & > .p-grid-item.width-grow-#{$layout} {
+        flex: 1 1 0;
       }
 
-      &.widths-shrink-#{$screen} > .p-grid-item,
-      & > .p-grid-item.width-shrink-#{$screen} {
-        flex: 0 1 1px;
+      &.widths-shrink-#{$layout} > .p-grid-item,
+      & > .p-grid-item.width-shrink-#{$layout} {
+        flex: 0 1 0;
         white-space: nowrap;
       }
 
-      &.spacing-none-#{$screen} {
+      &.hidden-#{$layout} {
+        display: none;
+      }
+
+      &.spacing-none-#{$layout} {
         margin: 0;
 
         & > .p-grid-item {
@@ -45,7 +50,7 @@ $grid-spacing-xl: 7rem !default;
         }
       }
 
-      &.spacing-xl-#{$screen} {
+      &.spacing-xl-#{$layout} {
         margin: calc(#{$grid-spacing-xl} / -2);
 
         & > .p-grid-item {
@@ -53,7 +58,8 @@ $grid-spacing-xl: 7rem !default;
         }
       }
 
-      &.spacing-lg-#{$screen} {
+      &,
+      &.spacing-lg-#{$layout} {
         margin: calc(#{$grid-spacing-lg} / -2);
 
         & > .p-grid-item {
@@ -61,8 +67,7 @@ $grid-spacing-xl: 7rem !default;
         }
       }
 
-      &,
-      &.spacing-md-#{$screen} {
+      &.spacing-md-#{$layout} {
         margin: calc(#{$grid-spacing-md} / -2);
 
         & > .p-grid-item {
@@ -70,7 +75,7 @@ $grid-spacing-xl: 7rem !default;
         }
       }
 
-      &.spacing-sm-#{$screen} {
+      &.spacing-sm-#{$layout} {
         margin: calc(#{$grid-spacing-sm} / -2);
 
         & > .p-grid-item {
@@ -78,7 +83,7 @@ $grid-spacing-xl: 7rem !default;
         }
       }
 
-      &.spacing-xs-#{$screen} {
+      &.spacing-xs-#{$layout} {
         margin: calc(#{$grid-spacing-xs} / -2);
 
         & > .p-grid-item {

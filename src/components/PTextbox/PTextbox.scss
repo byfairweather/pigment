@@ -102,7 +102,7 @@ $textbox-hover-label-color: $form-control-hover-label-color !default;
       padding-right: $textbox-padding;
     }
 
-    &:hover:not(.disabled) {
+    &:hover:not(.disabled):not(:focus-within) {
       border: $textbox-hover-border;
       background-color: $textbox-hover-background-color;
       color: $textbox-hover-color;
@@ -121,9 +121,9 @@ $textbox-hover-label-color: $form-control-hover-label-color !default;
         color: $textbox-active-label-color;
       }
     }
+  }
 
-    &.disabled {
-      opacity: $textbox-disabled-opacity;
-    }
+  &.disabled {
+    opacity: $textbox-disabled-opacity;
   }
 }

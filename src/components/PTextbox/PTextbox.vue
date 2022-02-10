@@ -1,6 +1,6 @@
 <template>
-  <div class="p-textbox">
-    <div class="input" :class="{ disabled: disabled }">
+  <div class="p-textbox" :class="{ disabled: disabled }">
+    <div class="input">
       <div class="prefix" v-if="prefix">{{ prefix }}</div>
       <input
         type="text"

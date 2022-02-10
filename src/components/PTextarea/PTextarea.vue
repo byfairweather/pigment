@@ -1,6 +1,6 @@
 <template>
-  <div class="p-textarea">
-    <div class="input" :class="{ disabled: disabled }">
+  <div class="p-textarea" :class="{ disabled: disabled }">
+    <div class="input">
       <textarea
         ref="textarea"
         @input="input($event)"

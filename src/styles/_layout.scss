@@ -1,41 +1,63 @@
+@use "sass:map";
+
 $layout-min-width: 300px !default;
-$layout-breakpoint-xs: 480px !default;
-$layout-breakpoint-sm: 640px !default;
-$layout-breakpoint-md: 800px !default;
-$layout-breakpoint-lg: 1024px !default;
-$layout-spacing-xs: 0.25em !default;
-$layout-spacing-sm: 0.5em !default;
-$layout-spacing-md: 1em !default;
-$layout-spacing-lg: 2em !default;
-$layout-spacing-xl: 4em !default;
+$layout-max-width: 1200px !default;
+
+$layouts: (
+  "xs": (
+    "max": 480px,
+  ),
+  "sm": (
+    "max": 640px,
+  ),
+  "md": (
+    "max": 800px,
+  ),
+  "lg": (
+    "max": 1024px,
+  ),
+  "xl": (
+    "min": 1024px,
+  ),
+  "all": (),
+);
 
 $layout-spacing: (
   "none": 0em,
-  "xs": $layout-spacing-xs,
-  "sm": $layout-spacing-sm,
-  "md": $layout-spacing-md,
-  "lg": $layout-spacing-lg,
-  "xl": $layout-spacing-xl,
+  "xs": 0.25rem,
+  "sm": 0.5rem,
+  "md": 1rem,
+  "lg": 2rem,
+  "xl": 4rem,
 ) !default;
 
-@mixin screen($size) {
-  @if $size == xs {
-    @media only screen and (max-width: $layout-breakpoint-xs) {
+@function spacing($size) {
+  @return map.get($layout-spacing, $size);
+}
+
+@mixin layout($size) {
+  $max-size: map.get($layouts, $size, "max");
+  $min-size: map.get($layouts, $size, "min");
+
+  @if ($max-size != null and $min-size != null) {
+    @media only screen and (min-width: $min-size) and (max-width: ($max-size - 1px)) {
       @content;
     }
-  } @else if $size == sm {
-    @media only screen and (max-width: $layout-breakpoint-sm) {
+  }
+
+  @if ($max-size != null and $min-size == null) {
+    @media only screen and (max-width: ($max-size - 1px)) {
       @content;
     }
-  } @else if $size == md {
-    @media only screen and (max-width: $layout-breakpoint-md) {
+  }
+
+  @if ($max-size == null and $min-size != null) {
+    @media only screen and (min-width: $min-size) {
       @content;
     }
-  } @else if $size == lg {
-    @media only screen and (max-width: $layout-breakpoint-lg) {
-      @content;
-    }
-  } @else if $size == all or $size == xl {
+  }
+
+  @if ($max-size == null and $min-size == null) {
     @content;
   }
 }

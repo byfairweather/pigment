@@ -46,11 +46,7 @@
         </p-grid-item>
       </p-grid>
     </p-panel>
-    <p-footer>
-      <template #links> Links </template>
-      <template #brand> Brand </template>
-      <template #contact> Contact </template>
-    </p-footer>
+    <p-footer>Footer</p-footer>
   </p-app>
 </template>
 

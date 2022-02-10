@@ -53,5 +53,12 @@
         <template v-slot:body>Body</template>
       </p-card>
     </p-grid-item>
+    <p-grid-item>
+      <p-card>
+        <template v-slot:image>
+          <img src="https://via.placeholder.com/150" />
+        </template>
+      </p-card>
+    </p-grid-item>
   </p-grid>
 </template>

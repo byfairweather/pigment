@@ -1,6 +1,6 @@
 @use "../../styles/utilities.scss" as *;
 
-$box-background-color: $color-grey-100 !default;
+$box-background-color: color("grey", "100") !default;
 $box-border-radius: $surface-border-radius !default;
 $box-shadow: $surface-box-shadow-sm !default;
 
@@ -9,5 +9,4 @@ $box-shadow: $surface-box-shadow-sm !default;
   box-shadow: $box-shadow;
   border-radius: $box-border-radius;
   overflow: hidden;
-  position: relative;
 }

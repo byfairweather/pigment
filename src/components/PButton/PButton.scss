@@ -1,30 +1,29 @@
 @use "../../styles/utilities.scss" as *;
 
-$button-background-color: $color-primary-500 !default;
+$button-background-color: color("primary", "500") !default;
 $button-border-radius: $surface-border-radius !default;
-$button-color: $color-grey-100 !default;
-$button-horizontal-padding: 1em !default;
+$button-color: color("grey", "100") !default;
+$button-horizontal-padding: spacing("sm") !default;
 $button-height: $form-control-height !default;
 $button-text-shadow: 0 0 3px rgba(0, 0, 0, 0.25) !default;
-
 $button-hover-animation-duration: $animation-duration-normal !default;
-$button-hover-background-color: $color-primary-600 !default;
-$button-hover-color: $color-grey-100 !default;
+$button-hover-background-color: color("primary", "600") !default;
+$button-hover-color: color("grey", "100") !default;
 
-$button-success-background-color: $color-success-500 !default;
-$button-success-color: $color-grey-100 !default;
-$button-success-hover-background-color: $color-success-600 !default;
-$button-success-hover-color: $color-grey-100 !default;
+$button-success-background-color: color("success", "500") !default;
+$button-success-color: color("grey", "100") !default;
+$button-success-hover-background-color: color("success", "600") !default;
+$button-success-hover-color: color("grey", "100") !default;
 
-$button-warning-background-color: $color-warning-500 !default;
-$button-warning-color: $color-grey-100 !default;
-$button-warning-hover-background-color: $color-warning-600 !default;
-$button-warning-hover-color: $color-grey-100 !default;
+$button-warning-background-color: color("warning", "500") !default;
+$button-warning-color: color("grey", "100") !default;
+$button-warning-hover-background-color: color("warning", "600") !default;
+$button-warning-hover-color: color("grey", "100") !default;
 
-$button-danger-background-color: $color-danger-500 !default;
-$button-danger-color: $color-grey-100 !default;
-$button-danger-hover-background-color: $color-danger-600 !default;
-$button-danger-hover-color: $color-grey-100 !default;
+$button-danger-background-color: color("danger", "500") !default;
+$button-danger-color: color("grey", "100") !default;
+$button-danger-hover-background-color: color("danger", "600") !default;
+$button-danger-hover-color: color("grey", "100") !default;
 
 .p-button {
   background-color: $button-background-color;
@@ -32,17 +31,18 @@ $button-danger-hover-color: $color-grey-100 !default;
   color: $button-color;
   cursor: pointer;
   height: $button-height;
-  overflow: hidden;
+  outline: none;
   padding: 0 $button-horizontal-padding;
   position: relative;
   text-shadow: $button-text-shadow;
-  transition-property: background-color, box-shadow, color;
+  transition-property: background-color, color;
   transition-duration: $button-hover-animation-duration;
   transition-timing-function: ease-in-out;
   user-select: none;
   white-space: nowrap;
 
-  &:hover:not(:disabled) {
+  &:hover:not(:disabled),
+  &:focus-within {
     background-color: $button-hover-background-color;
     color: $button-hover-color;
   }
@@ -61,7 +61,8 @@ $button-danger-hover-color: $color-grey-100 !default;
     background-color: $button-success-background-color;
     color: $button-success-color;
 
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled),
+    &:focus-within {
       background-color: $button-success-hover-background-color;
       color: $button-success-hover-color;
     }
@@ -71,7 +72,8 @@ $button-danger-hover-color: $color-grey-100 !default;
     background-color: $button-warning-background-color;
     color: $button-warning-color;
 
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled),
+    &:focus-within {
       background-color: $button-warning-hover-background-color;
       color: $button-warning-hover-color;
     }
@@ -81,7 +83,8 @@ $button-danger-hover-color: $color-grey-100 !default;
     background-color: $button-danger-background-color;
     color: $button-danger-color;
 
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled),
+    &:focus-within {
       background-color: $button-danger-hover-background-color;
       color: $button-danger-hover-color;
     }

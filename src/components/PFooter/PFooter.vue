@@ -1,17 +1,7 @@
 <template>
   <div class="p-footer">
     <PPanel>
-      <PGrid class="content">
-        <PGridItem class="links width-4-all width-6-md width-12-sm">
-          <slot name="links"></slot>
-        </PGridItem>
-        <PGridItem class="brand width-4-all width-12-md">
-          <slot name="brand"></slot>
-        </PGridItem>
-        <PGridItem class="contact width-4-all width-6-md width-12-sm">
-          <slot name="contact"></slot>
-        </PGridItem>
-      </PGrid>
+      <slot></slot>
     </PPanel>
   </div>
 </template>

@@ -1,11 +1,11 @@
 @use "../../styles/utilities.scss" as *;
 
-$panel-width-xs: 92% !default;
-$panel-width-sm: 90% !default;
-$panel-width-md: 85% !default;
+$panel-width-xs: 95% !default;
+$panel-width-sm: 92% !default;
+$panel-width-md: 88% !default;
 $panel-width-lg: 80% !default;
 $panel-width-xl: 80% !default;
-$panel-max-width: 1200px !default;
+$panel-max-width: $layout-max-width !default;
 $panel-min-width: $layout-min-width !default;
 
 .p-panel {
@@ -16,54 +16,24 @@ $panel-min-width: $layout-min-width !default;
     max-width: $panel-max-width;
     min-width: $panel-min-width;
 
-    @include screen(xl) {
+    @include layout("xl") {
       width: $panel-width-xl;
     }
 
-    @include screen(lg) {
+    @include layout("lg") {
       width: $panel-width-lg;
     }
 
-    @include screen(md) {
+    @include layout("md") {
       width: $panel-width-md;
     }
 
-    @include screen(sm) {
+    @include layout("sm") {
       width: $panel-width-sm;
     }
 
-    @include screen(xs) {
+    @include layout("xs") {
       width: $panel-width-xs;
     }
-  }
-
-  &.spacing-none {
-    padding: 0;
-    margin: 0;
-  }
-
-  &.spacing-xs {
-    padding: 24px 0;
-    margin: 24px unset;
-  }
-
-  &.spacing-sm {
-    padding: 38px 0;
-    margin: 38px unset;
-  }
-
-  &.spacing-md {
-    padding: 48px 0;
-    margin: 48px unset;
-  }
-
-  &.spacing-lg {
-    padding: 62px 0;
-    margin: 62px unset;
-  }
-
-  &.spacing-xl {
-    padding: 78px 0;
-    margin: 78px unset;
   }
 }

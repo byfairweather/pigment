@@ -1,20 +1,27 @@
 <template>
-  <div class="p-checkbox">
+  <div
+    class="p-checkbox"
+    :class="{ disabled, checked: modelValue }"
+    @click="toggle()"
+    @keydown.enter.exact.prevent="toggle()"
+  >
     <div
-      class="box"
-      :class="{ disabled, checked: modelValue }"
-      @click="toggle()"
-      tabindex="0"
-      @keydown.enter.exact.prevent="toggle()"
+      class="checkbox"
+      role="checkbox"
+      :aria-checked="modelValue"
+      :aria-labelledby="`label-${id}`"
+      :tabindex="disabled ? -1 : 0"
     >
-      <div class="check"></div>
+      <div class="check" v-if="modelValue"></div>
     </div>
-    <label class="label" v-if="label">{{ label }}</label>
+    <label v-if="label" class="label" :id="`label-${id}`">
+      {{ label }}
+    </label>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, getCurrentInstance } from "vue";
 
 export default defineComponent({
   name: "p-checkbox",
@@ -24,7 +31,7 @@ export default defineComponent({
       required: false,
     },
     modelValue: {
-      type: String,
+      type: Boolean,
       required: true,
     },
     disabled: {
@@ -33,11 +40,16 @@ export default defineComponent({
     },
   },
   setup(props, context) {
+    const id = getCurrentInstance()?.uid;
+
     function toggle(): void {
-      context.emit("update:modelValue", !props.modelValue);
+      if (!props.disabled) {
+        context.emit("update:modelValue", !props.modelValue);
+      }
     }
 
     return {
+      id,
       toggle,
     };
   },

@@ -4,26 +4,46 @@
 @use "./layout" as *;
 
 $form-control-height: 2em !default;
-$form-control-background-color: $color-grey-100 !default;
-$form-control-border: 1px solid $color-grey-500 !default;
+$form-control-background-color: color("grey", "100") !default;
+$form-control-border: 1px solid color("grey", "500") !default;
 $form-control-border-radius: $surface-border-radius !default;
-$form-control-color: $color-grey-700 !default;
+$form-control-color: color("grey", "700") !default;
 $form-control-font-size: $font-size-sm !default;
 $form-control-font-weight: $font-weight-normal !default;
-$form-control-padding: $layout-spacing-sm !default;
-$form-control-label-color: $color-grey-700 !default;
+$form-control-padding: spacing("sm") !default;
+$form-control-label-color: color("grey", "700") !default;
 $form-control-label-font-size: $font-size-sm !default;
 $form-control-label-font-weight: $font-weight-normal !default;
-$form-control-label-margin-bottom: $layout-spacing-xs !default;
+$form-control-label-margin-bottom: spacing("xs") !default;
 
-$form-control-active-background-color: $color-primary-100 !default;
-$form-control-active-border: 1px solid $color-primary-500 !default;
-$form-control-active-color: $color-primary-500 !default;
-$form-control-active-label-color: $color-primary !default;
+$form-control-active-background-color: color("primary", "100") !default;
+$form-control-active-border: 1px solid color("primary", "500") !default;
+$form-control-active-color: color("primary", "500") !default;
+$form-control-active-label-color: color("primary", "500") !default;
 
-$form-control-hover-background-color: $color-grey-100 !default;
-$form-control-hover-border: 1px solid $color-primary-500 !default;
-$form-control-hover-color: $color-primary-500 !default;
-$form-control-hover-label-color: $color-primary !default;
+$form-control-focus-background-color: color("primary", "100") !default;
+$form-control-focus-border: 1px solid color("primary", "500") !default;
+$form-control-focus-color: color("primary", "500") !default;
+$form-control-focus-label-color: color("primary", "500") !default;
+
+$form-control-hover-background-color: color("grey", "100") !default;
+$form-control-hover-border: 1px solid color("primary", "500") !default;
+$form-control-hover-color: color("primary", "500") !default;
+$form-control-hover-label-color: color("primary", "500") !default;
+
+$form-control-filled-background-color: color("primary", "500") !default;
+$form-control-filled-border: 1px solid color("primary", "500") !default;
+$form-control-filled-color: color("grey", "100") !default;
+$form-control-filled-label-color: color("primary", "500") !default;
+
+$form-control-filled-focus-background-color: color("primary", "400") !default;
+$form-control-filled-focus-border: 1px solid color("primary", "400") !default;
+$form-control-filled-focus-color: color("grey", "100") !default;
+$form-control-filled-focus-label-color: color("primary", "400") 0 !default;
+
+$form-control-filled-hover-background-color: color("primary", "400") !default;
+$form-control-filled-hover-border: 1px solid color("primary", "400") !default;
+$form-control-filled-hover-color: color("grey", "100") !default;
+$form-control-filled-hover-label-color: color("primary", "400") !default;
 
 $form-control-disabled-opacity: 0.5;

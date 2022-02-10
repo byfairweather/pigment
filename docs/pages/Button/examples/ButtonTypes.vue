@@ -1,7 +1,7 @@
 <template>
   <p-grid class="widths-3-all spacing-xs-all">
     <p-grid-item>
-      <p-button @click="example()">Button</p-button>
+      <p-button @click="example('Another Test')">Button</p-button>
     </p-grid-item>
     <p-grid-item>
       <p-button class="success" @click="example()">Button</p-button>
@@ -32,10 +32,11 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   setup() {
-    function example(): Promise<void> {
+    function example(message: string = "Test"): Promise<void> {
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve();
+          window.alert(message);
         }, 1000);
       });
     }

@@ -1,45 +1,40 @@
 @use "sass:math";
+@use "sass:map";
 @use "../../styles/utilities" as *;
 
 $navbar-background-color: transparent !default;
-$navbar-border-top: 5px solid $color-primary-500 !default;
-$navbar-logo-color: $color-primary-500 !default;
-$navbar-item-active-color: $color-primary-500 !default;
-$navbar-item-color: $color-grey-700 !default;
+$navbar-border-top: 5px solid color("primary", "500") !default;
+$navbar-padding: spacing("md") 0 !default;
+$navbar-bottom-margin: spacing("lg") !default;
+$navbar-logo-color: color("primary", "500") !default;
+$navbar-item-active-color: color("primary", "500") !default;
+$navbar-item-color: color("grey", "700") !default;
 $navbar-item-font-size: $font-size-sm !default;
 $navbar-item-font-weight: $font-weight-normal !default;
-$navbar-item-spacing: 1em !default;
-$navbar-item-transition: all 200ms ease-in-out !default;
+$navbar-item-spacing: spacing("md") !default;
+$navbar-item-transition: color 200ms ease-in-out !default;
 
 .p-navbar {
   background-color: $navbar-background-color;
   border-top: $navbar-border-top;
+  margin-bottom: $navbar-bottom-margin;
+  padding: $navbar-padding;
 
   nav {
-    display: flex;
     align-items: baseline;
-    position: static;
+    display: flex;
+    margin: 0 calc($navbar-item-spacing * -1);
 
-    & > .logo {
-      color: $navbar-logo-color;
-
-      .p-navbar-item {
-        color: inherit;
-        margin-left: -$navbar-item-spacing;
-      }
-    }
-
-    & > .start {
+    & > .logo,
+    & > .start,
+    & > .end,
+    & > .mobile {
       display: flex;
-      flex-grow: 1;
     }
 
     & > .end,
     & > .mobile {
-      display: flex;
-      .p-navbar-item:last-child {
-        margin-right: -$navbar-item-spacing;
-      }
+      margin-left: auto;
     }
 
     & > .mobile {
@@ -47,8 +42,8 @@ $navbar-item-transition: all 200ms ease-in-out !default;
     }
   }
 
-  @each $size in ("xs", "sm", "md", "lg", "xl", "all") {
-    @include screen($size) {
+  @each $size in map.keys($layouts) {
+    @include layout($size) {
       &.mobile-#{$size} nav > .start,
       &.mobile-#{$size} nav > .end {
         display: none;
@@ -73,10 +68,6 @@ $navbar-item-transition: all 200ms ease-in-out !default;
   user-select: none;
   white-space: nowrap;
 
-  a {
-    color: inherit;
-  }
-
   &:hover,
   &:focus {
     color: $navbar-item-active-color;
@@ -88,31 +79,5 @@ $navbar-item-transition: all 200ms ease-in-out !default;
 
   .p-navbar-item {
     padding: calc($navbar-item-spacing / 2);
-  }
-}
-
-@keyframes navbar-dropdown-open {
-  0% {
-    transform: translateY(-10px) scale(0.96);
-    opacity: 0;
-    visibility: visible;
-  }
-  100% {
-    transform: translateY(0px) scale(1);
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-@keyframes navbar-dropdown-close {
-  0% {
-    transform: translateY(0px) scale(1);
-    opacity: 1;
-    visibility: visible;
-  }
-  100% {
-    transform: translateY(-10px) scale(0.96);
-    opacity: 0;
-    visibility: hidden;
   }
 }

@@ -1,10 +1,10 @@
 @use "sass:math";
 @use "../../styles/utilities" as *;
 
-$tab-view-color: $color-grey-700 !default;
+$tab-view-color: color("grey", "700") !default;
 $tab-view-font-size: $font-size-sm !default;
-$tab-view-hovered-color: $color-primary-500 !default;
-$tab-view-selected-color: $color-primary-500 !default;
+$tab-view-hovered-color: color("primary", "500") !default;
+$tab-view-selected-color: color("primary", "500") !default;
 $tab-view-underline-spacing: 0.5em !default;
 $tab-view-content-spacing: 1.5em !default;
 $tab-view-tab-spacing: 1em !default;

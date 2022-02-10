@@ -1,5 +1,5 @@
 <template>
-  <PPanel class="p-navbar padding-vertical-md margin-bottom-lg">
+  <PPanel class="p-navbar">
     <nav>
       <div class="logo">
         <slot name="logo"></slot>
@@ -11,7 +11,7 @@
         <slot name="end"></slot>
       </div>
       <div class="mobile">
-        <PNavbarDropdown anchor="right">
+        <PNavbarDropdown anchor="inside-right">
           <template #label>☰</template>
           <slot name="mobile"></slot>
         </PNavbarDropdown>

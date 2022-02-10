@@ -1,6 +1,6 @@
 @use "../../styles/utilities.scss" as *;
 
-$app-background-color: $background-color !default;
+$app-background-color: #f6f6f6 !default;
 
 body {
   background-color: $app-background-color;

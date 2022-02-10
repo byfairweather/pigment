@@ -1,11 +1,11 @@
 @use "color" as *;
 
 $surface-border-radius: 7px !default;
-$surface-box-shadow-xs: 0 1px 3px rgba($color-grey-900, 0.15) !default;
-$surface-box-shadow-sm: 0 2px 4px rgba($color-grey-900, 0.2) !default;
-$surface-box-shadow-md: 0 2px 5px rgba($color-grey-900, 0.25) !default;
-$surface-box-shadow-lg: 0 3px 6px rgba($color-grey-900, 0.3) !default;
-$surface-box-shadow-xl: 0 3px 7px rgba($color-grey-900, 0.35) !default;
+$surface-box-shadow-xs: 0 1px 3px rgba(black, 0.15) !default;
+$surface-box-shadow-sm: 0 2px 4px rgba(black, 0.2) !default;
+$surface-box-shadow-md: 0 2px 5px rgba(black, 0.25) !default;
+$surface-box-shadow-lg: 0 3px 6px rgba(black, 0.3) !default;
+$surface-box-shadow-xl: 0 4px 8px rgba(black, 0.4) !default;
 
 .rounded-corners {
   border-radius: $surface-border-radius !important;

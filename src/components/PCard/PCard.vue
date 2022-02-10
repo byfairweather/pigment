@@ -8,10 +8,10 @@
     <div class="image" v-if="$slots.image">
       <slot name="image"></slot>
     </div>
-    <div class="content">
-      <span class="title" v-if="$slots.title">
+    <div class="content" v-if="$slots.title || $slots.subtitle || $slots.body">
+      <h3 class="title margin-none" v-if="$slots.title">
         <slot name="title"></slot>
-      </span>
+      </h3>
       <span class="subtitle" v-if="$slots.subtitle">
         <slot name="subtitle"></slot>
       </span>
@@ -29,11 +29,11 @@ import PBox from "../PBox/PBox.vue";
 
 export default defineComponent({
   name: "p-card",
+  components: { PBox },
   setup(props, context) {
     const clickable = computed(() => !!context.attrs.onClick);
 
     return { clickable };
   },
-  components: { PBox },
 });
 </script>
