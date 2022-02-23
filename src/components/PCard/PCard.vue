@@ -1,10 +1,5 @@
 <template>
-  <PBox
-    class="p-card"
-    :class="{ clickable }"
-    :tabindex="clickable ? 0 : undefined"
-    :role="clickable ? 'button' : undefined"
-  >
+  <PBox class="p-card">
     <div class="image" v-if="$slots.image">
       <slot name="image"></slot>
     </div>
@@ -30,10 +25,5 @@ import PBox from "../PBox/PBox.vue";
 export default defineComponent({
   name: "p-card",
   components: { PBox },
-  setup(props, context) {
-    const clickable = computed(() => !!context.attrs.onClick);
-
-    return { clickable };
-  },
 });
 </script>

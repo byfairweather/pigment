@@ -5,12 +5,9 @@
     </div>
     <div
       class="view"
-      :class="{ open }"
+      :class="[animation]"
       ref="view"
-      :style="{
-        height: (selectedTab?.scrollHeight ?? 0) + 'px',
-        marginLeft: `-${selectedIndex}00%`,
-      }"
+      :style="{ height: viewHeight }"
     ></div>
   </div>
 </template>
@@ -23,7 +20,6 @@ import {
   onMounted,
   getCurrentInstance,
   nextTick,
-  computed,
 } from "vue";
 import { TabViewProvider } from ".";
 
@@ -44,39 +40,84 @@ export default defineComponent({
     const mounted = ref(false);
     const view = ref<HTMLElement>();
     const open = ref(false);
+    const tabs = new Array<HTMLElement>();
     const selectedTab = ref<HTMLElement>();
-    const selectedIndex = computed(() => {
-      if (view.value && selectedTab.value) {
-        return Array.from(view.value.children).indexOf(selectedTab.value);
+    const viewHeight = ref<string>();
+    const animation = ref<string>();
+
+    onMounted(() => {
+      mounted.value = true;
+      const viewObserver = new MutationObserver(resize);
+      if (view.value) {
+        viewObserver.observe(view.value, {
+          attributes: true,
+          subtree: true,
+          childList: true,
+        });
       }
     });
 
-    onMounted(() => (mounted.value = true));
+    function register(tab: HTMLElement): void {
+      tabs.push(tab);
+
+      if (props.open && !selectedTab.value) {
+        select(tab);
+      }
+    }
 
     function select(tab: HTMLElement | undefined): void {
-      if (selectedTab.value === tab && props.collapsible) {
-        tab = undefined;
+      if (
+        (selectedTab.value === tab && props.collapsible) ||
+        tab == undefined
+      ) {
+        open.value = !open.value;
+        resize();
+        return;
       }
+
+      animation.value = undefined; // Reset the previous animation
+
+      if (
+        selectedTab.value &&
+        open.value &&
+        tabs.indexOf(tab) < tabs.indexOf(selectedTab.value)
+      ) {
+        animation.value = "slide-left";
+      } else if (
+        selectedTab.value &&
+        open.value &&
+        tabs.indexOf(tab) > tabs.indexOf(selectedTab.value)
+      ) {
+        animation.value = "slide-right";
+      } else {
+        animation.value = undefined;
+      }
+
       selectedTab.value = tab;
-      nextTick().then(() => {
-        context.emit("change");
-        open.value = !!selectedTab.value;
+      open.value = true;
+    }
+
+    function resize(): void {
+      nextTick(() => {
+        const height = open.value ? selectedTab.value?.scrollHeight ?? 0 : 0;
+        viewHeight.value = height + "px";
       });
     }
 
     provide(TabViewProvider, {
       mounted,
+      open,
       selectedTab,
-      viewSelector: `#tab-view-${id} .view`,
+      contentPath: `#tab-view-${id} .view`,
+      register,
       select,
     });
 
     return {
       id,
-      open,
       view,
-      selectedTab,
-      selectedIndex,
+      viewHeight,
+      animation,
     };
   },
 });

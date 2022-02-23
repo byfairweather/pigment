@@ -4,7 +4,7 @@
       <slot></slot>
     </div>
     <div class="code" ref="code" v-if="$props.code">
-      <PTabView @change="formatCode()" :collapsible="true" :open="false">
+      <PTabView :collapsible="true" :open="false">
         <PTab label="Template" v-if="template">
           <pre>
             <code class="language-html">{{template}}</code>
@@ -12,7 +12,7 @@
         </PTab>
         <PTab label="Script" v-if="script">
           <pre>
-            <code class="language-javascript ">{{script}}</code>
+            <code class="language-javascript">{{script}}</code>
           </pre>
         </PTab>
         <PTab label="Style" v-if="style">
@@ -26,14 +26,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import Prism from "prismjs";
-import "prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js";
+import { defineComponent, nextTick, ref, watch } from "vue";
 import PTabView from "../PTabView/PTabView.vue";
 import PTab from "../PTabView/PTab.vue";
+import Prism from "prismjs";
+import "prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js";
 
 export default defineComponent({
   name: "p-vue-example",
+  components: { PTabView, PTab },
   props: {
     code: {
       type: String,
@@ -56,12 +57,21 @@ export default defineComponent({
       }
     }
 
+    watch(
+      () => props.code,
+      () => {
+        formatCode();
+      },
+      { immediate: true }
+    );
+
     function formatCode(): void {
-      code.value && Prism.highlightAllUnder(code.value);
+      nextTick(() => {
+        code.value && Prism.highlightAllUnder(code.value);
+      });
     }
 
     return { code, template, script, style, formatCode };
   },
-  components: { PTabView, PTab },
 });
 </script>

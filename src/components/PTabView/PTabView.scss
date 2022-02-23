@@ -10,12 +10,11 @@ $tab-view-content-spacing: 1.5em !default;
 $tab-view-tab-spacing: 1em !default;
 $tab-view-underline-thickness: 3px !default;
 $tab-view-underline-animation-duration: $animation-duration-normal !default;
+$tab-view-resize-animation-duration: $animation-duration-slow !default;
 $tab-view-slide-animation-duration: $animation-duration-normal !default;
-$tab-view-resize-animation-duration: $animation-duration-normal !default;
+$tab-view-slide-animation-distance: 1rem !default;
 
 .p-tab-view {
-  overflow: hidden;
-
   & > .tabs {
     font-size: $tab-view-font-size;
     margin: 0 math.div($tab-view-tab-spacing, -2);
@@ -55,31 +54,52 @@ $tab-view-resize-animation-duration: $animation-duration-normal !default;
   }
 
   & > .view {
-    align-items: flex-start;
-    display: flex;
     transition: height $tab-view-resize-animation-duration ease-in-out;
-    max-width: 100%;
-
-    &.open {
-      transition: height $tab-view-resize-animation-duration ease-in-out,
-        margin-left $tab-view-slide-animation-duration ease-in-out;
-
-      & > .content.selected {
-        transition-delay: math.div($tab-view-slide-animation-duration, 2);
-      }
-    }
 
     & > .content {
-      flex: 0 0 100%;
+      display: none;
       padding-top: $tab-view-content-spacing;
-      opacity: 0;
-      overflow-x: scroll;
-      transition: opacity $tab-view-slide-animation-duration ease-in-out;
+      overflow: auto;
 
       &.selected {
-        opacity: 1;
-        transition: opacity $tab-view-slide-animation-duration ease-in-out;
+        display: block;
       }
     }
+
+    &.slide-left {
+      & > .content.selected {
+        animation: p-tab-view-slide-left $tab-view-slide-animation-duration ease,
+          p-tab-view-enter $tab-view-slide-animation-duration ease;
+      }
+    }
+
+    &.slide-right {
+      & > .content.selected {
+        animation: p-tab-view-slide-right $tab-view-slide-animation-duration
+            ease,
+          p-tab-view-enter $tab-view-slide-animation-duration ease;
+      }
+    }
+  }
+}
+
+@keyframes p-tab-view-slide-right {
+  from {
+    transform: translateX(-$tab-view-slide-animation-distance);
+  }
+}
+
+@keyframes p-tab-view-slide-left {
+  from {
+    transform: translateX($tab-view-slide-animation-distance);
+  }
+}
+
+@keyframes p-tab-view-enter {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 1;
   }
 }

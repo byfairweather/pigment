@@ -1,20 +1,21 @@
 <template>
-  <div class="p-textarea" :class="{ disabled: disabled }">
-    <div class="input">
+  <div class="p-textarea">
+    <div class="input" :class="{ disabled }">
       <textarea
         ref="textarea"
+        :id="id"
         @input="input($event)"
         :rows="lines"
         :placeholder="placeholder"
         :disabled="disabled"
       ></textarea>
     </div>
-    <label class="label" v-if="label">{{ label }}</label>
+    <label class="label" :for="id" v-if="label">{{ label }}</label>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, getCurrentInstance, ref, watch } from "vue";
 
 export default defineComponent({
   name: "p-textarea",
@@ -41,6 +42,7 @@ export default defineComponent({
   },
   setup(props, context) {
     const textarea = ref<HTMLInputElement>();
+    const id = getCurrentInstance()!.uid.toString();
 
     watch(() => props.modelValue, updateValue, { immediate: true });
 
@@ -56,6 +58,7 @@ export default defineComponent({
     }
 
     return {
+      id,
       textarea,
       input,
     };

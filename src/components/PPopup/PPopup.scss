@@ -1,6 +1,6 @@
 @use "../../styles/utilities.scss" as *;
 
-$popup-margin: 10px !default;
+$popup-margin: spacing("sm") !default;
 $popup-enter-animation-duration: $animation-duration-fast !default;
 $popup-exit-animation-duration: $animation-duration-faster !default;
 $popup-z-index: 10000 !default;
@@ -21,10 +21,10 @@ $popup-shade-filters: blur(1px) saturate(50%) !default;
 
 .p-popup {
   position: absolute;
+  opacity: 1;
   transition-property: margin, opacity;
   transition-timing-function: ease-in-out;
   z-index: $popup-z-index;
-  opacity: 1;
 
   &.up {
     margin-top: -$popup-margin;

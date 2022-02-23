@@ -1,5 +1,10 @@
 <template>
-  <button class="p-button" :class="{ loading }" @click.capture.stop="click()">
+  <button
+    class="p-button"
+    :class="{ loading }"
+    @click.capture.stop="click()"
+    @mousedown.prevent
+  >
     <div class="label">
       <slot></slot>
     </div>

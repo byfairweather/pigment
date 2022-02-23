@@ -83,25 +83,6 @@ $textarea-hover-label-color: $form-control-hover-label-color !default;
       }
     }
 
-    .prefix,
-    .suffix {
-      align-items: center;
-      color: inherit;
-      display: flex;
-      font-size: $textarea-font-size;
-      font-weight: 500;
-      transition: $textarea-transition;
-      user-select: none;
-    }
-
-    .prefix {
-      padding-left: $textarea-padding;
-    }
-
-    .suffix {
-      padding-right: $textarea-padding;
-    }
-
     &:hover:not(.disabled):not(:focus-within) {
       border: $textarea-hover-border;
       background-color: $textarea-hover-background-color;
@@ -121,9 +102,9 @@ $textarea-hover-label-color: $form-control-hover-label-color !default;
         color: $textarea-active-label-color;
       }
     }
-  }
 
-  &.disabled {
-    opacity: $textarea-disabled-opacity;
+    &.disabled {
+      opacity: $textarea-disabled-opacity;
+    }
   }
 }

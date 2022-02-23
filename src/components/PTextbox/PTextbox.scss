@@ -121,9 +121,9 @@ $textbox-hover-label-color: $form-control-hover-label-color !default;
         color: $textbox-active-label-color;
       }
     }
-  }
 
-  &.disabled {
-    opacity: $textbox-disabled-opacity;
+    &.disabled {
+      opacity: $textbox-disabled-opacity;
+    }
   }
 }

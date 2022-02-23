@@ -13,14 +13,15 @@ $vue-example-code-padding: 1em !default;
   box-shadow: $vue-example-box-shadow;
   border-radius: $vue-example-border-radius;
   overflow: hidden;
+
   & > .example {
     padding: 1em;
   }
 
   & > .code {
     background: $vue-example-code-background;
+    box-sizing: border-box;
     padding: 1em;
-    width: 100%;
 
     pre {
       color: color("grey", "800");

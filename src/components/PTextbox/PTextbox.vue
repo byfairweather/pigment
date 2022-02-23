@@ -1,10 +1,11 @@
 <template>
-  <div class="p-textbox" :class="{ disabled: disabled }">
-    <div class="input">
+  <div class="p-textbox">
+    <div class="input" :class="{ disabled }">
       <div class="prefix" v-if="prefix">{{ prefix }}</div>
       <input
         type="text"
         ref="textbox"
+        :id="id"
         @input="input($event)"
         size="1"
         :placeholder="placeholder"
@@ -13,12 +14,18 @@
       />
       <div class="suffix" v-if="suffix">{{ suffix }}</div>
     </div>
-    <label class="label" v-if="label">{{ label }}</label>
+    <label class="label" :for="id" v-if="label">{{ label }}</label>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from "vue";
+import {
+  defineComponent,
+  getCurrentInstance,
+  onMounted,
+  ref,
+  watch,
+} from "vue";
 
 export default defineComponent({
   name: "p-textbox",
@@ -53,6 +60,7 @@ export default defineComponent({
     },
   },
   setup(props, context) {
+    const id = getCurrentInstance()!.uid.toString();
     const textbox = ref<HTMLInputElement>();
 
     onMounted(() => {
@@ -83,6 +91,7 @@ export default defineComponent({
     }
 
     return {
+      id,
       textbox,
       input,
     };

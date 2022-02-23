@@ -1,17 +1,10 @@
-import { InjectionKey, Ref, Plugin } from "vue";
-import PTabView from "./PTabView.vue";
-import PTab from "./PTab.vue";
-
-export default {
-  install: (app, options) => {
-    app.component(PTabView.name, PTabView);
-    app.component(PTab.name, PTab);
-  },
-} as Plugin;
+import { InjectionKey, Ref } from "vue";
 
 export const TabViewProvider: InjectionKey<{
   mounted: Ref<boolean>;
+  open: Ref<boolean>;
   selectedTab: Ref<HTMLElement | undefined>;
-  viewSelector: string;
+  contentPath: string;
+  register: (tab: HTMLElement) => void;
   select: (tab: HTMLElement | undefined) => void;
 }> = Symbol();
