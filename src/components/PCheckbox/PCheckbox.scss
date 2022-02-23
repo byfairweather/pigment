@@ -157,6 +157,7 @@ $checkbox-checked-focus-check-color: $form-control-filled-focus-color !default;
   }
 
   &.disabled {
+    cursor: initial;
     opacity: $checkbox-disabled-opacity;
   }
 }
