@@ -1,6 +1,6 @@
 <template>
   <div class="p-textbox">
-    <div class="input" :class="{ disabled }">
+    <div class="input" :class="{ disabled, error }">
       <div class="prefix" v-if="prefix">{{ prefix }}</div>
       <input
         type="text"
@@ -15,6 +15,7 @@
       <div class="suffix" v-if="suffix">{{ suffix }}</div>
     </div>
     <label class="label" :for="id" v-if="label">{{ label }}</label>
+    <span class="error-text">{{ error }}</span>
   </div>
 </template>
 
@@ -57,6 +58,9 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false,
+    },
+    error: {
+      type: String,
     },
   },
   setup(props, context) {

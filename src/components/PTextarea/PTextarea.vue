@@ -1,6 +1,6 @@
 <template>
   <div class="p-textarea">
-    <div class="input" :class="{ disabled }">
+    <div class="input" :class="{ disabled, error }">
       <textarea
         ref="textarea"
         :id="id"
@@ -11,6 +11,7 @@
       ></textarea>
     </div>
     <label class="label" :for="id" v-if="label">{{ label }}</label>
+    <span class="error-text">{{ error }}</span>
   </div>
 </template>
 
@@ -38,6 +39,9 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false,
+    },
+    error: {
+      type: String,
     },
   },
   setup(props, context) {

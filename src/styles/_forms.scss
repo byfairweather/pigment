@@ -3,7 +3,7 @@
 @use "./surfaces" as *;
 @use "./layout" as *;
 
-$form-control-height: 2em !default;
+$form-control-height: 2rem !default;
 $form-control-background-color: color("grey", "100") !default;
 $form-control-border: 1px solid color("grey", "500") !default;
 $form-control-border-radius: $surface-border-radius !default;
@@ -30,6 +30,14 @@ $form-control-hover-background-color: color("grey", "100") !default;
 $form-control-hover-border: 1px solid color("primary", "500") !default;
 $form-control-hover-color: color("primary", "500") !default;
 $form-control-hover-label-color: color("primary", "500") !default;
+
+$form-control-error-background-color: color("danger", "100") !default;
+$form-control-error-border: 1px solid color("danger", "500") !default;
+$form-control-error-color: color("danger", "500") !default;
+$form-control-error-label-color: color("danger", "500") !default;
+$form-control-error-text-color: color("danger", "500") !default;
+$form-control-error-font-size: $font-size-xs !default;
+$form-control-error-spacing: spacing("sm") !default;
 
 $form-control-filled-background-color: color("primary", "500") !default;
 $form-control-filled-border: 1px solid color("primary", "500") !default;

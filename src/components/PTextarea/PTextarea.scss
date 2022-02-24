@@ -25,6 +25,14 @@ $textarea-hover-border: $form-control-hover-border !default;
 $textarea-hover-color: $form-control-hover-color !default;
 $textarea-hover-label-color: $form-control-hover-label-color !default;
 
+$textarea-error-background-color: $form-control-error-background-color !default;
+$textarea-error-border: $form-control-error-border !default;
+$textarea-error-color: $form-control-error-color !default;
+$textarea-error-label-color: $form-control-error-label-color !default;
+$textarea-error-text-color: $form-control-error-text-color !default;
+$textarea-error-font-size: $form-control-error-font-size !default;
+$textarea-error-spacing: $form-control-error-spacing !default;
+
 .p-textarea {
   display: flex;
   flex-direction: column;
@@ -83,7 +91,7 @@ $textarea-hover-label-color: $form-control-hover-label-color !default;
       }
     }
 
-    &:hover:not(.disabled):not(:focus-within) {
+    &:hover:not(.disabled):not(.error):not(:focus-within) {
       border: $textarea-hover-border;
       background-color: $textarea-hover-background-color;
       color: $textarea-hover-color;
@@ -93,7 +101,7 @@ $textarea-hover-label-color: $form-control-hover-label-color !default;
       }
     }
 
-    &:focus-within {
+    &:focus-within:not(.disabled):not(.error) {
       border: $textarea-active-border;
       background-color: $textarea-active-background-color;
       color: $textarea-active-color;
@@ -106,5 +114,23 @@ $textarea-hover-label-color: $form-control-hover-label-color !default;
     &.disabled {
       opacity: $textarea-disabled-opacity;
     }
+
+    &.error {
+      border: $textarea-error-border;
+      background-color: $textarea-error-background-color;
+      color: $textarea-error-color;
+
+      & + .label {
+        color: $textarea-error-label-color;
+      }
+    }
+  }
+
+  & > .error-text {
+    color: $textarea-error-text-color;
+    display: block;
+    font-size: $textarea-error-font-size;
+    margin-top: $textarea-error-spacing;
+    order: 3;
   }
 }
