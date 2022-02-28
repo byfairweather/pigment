@@ -15,10 +15,10 @@ $textarea-padding: $form-control-padding !default;
 $textarea-transition: all $animation-duration-normal ease-in-out !default;
 $textarea-disabled-opacity: $form-control-disabled-opacity !default;
 
-$textarea-active-background-color: $form-control-active-background-color !default;
-$textarea-active-border: $form-control-active-border !default;
-$textarea-active-color: $form-control-active-color !default;
-$textarea-active-label-color: $form-control-active-label-color !default;
+$textarea-focus-background-color: $form-control-focus-background-color !default;
+$textarea-focus-border: $form-control-focus-border !default;
+$textarea-focus-color: $form-control-focus-color !default;
+$textarea-focus-label-color: $form-control-focus-label-color !default;
 
 $textarea-hover-background-color: $form-control-hover-background-color !default;
 $textarea-hover-border: $form-control-hover-border !default;
@@ -102,12 +102,12 @@ $textarea-error-spacing: $form-control-error-spacing !default;
     }
 
     &:focus-within:not(.disabled):not(.error) {
-      border: $textarea-active-border;
-      background-color: $textarea-active-background-color;
-      color: $textarea-active-color;
+      border: $textarea-focus-border;
+      background-color: $textarea-focus-background-color;
+      color: $textarea-focus-color;
 
       & + .label {
-        color: $textarea-active-label-color;
+        color: $textarea-focus-label-color;
       }
     }
 

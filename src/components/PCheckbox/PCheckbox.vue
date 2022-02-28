@@ -19,8 +19,7 @@
         {{ label }}
       </label>
     </div>
-
-    <span class="error-text">{{ error }}</span>
+    <span class="error-text" v-if="error">{{ error }}</span>
   </div>
 </template>
 

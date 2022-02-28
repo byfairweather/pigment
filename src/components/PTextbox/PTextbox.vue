@@ -15,7 +15,7 @@
       <div class="suffix" v-if="suffix">{{ suffix }}</div>
     </div>
     <label class="label" :for="id" v-if="label">{{ label }}</label>
-    <span class="error-text">{{ error }}</span>
+    <span class="error-text" v-if="error">{{ error }}</span>
   </div>
 </template>
 

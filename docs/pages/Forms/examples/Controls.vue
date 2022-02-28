@@ -89,6 +89,25 @@
         v-model="value"
       />
     </p-grid-item>
+    <p-grid-item>
+      <p-select
+        label="Label"
+        placeholder="Placeholder"
+        :options="options2"
+        v-model="value"
+      />
+    </p-grid-item>
+    <p-grid-item>
+      <p-select
+        label="Disabled"
+        :disabled="true"
+        placeholder="Placeholder"
+        :options="options"
+        :value="(o) => o.value"
+        :display="(o) => o.name"
+        v-model="value"
+      />
+    </p-grid-item>
   </p-grid>
   <span class="margin-top-md" v-if="value.length > 0">Value: {{ value }}</span>
 </template>
@@ -100,8 +119,26 @@ export default defineComponent({
   name: "Grid",
   setup() {
     const value = ref("");
+    const options2 = ["Cow", "Dog", "Cat"];
+    const options = [
+      {
+        name: "a",
+        value: 1,
+        other: "ignore-me",
+      },
+      {
+        name: "b",
+        value: 2,
+        other: "ignore-me",
+      },
+      {
+        name: "c",
+        value: 3,
+        other: "ignore-me",
+      },
+    ];
 
-    return { value };
+    return { value, options, options2 };
   },
 });
 </script>

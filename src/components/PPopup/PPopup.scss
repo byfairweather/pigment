@@ -7,20 +7,8 @@ $popup-z-index: 10000 !default;
 $popup-shade-background-color: rgba(0, 0, 0, 0.1) !default;
 $popup-shade-filters: blur(1px) saturate(50%) !default;
 
-.anchor {
-  transition: z-index 0ms linear;
-  transition-delay: $popup-exit-animation-duration;
-  position: relative;
-  z-index: 0;
-
-  &.open {
-    transition: none;
-    z-index: $popup-z-index;
-  }
-}
-
 .p-popup {
-  position: absolute;
+  position: fixed;
   opacity: 1;
   transition-property: margin, opacity;
   transition-timing-function: ease-in-out;

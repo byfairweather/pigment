@@ -1,47 +1,51 @@
 <template>
-  <div ref="anchor" class="anchor" :class="{ open: isOpen }" @click="toggle()">
-    <slot></slot>
-  </div>
+  <transition name="popup">
+    <div
+      class="p-popup"
+      :class="`${yPosition} ${xPosition} ${open && 'open'}`"
+      v-if="open"
+      ref="popup"
+      tabindex="1"
+      :style="{
+        left: position.left,
+        top: position.top,
+        width: position.width,
+      }"
+    >
+      <slot></slot>
+    </div>
+  </transition>
   <teleport to="body">
-    <transition name="popup">
-      <div
-        class="p-popup"
-        :class="`${verticalAnchor} ${horizontalAnchor} ${isOpen && 'open'}`"
-        ref="popup"
-        v-if="isOpen"
-        :style="{
-          left: position.left,
-          top: position.top,
-          width: position.width,
-        }"
-        @click="close()"
-      >
-        <slot name="popup"></slot>
-      </div>
-    </transition>
     <transition name="shade">
-      <div class="shade" @click="close()" v-if="isOpen"></div>
+      <div class="shade" v-if="open" @click.stop="close"></div>
     </transition>
   </teleport>
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref } from "vue";
+import { defineComponent, nextTick, PropType, ref, watch } from "vue";
 
 export default defineComponent({
   props: {
     anchor: {
+      type: Object as PropType<HTMLElement>,
+      required: true,
+    },
+    position: {
       type: String,
       default: "inside-left down",
     },
+    open: {
+      type: Boolean,
+      required: true,
+    },
   },
   name: "p-popup",
-  setup(props) {
+  setup(props, context) {
     const anchor = ref<HTMLDivElement>();
     const popup = ref<HTMLDivElement>();
-    const verticalAnchor = ref("");
-    const horizontalAnchor = ref("");
-    let isOpen = ref<boolean>(false);
+    const yPosition = ref("");
+    const xPosition = ref("");
 
     const position = ref<{
       top?: string;
@@ -49,82 +53,85 @@ export default defineComponent({
       width?: string;
     }>({});
 
-    function toggle(): void {
-      isOpen.value ? close() : open();
-    }
-
-    function open(): void {
-      if (!isOpen.value) {
-        isOpen.value = true;
-        setPosition();
-      }
-    }
+    watch(() => props.open, setPosition, { immediate: true });
+    window.addEventListener("resize", setPosition);
+    window.addEventListener("scroll", setPosition, { passive: true });
 
     function close(): void {
-      if (isOpen.value) {
-        isOpen.value = false;
-      }
+      context.emit("update:open", false);
     }
 
-    window.addEventListener("resize", setPosition);
-
     async function setPosition() {
+      if (!props.open && props.anchor.style) {
+        props.anchor.style.position = "";
+        props.anchor.style.zIndex = "";
+        return;
+      }
       await nextTick();
+      if (!props.anchor || !popup.value || !props.open) return;
 
-      horizontalAnchor.value = props.anchor.split(" ")[0] ?? "inside-left";
-      verticalAnchor.value = props.anchor.split(" ")[1] ?? "down";
+      xPosition.value = props.position.split(" ")[0] ?? "inside-left";
+      yPosition.value = props.position.split(" ")[1] ?? "down";
 
-      if (!anchor.value || !popup.value) return;
-      const a = anchor.value;
+      const a = props.anchor;
       const p = popup.value;
+      a.style.position = "relative";
+      a.style.zIndex = "99999";
 
-      if (verticalAnchor.value == "down") {
-        position.value.top = `${a.offsetTop + a.offsetHeight}px`;
-      }
-
-      if (verticalAnchor.value == "up") {
-        position.value.top = `${a.offsetTop - p.offsetHeight}px`;
-      }
-
-      if (verticalAnchor.value == "center") {
+      if (yPosition.value == "down") {
         position.value.top = `${
-          a.offsetTop + (a.offsetHeight - p.offsetHeight) / 2
+          a.offsetTop + a.offsetHeight - window.scrollY
         }px`;
       }
 
-      if (horizontalAnchor.value == "inside-left") {
-        position.value.left = `${a.offsetLeft}px`;
+      if (yPosition.value == "up") {
+        position.value.top = `${
+          a.offsetTop - p.offsetHeight - window.scrollY
+        }px`;
       }
 
-      if (horizontalAnchor.value == "inside-right") {
+      if (yPosition.value == "center") {
+        position.value.top = `${
+          a.offsetTop + (a.offsetHeight - p.offsetHeight) / 2 - window.scrollY
+        }px`;
+      }
+
+      if (xPosition.value == "inside-left") {
+        position.value.left = `${a.offsetLeft - window.scrollX}px`;
+      }
+
+      if (xPosition.value == "inside-right") {
         position.value.left = `${
-          a.offsetLeft + (a.offsetWidth - p.offsetWidth)
+          a.offsetLeft + (a.offsetWidth - p.offsetWidth) - window.scrollX
         }px`;
       }
 
-      if (horizontalAnchor.value == "left") {
-        position.value.left = `${a.offsetLeft - p.offsetWidth}px`;
+      if (xPosition.value == "left") {
+        position.value.left = `${
+          a.offsetLeft - p.offsetWidth - window.scrollX
+        }px`;
       }
 
-      if (horizontalAnchor.value == "right") {
-        position.value.left = `${a.offsetLeft + a.offsetWidth}px`;
+      if (xPosition.value == "right") {
+        position.value.left = `${
+          a.offsetLeft + a.offsetWidth - window.scrollX
+        }px`;
       }
 
-      if (horizontalAnchor.value == "fill") {
-        position.value.left = `${a.offsetLeft}px`;
+      if (xPosition.value == "fill") {
+        position.value.left = `${a.offsetLeft - window.scrollX}px`;
         position.value.width = `${a.offsetWidth}px`;
       }
+
+      position.value.left;
     }
 
     return {
       anchor,
       popup,
       position,
-      verticalAnchor,
-      horizontalAnchor,
-      isOpen,
-      toggle,
-      open,
+      yPosition,
+      xPosition,
       close,
     };
   },

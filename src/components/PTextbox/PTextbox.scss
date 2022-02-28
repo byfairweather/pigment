@@ -15,10 +15,10 @@ $textbox-padding: $form-control-padding !default;
 $textbox-transition: all $animation-duration-normal ease-in-out !default;
 $textbox-disabled-opacity: $form-control-disabled-opacity !default;
 
-$textbox-active-background-color: $form-control-active-background-color !default;
-$textbox-active-border: $form-control-active-border !default;
-$textbox-active-color: $form-control-active-color !default;
-$textbox-active-label-color: $form-control-active-label-color !default;
+$textbox-focus-background-color: $form-control-focus-background-color !default;
+$textbox-focus-border: $form-control-focus-border !default;
+$textbox-focus-color: $form-control-focus-color !default;
+$textbox-focus-label-color: $form-control-focus-label-color !default;
 
 $textbox-hover-background-color: $form-control-hover-background-color !default;
 $textbox-hover-border: $form-control-hover-border !default;
@@ -121,12 +121,12 @@ $textbox-error-spacing: $form-control-error-spacing !default;
     }
 
     &:focus-within:not(.disabled):not(.error) {
-      border: $textbox-active-border;
-      background-color: $textbox-active-background-color;
-      color: $textbox-active-color;
+      border: $textbox-focus-border;
+      background-color: $textbox-focus-background-color;
+      color: $textbox-focus-color;
 
       & + .label {
-        color: $textbox-active-label-color;
+        color: $textbox-focus-label-color;
       }
     }
 

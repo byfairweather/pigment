@@ -14,6 +14,7 @@ import PNavbarDropdown from "./components/PNavbar/PNavbarDropdown.vue";
 import PNavbarItem from "./components/PNavbar/PNavbarItem.vue";
 import PPanel from "./components/PPanel/PPanel.vue";
 import PPopup from "./components/PPopup/PPopup.vue";
+import PSelect from "./components/PSelect/PSelect.vue";
 import PSpinner from "./components/PSpinner/PSpinner.vue";
 import PTabView from "./components/PTabView/PTabView.vue";
 import PTab from "./components/PTabView/PTab.vue";
@@ -37,6 +38,7 @@ export default {
     app.component(PNavbarDropdown.name, PNavbarDropdown);
     app.component(PPanel.name, PPanel);
     app.component(PPopup.name, PPopup);
+    app.component(PSelect.name, PSelect);
     app.component(PSpinner.name, PSpinner);
     app.component(PTabView.name, PTabView);
     app.component(PTab.name, PTab);
