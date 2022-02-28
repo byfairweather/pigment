@@ -1,7 +1,7 @@
 <template>
   <div
     class="p-select"
-    :class="{ disabled, error }"
+    :class="{ disabled, error, open: isOpen }"
     ref="anchor"
     @focusout="focusOut"
     @keydown.enter.exact.prevent.stop="toggle()"
@@ -26,9 +26,10 @@
       <span class="placeholder" v-if="placeholder && !selectedOption">
         {{ placeholder }}
       </span>
-      <template v-else>
+      <span v-else>
         {{ display(selectedOption) }}
-      </template>
+      </span>
+      <div class="chevron"></div>
     </div>
     <label class="label" :for="id" v-if="label">{{ label }}</label>
     <span class="error-text" v-if="error && !isOpen">{{ error }}</span>
@@ -46,6 +47,7 @@
             :class="{ selected: selectedIndex == index }"
             :aria-selected="selectedIndex == index"
             @click="select(option, true)"
+            @mousedown.prevent
             role="option"
           >
             {{ display(option) }}

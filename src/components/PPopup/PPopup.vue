@@ -17,7 +17,7 @@
   </transition>
   <teleport to="body">
     <transition name="shade">
-      <div class="shade" v-if="open" @click.stop="close"></div>
+      <div class="p-popup-shade" v-if="open" @click.stop="close"></div>
     </transition>
   </teleport>
 </template>
@@ -62,12 +62,8 @@ export default defineComponent({
     }
 
     async function setPosition() {
-      if (!props.open && props.anchor.style) {
-        props.anchor.style.position = "";
-        props.anchor.style.zIndex = "";
-        return;
-      }
       await nextTick();
+      props.anchor.classList.add("p-popup-anchor");
       if (!props.anchor || !popup.value || !props.open) return;
 
       xPosition.value = props.position.split(" ")[0] ?? "inside-left";
@@ -75,8 +71,7 @@ export default defineComponent({
 
       const a = props.anchor;
       const p = popup.value;
-      a.style.position = "relative";
-      a.style.zIndex = "99999";
+      props.anchor.classList.add("open");
 
       if (yPosition.value == "down") {
         position.value.top = `${

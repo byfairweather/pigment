@@ -93,7 +93,9 @@
       <p-select
         label="Label"
         placeholder="Placeholder"
-        :options="options2"
+        :options="options"
+        :value="(o) => o.value"
+        :display="(o) => o.name"
         v-model="value"
       />
     </p-grid-item>
@@ -109,7 +111,7 @@
       />
     </p-grid-item>
   </p-grid>
-  <span class="margin-top-md" v-if="value.length > 0">Value: {{ value }}</span>
+  <span class="margin-top-md" v-if="value">Value: {{ value }}</span>
 </template>
 
 <script lang="ts">
@@ -119,7 +121,6 @@ export default defineComponent({
   name: "Grid",
   setup() {
     const value = ref("");
-    const options2 = ["Cow", "Dog", "Cat"];
     const options = [
       {
         name: "a",
@@ -138,7 +139,7 @@ export default defineComponent({
       },
     ];
 
-    return { value, options, options2 };
+    return { value, options };
   },
 });
 </script>

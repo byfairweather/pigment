@@ -45,7 +45,7 @@ $popup-shade-filters: blur(1px) saturate(50%) !default;
   }
 }
 
-.shade {
+.p-popup-shade {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -69,5 +69,35 @@ $popup-shade-filters: blur(1px) saturate(50%) !default;
   &.shade-leave-to {
     backdrop-filter: none;
     background-color: transparent;
+  }
+}
+
+.p-popup-anchor {
+  animation: p-popup-anchor-close 1ms ease $popup-exit-animation-duration
+    forwards;
+  position: relative;
+  z-index: $popup-z-index;
+
+  &.open {
+    animation: p-popup-anchor-open 1ms ease $popup-exit-animation-duration
+      forwards;
+  }
+}
+
+@keyframes p-popup-anchor-close {
+  from {
+    z-index: $popup-z-index;
+  }
+  to {
+    z-index: 1;
+  }
+}
+
+@keyframes p-popup-anchor-open {
+  from {
+    z-index: 1;
+  }
+  to {
+    z-index: $popup-z-index;
   }
 }
