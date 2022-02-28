@@ -94,8 +94,8 @@
         label="Label"
         placeholder="Placeholder"
         :options="options"
-        :value="(o) => o.value"
-        :display="(o) => o.name"
+        :value="valueMapper"
+        :display="displayMapper"
         v-model="value"
       />
     </p-grid-item>
@@ -105,8 +105,8 @@
         :disabled="true"
         placeholder="Placeholder"
         :options="options"
-        :value="(o) => o.value"
-        :display="(o) => o.name"
+        :value="valueMapper"
+        :display="displayMapper"
         v-model="value"
       />
     </p-grid-item>
@@ -139,7 +139,10 @@ export default defineComponent({
       },
     ];
 
-    return { value, options };
+    const displayMapper = (o: { name: string }) => o.name;
+    const valueMapper = (o: { value: string }) => o.value;
+
+    return { value, options, displayMapper, valueMapper };
   },
 });
 </script>
