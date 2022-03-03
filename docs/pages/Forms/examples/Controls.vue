@@ -110,6 +110,25 @@
         v-model="value"
       />
     </p-grid-item>
+    <p-grid-item></p-grid-item>
+    <p-grid-item>
+      <p-numberbox label="Label" v-model="value" />
+    </p-grid-item>
+    <p-grid-item>
+      <p-numberbox label="Label" :disabled="true" v-model="value" />
+    </p-grid-item>
+    <p-grid-item></p-grid-item>
+    <p-grid-item>
+      <p-numberbox label="Label" error="Error" v-model="value" />
+    </p-grid-item>
+    <p-grid-item>
+      <p-numberbox
+        label="Label"
+        error="Error"
+        :disabled="true"
+        v-model="value"
+      />
+    </p-grid-item>
   </p-grid>
   <span class="margin-top-md" v-if="value">Value: {{ value }}</span>
 </template>
@@ -120,7 +139,7 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "Grid",
   setup() {
-    const value = ref("");
+    const value = ref(0);
     const options = [
       {
         name: "a",

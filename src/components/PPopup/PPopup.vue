@@ -29,7 +29,7 @@ export default defineComponent({
   props: {
     anchor: {
       type: Object as PropType<HTMLElement>,
-      required: true,
+      default: document.body,
     },
     position: {
       type: String,
@@ -56,6 +56,16 @@ export default defineComponent({
     watch(() => props.open, setPosition, { immediate: true });
     window.addEventListener("resize", setPosition);
     window.addEventListener("scroll", setPosition, { passive: true });
+
+    watch(
+      () => popup.value,
+      () => {
+        if (popup.value) {
+          const mutationObserver = new MutationObserver(setPosition);
+          mutationObserver.observe(popup.value, { attributes: true });
+        }
+      }
+    );
 
     function close(): void {
       context.emit("update:open", false);
@@ -116,6 +126,12 @@ export default defineComponent({
       if (xPosition.value == "fill") {
         position.value.left = `${a.offsetLeft - window.scrollX}px`;
         position.value.width = `${a.offsetWidth}px`;
+      }
+
+      if (xPosition.value == "center") {
+        position.value.left = `${
+          a.offsetLeft + (a.offsetWidth - p.offsetWidth) / 2 - window.scrollX
+        }px`;
       }
 
       position.value.left;

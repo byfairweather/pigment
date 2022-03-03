@@ -1,0 +1,176 @@
+@use "../../styles/utilities.scss" as *;
+
+$numberbox-background-color: $form-control-background-color !default;
+$numberbox-border: $form-control-border !default;
+$numberbox-border-radius: $form-control-border-radius !default;
+$numberbox-color: $form-control-color !default;
+$numberbox-font-size: $form-control-font-size !default;
+$numberbox-font-weight: $form-control-font-weight !default;
+$numberbox-height: $form-control-height !default;
+$numberbox-label-color: $form-control-label-color !default;
+$numberbox-label-font-size: $form-control-label-font-size !default;
+$numberbox-label-font-weight: $form-control-label-font-weight !default;
+$numberbox-label-margin-bottom: $form-control-label-margin-bottom !default;
+$numberbox-padding: $form-control-padding !default;
+$numberbox-transition: all $animation-duration-normal ease-in-out !default;
+$numberbox-disabled-opacity: $form-control-disabled-opacity !default;
+$numberbox-button-width: 3rem !default;
+$numberbox-button-background-color: color("grey", "300") !default;
+$numberbox-button-color: color("grey", "800") !default;
+
+$numberbox-focus-background-color: $form-control-focus-background-color !default;
+$numberbox-focus-border: $form-control-focus-border !default;
+$numberbox-focus-color: $form-control-focus-color !default;
+$numberbox-focus-label-color: $form-control-focus-label-color !default;
+$numberbox-focus-button-background-color: color("primary", "200") !default;
+$numberbox-focus-button-color: color("primary", "600") !default;
+
+$numberbox-hover-background-color: $form-control-hover-background-color !default;
+$numberbox-hover-border: $form-control-hover-border !default;
+$numberbox-hover-color: $form-control-hover-color !default;
+$numberbox-hover-label-color: $form-control-hover-label-color !default;
+$numberbox-hover-button-background-color: color("primary", "200") !default;
+$numberbox-hover-button-color: color("primary", "600") !default;
+
+$numberbox-error-background-color: $form-control-error-background-color !default;
+$numberbox-error-border: $form-control-error-border !default;
+$numberbox-error-color: $form-control-error-color !default;
+$numberbox-error-label-color: $form-control-error-label-color !default;
+$numberbox-error-text-color: $form-control-error-text-color !default;
+$numberbox-error-font-size: $form-control-error-font-size !default;
+$numberbox-error-spacing: $form-control-error-spacing !default;
+$numberbox-error-button-background-color: color("danger", "200") !default;
+$numberbox-error-button-color: color("danger", "600") !default;
+
+.p-numberbox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  & > .label {
+    color: $numberbox-label-color;
+    display: block;
+    font-size: $numberbox-label-font-size;
+    font-weight: $numberbox-label-font-weight;
+    margin-bottom: $numberbox-label-margin-bottom;
+    user-select: none;
+    order: 1;
+  }
+
+  & > .input {
+    align-content: stretch;
+    background-color: $numberbox-background-color;
+    border: $numberbox-border;
+    border-radius: $numberbox-border-radius;
+    box-sizing: border-box;
+    color: $numberbox-color;
+    display: flex;
+    height: $numberbox-height;
+    order: 2;
+    overflow: hidden;
+    transition: $numberbox-transition;
+
+    & > input {
+      background-color: transparent;
+      border: none;
+      box-sizing: border-box;
+      color: inherit;
+      flex-grow: 1;
+      font-size: $numberbox-font-size;
+      font-weight: $numberbox-font-weight;
+      margin: 0;
+      min-width: 0;
+      outline: none;
+      padding: 0 $numberbox-padding;
+      text-align: center;
+      transition: $numberbox-transition;
+
+      &:-webkit-autofill::first-line,
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        font-size: $numberbox-font-size;
+        font-weight: $numberbox-font-weight;
+        transition: background-color 999999s ease-in-out 999999s;
+      }
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+
+    & > .decrease,
+    & > .increase {
+      background-color: $numberbox-button-background-color;
+      color: $numberbox-button-color;
+      cursor: pointer;
+      font-size: $numberbox-font-size;
+      font-weight: $numberbox-font-weight;
+      transition: $numberbox-transition;
+      width: 3rem;
+    }
+
+    &:hover:not(.disabled):not(.error):not(:focus-within) {
+      border: $numberbox-hover-border;
+      background-color: $numberbox-hover-background-color;
+      color: $numberbox-hover-color;
+
+      & + .label {
+        color: $numberbox-hover-label-color;
+      }
+
+      & > .decrease,
+      & > .increase {
+        background-color: $numberbox-hover-button-background-color;
+        color: $numberbox-hover-button-color;
+      }
+    }
+
+    &:focus-within:not(.disabled):not(.error) {
+      border: $numberbox-focus-border;
+      background-color: $numberbox-focus-background-color;
+      color: $numberbox-focus-color;
+
+      & + .label {
+        color: $numberbox-focus-label-color;
+      }
+
+      & > .decrease,
+      & > .increase {
+        background-color: $numberbox-focus-button-background-color;
+        color: $numberbox-focus-button-color;
+      }
+    }
+
+    &.disabled {
+      opacity: $numberbox-disabled-opacity;
+    }
+
+    &.error {
+      border: $numberbox-error-border;
+      background-color: $numberbox-error-background-color;
+      color: $numberbox-error-color;
+
+      & + .label {
+        color: $numberbox-error-label-color;
+      }
+
+      & > .decrease,
+      & > .increase {
+        background-color: $numberbox-error-button-background-color;
+        color: $numberbox-error-button-color;
+      }
+    }
+  }
+
+  & > .error-text {
+    color: $numberbox-error-text-color;
+    display: block;
+    font-size: $numberbox-error-font-size;
+    margin-top: $numberbox-error-spacing;
+    order: 3;
+  }
+}

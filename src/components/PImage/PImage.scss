@@ -1,0 +1,58 @@
+@use "../../styles/utilities.scss" as *;
+
+$image-spinner-color: color("grey", "100") !default;
+$image-zoom-background-color: rgba(black, 0.75) !default;
+$image-zoom-background-filter: blur(5px) !default;
+$image-zoom-close-button-size: 3rem !default;
+
+.p-image {
+  color: $image-spinner-color;
+  position: relative;
+
+  & > .image {
+    & > img {
+      width: 100%;
+    }
+  }
+
+  &.zoomable {
+    cursor: pointer;
+  }
+
+  .zoom {
+    align-items: center;
+    background-color: $image-zoom-background-color !important;
+    backdrop-filter: $image-zoom-background-filter !important;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+
+    & > img {
+      max-width: 70vw;
+      max-height: 70vh;
+    }
+
+    & > .close-button {
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      font-size: $image-zoom-close-button-size;
+      width: $image-zoom-close-button-size;
+      height: $image-zoom-close-button-size;
+      position: fixed;
+      right: 1rem;
+      top: 1rem;
+      transition: transform $animation-duration-normal ease-in-out;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

@@ -4,10 +4,12 @@ import Typography from "../pages/styles/Typography.vue";
 import Grid from "../pages/Grid/Grid.vue";
 import Button from "../pages/Button/Button.vue";
 import Card from "../pages/Card/Card.vue";
+import Popup from "../pages/Popup/Popup.vue";
 import Forms from "../pages/Forms/Forms.vue";
 import Navbar from "../pages/Navbar/Navbar.vue";
 import Spinner from "../pages/Spinner/Spinner.vue";
 import Surfaces from "../pages/Surfaces/Surfaces.vue";
+import Images from "../pages/Images/Images.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -33,6 +35,14 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/card",
     component: Card,
+  },
+  {
+    path: "/popup",
+    component: Popup,
+  },
+  {
+    path: "/images",
+    component: Images,
   },
   {
     path: "/forms",
