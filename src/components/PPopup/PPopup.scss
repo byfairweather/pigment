@@ -60,7 +60,7 @@ $popup-close-button-hit-target: 4rem !default;
   right: 0;
   background-color: $popup-shade-background-color;
   backdrop-filter: $popup-shade-filters;
-  transition-property: background-color, backdrop-filter;
+  transition-property: background-color;
   transition-timing-function: ease-in-out;
   z-index: $popup-z-index - 1;
 

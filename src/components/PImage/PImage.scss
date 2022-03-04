@@ -1,17 +1,24 @@
 @use "../../styles/utilities.scss" as *;
 
-$image-spinner-color: color("grey", "100") !default;
+$image-placeholder-blur: 4px !default;
+$image-close-button-color: color("grey", "100") !default;
 $image-zoom-background-color: rgba(black, 0.75) !default;
 $image-zoom-background-filter: blur(5px) !default;
 $image-zoom-close-button-size: 3rem !default;
+$image-zoom-shadow: $surface-box-shadow-xl !default;
 
 .p-image {
-  color: $image-spinner-color;
-  position: relative;
+  overflow: hidden;
 
   & > .image {
     & > img {
       width: 100%;
+    }
+
+    & > .placeholder {
+      animation: p-image-placeholder-pulse 1s ease-in-out infinite alternate;
+      filter: blur($image-placeholder-blur);
+      transform: scale(1.2);
     }
   }
 
@@ -20,6 +27,7 @@ $image-zoom-close-button-size: 3rem !default;
   }
 
   .zoom {
+    animation: p-image-zoom-shade $animation-duration-normal ease-in-out;
     align-items: center;
     background-color: $image-zoom-background-color !important;
     backdrop-filter: $image-zoom-background-filter !important;
@@ -33,6 +41,8 @@ $image-zoom-close-button-size: 3rem !default;
     z-index: 10000;
 
     & > img {
+      animation: p-image-zoom-image $animation-duration-normal ease-in-out;
+      box-shadow: $image-zoom-shadow;
       max-width: 70vw;
       max-height: 70vh;
     }
@@ -40,6 +50,7 @@ $image-zoom-close-button-size: 3rem !default;
     & > .close-button {
       align-items: center;
       cursor: pointer;
+      color: $image-close-button-color;
       display: flex;
       justify-content: center;
       font-size: $image-zoom-close-button-size;
@@ -54,5 +65,27 @@ $image-zoom-close-button-size: 3rem !default;
         transform: scale(1.1);
       }
     }
+  }
+}
+
+@keyframes p-image-placeholder-pulse {
+  from {
+    opacity: 0.75;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes p-image-zoom-image {
+  from {
+    opacity: 0.9;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes p-image-zoom-shade {
+  from {
+    opacity: 0;
   }
 }

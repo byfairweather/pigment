@@ -57,16 +57,6 @@ export default defineComponent({
     window.addEventListener("resize", setPosition);
     window.addEventListener("scroll", setPosition, { passive: true });
 
-    watch(
-      () => popup.value,
-      () => {
-        if (popup.value) {
-          const mutationObserver = new MutationObserver(setPosition);
-          mutationObserver.observe(popup.value, { attributes: true });
-        }
-      }
-    );
-
     function close(): void {
       context.emit("update:open", false);
     }

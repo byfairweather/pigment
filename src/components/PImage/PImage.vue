@@ -1,18 +1,22 @@
 <template>
-  <div class="p-image" :class="{ zoomable }">
+  <div class="p-image" :class="{ zoomable }" ref="component">
     <div class="image" @click.capture.stop="zoom">
-      <img v-if="placeholder && loading" :src="placeholder" />
-      <img v-show="!loading" @load="load" :src="image" />
+      <img
+        v-if="placeholder && !loaded"
+        class="placeholder"
+        :src="placeholder"
+      />
+      <img v-if="visible" v-show="loaded" @load="loaded = true" :src="image" />
     </div>
     <div class="zoom" v-if="zoomed" @click="zoomed = false">
       <img :src="image" />
-      <button class="close-button">&times;</button>
+      <button class="close-button" aria-label="Close">&times;</button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
   name: "p-image",
@@ -30,8 +34,22 @@ export default defineComponent({
     },
   },
   setup(props, context) {
-    const loading = ref(true);
+    const loaded = ref(false);
+    const visible = ref(false);
     const zoomed = ref(false);
+    const component = ref<HTMLElement>();
+
+    window.addEventListener("scroll", checkViewport, { passive: true });
+    onMounted(() => {
+      checkViewport();
+    });
+
+    function checkViewport() {
+      if (!component.value) return;
+
+      const rect = component.value.getBoundingClientRect();
+      visible.value = rect.top <= window.innerHeight + 500;
+    }
 
     function zoom(): void {
       if (props.zoomable) {
@@ -39,13 +57,7 @@ export default defineComponent({
       }
     }
 
-    async function load(): Promise<void> {
-      setTimeout(() => {
-        loading.value = false;
-      }, 1000);
-    }
-
-    return { loading, zoomed, load, zoom };
+    return { component, loaded, visible, zoomed, zoom };
   },
 });
 </script>
