@@ -1,5 +1,5 @@
 <template>
-  <div class="p-spinner">
+  <div class="p-progress-spinner">
     <div class="wheel"></div>
   </div>
 </template>
@@ -8,6 +8,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "p-spinner",
+  name: "p-progress-spinner",
 });
 </script>

@@ -1,0 +1,64 @@
+@use "../../styles/utilities.scss" as *;
+
+$progress-spinner-animation-duration: $animation-duration-slow !default;
+$progress-spinner-color: currentColor !default;
+$progress-spinner-size-sm: 1rem !default;
+$progress-spinner-size-md: 2rem !default;
+$progress-spinner-size-lg: 3rem !default;
+$progress-spinner-thickness-sm: 0.2rem !default;
+$progress-spinner-thickness-md: 0.3rem !default;
+$progress-spinner-thickness-lg: 0.4rem !default;
+
+.p-progress-spinner {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  top: 0;
+
+  & > .wheel {
+    animation: p-progress-spinner-spin $progress-spinner-animation-duration
+      linear infinite;
+    border-color: transparent;
+    border-radius: 50%;
+    border-style: solid;
+    border-top-color: $progress-spinner-color;
+    box-sizing: border-box;
+  }
+
+  &,
+  &.sm {
+    .wheel {
+      border-width: $progress-spinner-thickness-sm;
+      height: $progress-spinner-size-sm;
+      width: $progress-spinner-size-sm;
+    }
+  }
+
+  &.md {
+    .wheel {
+      border-width: $progress-spinner-thickness-md;
+      height: $progress-spinner-size-md;
+      width: $progress-spinner-size-md;
+    }
+  }
+
+  &.lg {
+    .wheel {
+      border-width: $progress-spinner-thickness-lg;
+      height: $progress-spinner-size-lg;
+      width: $progress-spinner-size-lg;
+    }
+  }
+}
+
+@keyframes p-progress-spinner-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -8,17 +8,17 @@
     <div class="label">
       <slot></slot>
     </div>
-    <PSpinner v-if="loading" />
+    <PProgressSpinner class="spinner" v-if="loading" />
   </button>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import PSpinner from "../PSpinner/PSpinner.vue";
+import PProgressSpinner from "../PProgressSpinner/PProgressSpinner.vue";
 
 export default defineComponent({
   name: "p-button",
-  components: { PSpinner },
+  components: { PProgressSpinner },
   setup(props, context) {
     const loading = ref(false);
 

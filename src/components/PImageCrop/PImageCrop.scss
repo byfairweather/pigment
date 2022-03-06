@@ -1,0 +1,10 @@
+@use "../../styles/utilities.scss" as *;
+
+.p-image-crop {
+  overflow: hidden;
+
+  & > .image {
+    object-fit: contain;
+    width: 100%;
+  }
+}

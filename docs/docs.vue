@@ -37,7 +37,7 @@
               <li><router-link :to="'/images'">Images</router-link></li>
               <li><router-link :to="'/forms'">Forms</router-link></li>
               <li><router-link :to="'/navbar'">Navbar</router-link></li>
-              <li><router-link :to="'/spinner'">Spinner</router-link></li>
+              <li><router-link :to="'/progress'">Progress</router-link></li>
             </ul>
           </div>
         </p-grid-item>

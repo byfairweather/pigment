@@ -1,0 +1,66 @@
+@use "../../styles/utilities.scss" as *;
+@use "sass:math";
+
+$progress-bar-animation-duration: $animation-duration-slow !default;
+$progress-bar-background-color: color("grey", "300") !default;
+$progress-bar-border-radius: $surface-border-radius !default;
+$progress-bar-color: color("primary", "500") !default;
+$progress-bar-label-color: color("grey", "100") !default;
+$progress-bar-size-sm: 0.5rem !default;
+$progress-bar-size-md: 1.5rem !default;
+$progress-bar-size-lg: 2rem !default;
+
+.p-progress-bar {
+  background-color: $progress-bar-background-color;
+  border-radius: $progress-bar-border-radius;
+  overflow: hidden;
+
+  & > .bar {
+    align-items: center;
+    background-color: $progress-bar-color;
+    display: flex;
+    justify-content: flex-end;
+    height: inherit;
+    transition: width $animation-duration-slow ease;
+
+    & > .label {
+      color: $progress-bar-label-color;
+    }
+  }
+
+  &.sm {
+    height: $progress-bar-size-sm;
+
+    & > .bar > .label {
+      display: none;
+    }
+  }
+
+  &,
+  &.md {
+    height: $progress-bar-size-md;
+
+    & > .bar > .label {
+      font-size: math.div($progress-bar-size-md, 2);
+      padding-right: math.div($progress-bar-size-md, 2);
+    }
+  }
+
+  &.lg {
+    height: $progress-bar-size-lg;
+
+    & > .bar > .label {
+      font-size: math.div($progress-bar-size-lg, 2);
+      padding-right: math.div($progress-bar-size-lg, 2);
+    }
+  }
+}
+
+@keyframes p-progress-bar-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

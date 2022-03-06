@@ -7,7 +7,7 @@ import Card from "../pages/Card/Card.vue";
 import Popup from "../pages/Popup/Popup.vue";
 import Forms from "../pages/Forms/Forms.vue";
 import Navbar from "../pages/Navbar/Navbar.vue";
-import Spinner from "../pages/Spinner/Spinner.vue";
+import Progress from "../pages/Progress/Progress.vue";
 import Surfaces from "../pages/Surfaces/Surfaces.vue";
 import Images from "../pages/Images/Images.vue";
 
@@ -53,8 +53,8 @@ const routes: Array<RouteRecordRaw> = [
     component: Navbar,
   },
   {
-    path: "/spinner",
-    component: Spinner,
+    path: "/progress",
+    component: Progress,
   },
 ];
 

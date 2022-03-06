@@ -1,25 +1,25 @@
 <template>
   <p-grid>
     <p-grid-item class="width-4-all">
-      <p-spinner class="sm" />
+      <p-progress-spinner class="sm" />
     </p-grid-item>
     <p-grid-item class="width-4-all">
-      <p-spinner class="md" />
+      <p-progress-spinner class="md" />
     </p-grid-item>
     <p-grid-item class="width-4-all">
-      <p-spinner class="lg" />
+      <p-progress-spinner class="lg" />
     </p-grid-item>
     <p-grid-item class="width-3-all">
-      <p-spinner class="md text-primary" />
+      <p-progress-spinner class="md text-primary" />
     </p-grid-item>
     <p-grid-item class="width-3-all">
-      <p-spinner class="md text-success" />
+      <p-progress-spinner class="md text-success" />
     </p-grid-item>
     <p-grid-item class="width-3-all">
-      <p-spinner class="md text-warning" />
+      <p-progress-spinner class="md text-warning" />
     </p-grid-item>
     <p-grid-item class="width-3-all">
-      <p-spinner class="md text-danger" />
+      <p-progress-spinner class="md text-danger" />
     </p-grid-item>
   </p-grid>
 </template>
