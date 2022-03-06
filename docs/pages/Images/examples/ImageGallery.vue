@@ -1,7 +1,7 @@
 <template>
   <p-image-gallery>
     <template v-for="(image, index) in images" :key="index">
-      <p-image zoomable :image="image"></p-image>
+      <p-image :zoom="image" :image="image"></p-image>
     </template>
   </p-image-gallery>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <div class="p-image" :class="{ zoomable }" ref="component">
-    <div class="wrapper" @click.capture.stop="zoom">
+  <div class="p-image" :class="{ zoomable: zoom }" ref="component">
+    <div class="wrapper" @click.capture.stop="zoomIn">
       <img
         class="placeholder"
         v-if="placeholder && !loaded && lazy"
@@ -15,7 +15,7 @@
       />
     </div>
     <div class="zoom" v-if="zoomed" @click="zoomed = false">
-      <img :src="image" />
+      <img :src="zoom" />
       <button class="close-button" aria-label="Close">&times;</button>
     </div>
   </div>
@@ -38,9 +38,8 @@ export default defineComponent({
     placeholder: {
       type: String,
     },
-    zoomable: {
-      type: Boolean,
-      default: false,
+    zoom: {
+      type: String,
     },
   },
   setup(props, context) {
@@ -65,13 +64,13 @@ export default defineComponent({
       visible.value = rect.top <= window.innerHeight + 500;
     }
 
-    function zoom(): void {
-      if (props.zoomable) {
+    function zoomIn(): void {
+      if (props.zoom) {
         zoomed.value = true;
       }
     }
 
-    return { component, loaded, visible, zoomed, zoom };
+    return { component, loaded, visible, zoomed, zoomIn };
   },
 });
 </script>
