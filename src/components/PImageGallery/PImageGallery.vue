@@ -5,14 +5,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
   name: "p-image-gallery",
   props: {
     minHeight: {
       type: Number,
-      default: 200,
+      default: 100,
     },
   },
   setup(props, context) {
@@ -33,7 +33,7 @@ export default defineComponent({
     function fitGallery() {
       if (!gallery.value) return;
 
-      const galleryWidth = gallery.value.offsetWidth;
+      const galleryWidth = getGalleryWidth();
       const images = Array.from(
         gallery.value.querySelectorAll(".p-image")
       ) as HTMLDivElement[];
@@ -41,10 +41,9 @@ export default defineComponent({
 
       images.forEach((div) => {
         const image = div.querySelector(".image")! as HTMLImageElement;
-        const spacing = parseFloat(window.getComputedStyle(div).margin) * 2;
         const rowWidth = getRowWidth(row);
         const imageAspect = image.naturalWidth / image.naturalHeight;
-        const imageWidth = props.minHeight * imageAspect + spacing;
+        const imageWidth = props.minHeight * imageAspect + getSpacing();
 
         if (imageWidth >= galleryWidth) {
           fitRow(row);
@@ -56,20 +55,18 @@ export default defineComponent({
           row.push(div);
         }
       });
-
       fitRow(row, false);
     }
 
     function fitRow(row: HTMLDivElement[], fill = true): void {
-      if (!gallery.value || row.length == 0) return;
+      if (row.length == 0) return;
 
-      const spacing = parseFloat(window.getComputedStyle(row[0]).margin) * 2;
-      const galleryWidth =
-        gallery.value.getBoundingClientRect().width - spacing * row.length;
-      const rowAspect = getRowWidth(row) / props.minHeight;
-      const rowHeight = fill ? galleryWidth / rowAspect : props.minHeight;
+      const width = getGalleryWidth();
+      const spacing = getSpacing() * (row.length - 1);
+      const rowAspect = getRowWidth(row, false) / props.minHeight;
+      const rowHeight = fill ? (width - spacing) / rowAspect : props.minHeight;
 
-      row.forEach((div, index) => {
+      row.forEach((div) => {
         const image = div.querySelector(".image") as HTMLImageElement;
         const imageAspect = image.naturalWidth / image.naturalHeight;
 
@@ -83,13 +80,32 @@ export default defineComponent({
       });
     }
 
-    function getRowWidth(row: HTMLDivElement[]) {
-      return row.reduce((width, div) => {
+    function getRowWidth(row: HTMLDivElement[], spacing = true): number {
+      if (row.length == 0) return 0;
+
+      const width = row.reduce((width, div) => {
         const image = div.querySelector(".image") as HTMLImageElement;
         const imageAspect = image.naturalWidth / image.naturalHeight;
         const imageWidth = props.minHeight * imageAspect;
         return width + imageWidth;
       }, 0);
+
+      return width + (spacing ? getSpacing() * (row.length - 1) : 0);
+    }
+
+    function getGalleryWidth(): number {
+      if (!gallery.value) return 0;
+
+      const galleryStyle = window.getComputedStyle(gallery.value);
+      const spacing = parseFloat(galleryStyle.margin) * -2;
+      return gallery.value.getBoundingClientRect().width - spacing;
+    }
+
+    function getSpacing(): number {
+      if (!gallery.value) return 0;
+
+      const galleryStyle = window.getComputedStyle(gallery.value);
+      return parseFloat(galleryStyle.margin) * -2;
     }
 
     return { gallery };

@@ -1,16 +1,17 @@
 @use "../../styles/utilities.scss" as *;
+@use "sass:math";
 
 $image-gallery-spacing: spacing("sm") !default;
 
 .p-image-gallery {
   font-size: 0;
-  margin: -$image-gallery-spacing;
+  margin: math.div($image-gallery-spacing, -2);
 
   & > * {
     box-sizing: border-box;
     box-sizing: border-box;
     display: inline-block;
-    margin: $image-gallery-spacing;
+    margin: math.div($image-gallery-spacing, 2);
 
     .image {
       object-fit: cover;
