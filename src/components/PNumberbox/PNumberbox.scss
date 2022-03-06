@@ -107,10 +107,10 @@ $numberbox-error-button-color: color("danger", "600") !default;
       background-color: $numberbox-button-background-color;
       color: $numberbox-button-color;
       cursor: pointer;
+      flex: 0 0 2rem;
       font-size: $numberbox-font-size;
       font-weight: $numberbox-font-weight;
       transition: $numberbox-transition;
-      width: 3rem;
     }
 
     &:hover:not(.disabled):not(.error):not(:focus-within) {

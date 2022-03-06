@@ -78,7 +78,6 @@ $select-error-spacing: $form-control-error-spacing !default;
       height: 0.4rem;
       margin-left: auto;
       transform: rotate(-45deg) translateY(-3px);
-      transition: transform $animation-duration-slow ease;
       width: 0.4rem;
     }
   }
@@ -131,14 +130,6 @@ $select-error-spacing: $form-control-error-spacing !default;
 
       & + .label {
         color: $select-error-label-color;
-      }
-    }
-  }
-
-  &.open {
-    & > .input {
-      & > .chevron {
-        transform: rotate(-225deg) translate(3px);
       }
     }
   }
