@@ -1,0 +1,19 @@
+@use "../../styles/utilities.scss" as *;
+
+$image-gallery-spacing: spacing("sm") !default;
+
+.p-image-gallery {
+  font-size: 0;
+  margin: -$image-gallery-spacing;
+
+  & > * {
+    box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: $image-gallery-spacing;
+
+    .image {
+      object-fit: cover;
+    }
+  }
+}

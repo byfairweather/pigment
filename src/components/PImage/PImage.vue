@@ -1,12 +1,18 @@
 <template>
   <div class="p-image" :class="{ zoomable }" ref="component">
-    <div class="image" @click.capture.stop="zoom">
+    <div class="wrapper" @click.capture.stop="zoom">
       <img
-        v-if="placeholder && !loaded"
         class="placeholder"
+        v-if="placeholder && !loaded && lazy"
         :src="placeholder"
       />
-      <img v-if="visible" v-show="loaded" @load="loaded = true" :src="image" />
+      <img
+        class="image"
+        v-if="visible || !lazy"
+        v-show="loaded"
+        @load="loaded = true"
+        :src="image"
+      />
     </div>
     <div class="zoom" v-if="zoomed" @click="zoomed = false">
       <img :src="image" />
@@ -16,11 +22,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, watch } from "vue";
 
 export default defineComponent({
   name: "p-image",
   props: {
+    lazy: {
+      type: Boolean,
+      default: false,
+    },
     image: {
       type: String,
       required: true,
@@ -40,12 +50,16 @@ export default defineComponent({
     const component = ref<HTMLElement>();
 
     window.addEventListener("scroll", checkViewport, { passive: true });
-    onMounted(() => {
-      checkViewport();
-    });
+    watch(
+      () => component.value,
+      () => checkViewport(),
+      { immediate: true }
+    );
+
+    watch;
 
     function checkViewport() {
-      if (!component.value) return;
+      if (!component.value || visible.value) return;
 
       const rect = component.value.getBoundingClientRect();
       visible.value = rect.top <= window.innerHeight + 500;

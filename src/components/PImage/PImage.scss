@@ -10,8 +10,9 @@ $image-zoom-shadow: $surface-box-shadow-xl !default;
 .p-image {
   overflow: hidden;
 
-  & > .image {
-    & > img {
+  & > .wrapper {
+    & > .image {
+      object-fit: contain;
       width: 100%;
     }
 
