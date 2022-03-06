@@ -29,7 +29,7 @@ export default defineComponent({
   props: {
     lazy: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     image: {
       type: String,

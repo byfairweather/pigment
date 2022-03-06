@@ -12,7 +12,7 @@ export default defineComponent({
   props: {
     minHeight: {
       type: Number,
-      default: 150,
+      default: 200,
     },
   },
   setup(props, context) {
@@ -61,7 +61,7 @@ export default defineComponent({
     }
 
     function fitRow(row: HTMLDivElement[], fill = true): void {
-      if (!gallery.value) return;
+      if (!gallery.value || row.length == 0) return;
 
       const spacing = parseFloat(window.getComputedStyle(row[0]).margin) * 2;
       const galleryWidth =
