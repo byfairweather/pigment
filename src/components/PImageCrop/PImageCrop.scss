@@ -1,10 +1,186 @@
 @use "../../styles/utilities.scss" as *;
 
+$image-crop-grid-box-shadow: inset 0px 0px 6px rgba(black, 0.5) !default;
+$image-crop-grid-color: color("grey", "100") !default;
+$image-crop-grid-thickness: 2px !default;
+$image-crop-handle-color: color("grey", "100") !default;
+$image-crop-handle-hit-target: 32px !default;
+$image-crop-handle-size: 18px !default;
+$image-crop-handle-thickness: 4px !default;
+$image-crop-handle-offset: 4px !default;
+$image-crop-diagonal-rotation-threshold: 80px !default;
+$image-crop-max-height: 70vh !default;
+
 .p-image-crop {
   overflow: hidden;
+  position: relative;
+  user-select: none;
 
-  & > .image {
+  & > img {
+    display: block;
+    max-height: $image-crop-max-height;
+    max-width: 100%;
     object-fit: contain;
-    width: 100%;
+  }
+
+  & > .crop {
+    $handle-offset: $image-crop-handle-hit-target - $image-crop-handle-size -
+      $image-crop-handle-offset;
+    $handle-padding: $image-crop-handle-hit-target - $image-crop-handle-size;
+
+    align-items: center;
+    box-shadow: 0 0 0 50000px rgba(0, 0, 0, 0.5),
+      0 0 35px rgba(0, 0, 0, 0.25) inset;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+
+    & > .handle {
+      display: flex;
+      height: $image-crop-handle-size;
+      padding: $handle-padding;
+      position: absolute;
+      width: $image-crop-handle-size;
+
+      &::before {
+        border: 0 solid $image-crop-handle-color;
+        box-sizing: border-box;
+        content: "";
+        display: block;
+        height: $image-crop-handle-size;
+        margin: auto;
+        width: $image-crop-handle-size;
+      }
+
+      &.n {
+        cursor: n-resize;
+        left: 0;
+        right: 0;
+        top: -$handle-offset;
+        width: auto;
+
+        &::before {
+          border-top-width: $image-crop-handle-thickness;
+        }
+      }
+
+      &.e {
+        bottom: 0;
+        cursor: e-resize;
+        height: auto;
+        right: -$handle-offset;
+        top: 0;
+
+        &::before {
+          border-right-width: $image-crop-handle-thickness;
+        }
+      }
+
+      &.s {
+        bottom: -$handle-offset;
+        cursor: s-resize;
+        left: 0;
+        right: 0;
+        width: auto;
+
+        &::before {
+          border-bottom-width: $image-crop-handle-thickness;
+        }
+      }
+
+      &.w {
+        bottom: 0;
+        cursor: w-resize;
+        height: auto;
+        left: -$handle-offset;
+        top: 0;
+
+        &::before {
+          border-left-width: $image-crop-handle-thickness;
+        }
+      }
+
+      &.nw {
+        cursor: nw-resize;
+        left: -$handle-offset;
+        top: -$handle-offset;
+
+        &::before {
+          border-left-width: $image-crop-handle-thickness;
+          border-top-width: $image-crop-handle-thickness;
+        }
+      }
+
+      &.ne {
+        cursor: ne-resize;
+        right: -$handle-offset;
+        top: -$handle-offset;
+
+        &::before {
+          border-right-width: $image-crop-handle-thickness;
+          border-top-width: $image-crop-handle-thickness;
+        }
+      }
+
+      &.se {
+        bottom: -$handle-offset;
+        cursor: se-resize;
+        right: -$handle-offset;
+
+        &::before {
+          border-bottom-width: $image-crop-handle-thickness;
+          border-right-width: $image-crop-handle-thickness;
+        }
+      }
+
+      &.sw {
+        bottom: -$handle-offset;
+        cursor: sw-resize;
+        left: -$handle-offset;
+
+        &::before {
+          border-bottom-width: $image-crop-handle-thickness;
+          border-left-width: $image-crop-handle-thickness;
+        }
+      }
+    }
+
+    & > .gridlines {
+      box-sizing: border-box;
+      cursor: move;
+      display: flex;
+      flex-wrap: wrap;
+      height: 100%;
+      width: 100%;
+
+      & > .gridcell {
+        border: $image-crop-grid-thickness solid $image-crop-grid-color;
+        box-shadow: $image-crop-grid-box-shadow;
+        box-sizing: border-box;
+        flex: 1 0 33.33%;
+        position: relative;
+
+        &:nth-child(3n),
+        &:nth-child(3n-1) {
+          border-left-width: 0;
+        }
+
+        &:nth-child(-n + 6) {
+          border-bottom-width: 0;
+        }
+      }
+
+      &.hidden {
+        div {
+          opacity: 0;
+        }
+      }
+    }
+
+    & > .diagonal {
+      position: absolute;
+      width: $image-crop-diagonal-rotation-threshold;
+      height: 10000%;
+    }
   }
 }

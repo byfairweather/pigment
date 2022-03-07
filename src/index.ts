@@ -10,6 +10,7 @@ import PFooter from "./components/PFooter/PFooter.vue";
 import PGrid from "./components/PGrid/PGrid.vue";
 import PGridItem from "./components/PGrid/PGridItem.vue";
 import PImage from "./components/PImage/PImage.vue";
+import PImageCrop from "./components/PImageCrop/PImageCrop.vue";
 import PImageGallery from "./components/PImageGallery/PImageGallery.vue";
 import PNavbar from "./components/PNavbar/PNavbar.vue";
 import PNavbarDropdown from "./components/PNavbar/PNavbarDropdown.vue";
@@ -39,6 +40,7 @@ export default {
     app.component(PGridItem.name, PGridItem);
     app.component(PImage.name, PImage);
     app.component(PImageGallery.name, PImageGallery);
+    app.component(PImageCrop.name, PImageCrop);
     app.component(PNavbar.name, PNavbar);
     app.component(PNavbarItem.name, PNavbarItem);
     app.component(PNavbarDropdown.name, PNavbarDropdown);
