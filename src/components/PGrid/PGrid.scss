@@ -21,7 +21,7 @@ $grid-spacing-xl: spacing("xl") !default;
     @include layout($layout) {
       @for $width from 1 through $grid-columns {
         &.widths-#{$width}-#{$layout} > .p-grid-item,
-        & > .p-grid-item.width-#{$width}-#{$layout} {
+        & > div.p-grid-item.width-#{$width}-#{$layout} {
           flex-basis: math.percentage(math.div($width, $grid-columns));
           max-width: math.percentage(math.div($width, $grid-columns));
         }

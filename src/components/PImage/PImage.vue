@@ -1,5 +1,10 @@
 <template>
-  <div class="p-image" :class="{ zoomable: zoom }" ref="component">
+  <div
+    class="p-image"
+    :class="{ zoomable: zoom }"
+    ref="component"
+    @contextmenu.stop.prevent
+  >
     <div class="wrapper" @click.capture.stop="zoomIn">
       <img
         class="placeholder"
@@ -15,7 +20,7 @@
       />
     </div>
     <div class="zoom" v-if="zoomed" @click="zoomed = false">
-      <img :src="zoom" />
+      <img :src="zoom" @contextmenu.stop.prevent />
       <button class="close-button" aria-label="Close">&times;</button>
     </div>
   </div>
