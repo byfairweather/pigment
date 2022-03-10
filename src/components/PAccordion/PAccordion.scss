@@ -44,14 +44,14 @@ $accordion-header-animation-duration: $animation-duration-normal !default;
     transition: all $accordion-header-animation-duration ease-in-out;
 
     & > .checkmark {
-      animation: p-accordion-checkmark-enter $animation-duration-normal ease-out;
+      animation: p-accordion-checkmark-enter 300ms ease-in-out 200ms forwards;
       border: 4px solid currentColor;
       border-right: none;
       border-top: none;
-      margin-top: calc($accordion-check-size * -0.8);
-      height: calc(2rem / 4.5);
-      width: calc(2rem / 2.5);
-      transform: rotate(-50deg);
+      height: 8px;
+      margin-top: -3px;
+      transform: rotate(-50deg) scale(0);
+      width: 14px;
     }
 
     & > .chevron {
@@ -86,7 +86,10 @@ $accordion-header-animation-duration: $animation-duration-normal !default;
   0% {
     transform: rotate(-50deg) scale(0);
   }
-  90% {
-    transform: rotate(-50deg) scale(1.2);
+  80% {
+    transform: rotate(-50deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(-50deg) scale(1);
   }
 }
