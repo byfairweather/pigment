@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent } from "vue";
 import PBox from "../PBox/PBox.vue";
 
 export default defineComponent({

@@ -15,22 +15,22 @@ $numberbox-padding: $form-control-padding !default;
 $numberbox-transition: all $animation-duration-normal ease-in-out !default;
 $numberbox-disabled-opacity: $form-control-disabled-opacity !default;
 $numberbox-button-width: 3rem !default;
-$numberbox-button-background-color: color("grey", "300") !default;
-$numberbox-button-color: color("grey", "800") !default;
+$numberbox-button-background-color: color("primary", "500") !default;
+$numberbox-button-color: color("grey", "100") !default;
 
 $numberbox-focus-background-color: $form-control-focus-background-color !default;
 $numberbox-focus-border: $form-control-focus-border !default;
 $numberbox-focus-color: $form-control-focus-color !default;
 $numberbox-focus-label-color: $form-control-focus-label-color !default;
-$numberbox-focus-button-background-color: color("primary", "200") !default;
-$numberbox-focus-button-color: color("primary", "600") !default;
+$numberbox-focus-button-background-color: color("primary", "500") !default;
+$numberbox-focus-button-color: color("grey", "100") !default;
 
 $numberbox-hover-background-color: $form-control-hover-background-color !default;
 $numberbox-hover-border: $form-control-hover-border !default;
 $numberbox-hover-color: $form-control-hover-color !default;
 $numberbox-hover-label-color: $form-control-hover-label-color !default;
-$numberbox-hover-button-background-color: color("primary", "200") !default;
-$numberbox-hover-button-color: color("primary", "600") !default;
+$numberbox-hover-button-background-color: color("primary", "500") !default;
+$numberbox-hover-button-color: color("grey", "100") !default;
 
 $numberbox-error-background-color: $form-control-error-background-color !default;
 $numberbox-error-border: $form-control-error-border !default;
@@ -39,8 +39,8 @@ $numberbox-error-label-color: $form-control-error-label-color !default;
 $numberbox-error-text-color: $form-control-error-text-color !default;
 $numberbox-error-font-size: $form-control-error-font-size !default;
 $numberbox-error-spacing: $form-control-error-spacing !default;
-$numberbox-error-button-background-color: color("danger", "200") !default;
-$numberbox-error-button-color: color("danger", "600") !default;
+$numberbox-error-button-background-color: color("danger", "500") !default;
+$numberbox-error-button-color: color("danger", "100") !default;
 
 .p-numberbox {
   display: flex;
@@ -60,7 +60,6 @@ $numberbox-error-button-color: color("danger", "600") !default;
   & > .input {
     align-content: stretch;
     background-color: $numberbox-background-color;
-    border: $numberbox-border;
     border-radius: $numberbox-border-radius;
     box-sizing: border-box;
     color: $numberbox-color;
@@ -72,7 +71,9 @@ $numberbox-error-button-color: color("danger", "600") !default;
 
     & > input {
       background-color: transparent;
-      border: none;
+      border: $numberbox-border;
+      border-left: none !important;
+      border-right: none !important;
       box-sizing: border-box;
       color: inherit;
       flex-grow: 1;
@@ -114,9 +115,12 @@ $numberbox-error-button-color: color("danger", "600") !default;
     }
 
     &:hover:not(.disabled):not(.error):not(:focus-within) {
-      border: $numberbox-hover-border;
       background-color: $numberbox-hover-background-color;
       color: $numberbox-hover-color;
+
+      input {
+        border: $numberbox-hover-border;
+      }
 
       & + .label {
         color: $numberbox-hover-label-color;
@@ -130,9 +134,12 @@ $numberbox-error-button-color: color("danger", "600") !default;
     }
 
     &:focus-within:not(.disabled):not(.error) {
-      border: $numberbox-focus-border;
       background-color: $numberbox-focus-background-color;
       color: $numberbox-focus-color;
+
+      input {
+        border: $numberbox-focus-border;
+      }
 
       & + .label {
         color: $numberbox-focus-label-color;
@@ -150,9 +157,12 @@ $numberbox-error-button-color: color("danger", "600") !default;
     }
 
     &.error {
-      border: $numberbox-error-border;
       background-color: $numberbox-error-background-color;
       color: $numberbox-error-color;
+
+      input {
+        border: $numberbox-error-border;
+      }
 
       & + .label {
         color: $numberbox-error-label-color;

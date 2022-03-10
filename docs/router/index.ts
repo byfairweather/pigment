@@ -10,8 +10,13 @@ import Navbar from "../pages/Navbar/Navbar.vue";
 import Progress from "../pages/Progress/Progress.vue";
 import Surfaces from "../pages/Surfaces/Surfaces.vue";
 import Images from "../pages/Images/Images.vue";
+import Accordion from "../pages/Accordion/Accordion.vue";
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/accordion",
+    component: Accordion,
+  },
   {
     path: "/color",
     component: Color,

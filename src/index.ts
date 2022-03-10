@@ -1,6 +1,8 @@
 import { Plugin } from "vue";
 
 // Components
+import PAccordion from "./components/PAccordion/PAccordion.vue";
+import PAccordionItem from "./components/PAccordion/PAccordionItem.vue";
 import PApp from "./components/PApp/PApp.vue";
 import PButton from "./components/PButton/PButton.vue";
 import PBox from "./components/PBox/PBox.vue";
@@ -29,7 +31,8 @@ import PVueExample from "./components/PVueExample/PVueExample.vue";
 
 export default {
   install: (app, options) => {
-    // TODO: Can we delegate this to the component index.ts files?
+    app.component(PAccordion.name, PAccordion);
+    app.component(PAccordionItem.name, PAccordionItem);
     app.component(PApp.name, PApp);
     app.component(PButton.name, PButton);
     app.component(PBox.name, PBox);

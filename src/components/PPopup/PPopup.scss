@@ -1,8 +1,8 @@
 @use "../../styles/utilities.scss" as *;
 
 $popup-margin: spacing("sm") !default;
-$popup-enter-animation-duration: $animation-duration-fast !default;
-$popup-exit-animation-duration: $animation-duration-faster !default;
+$popup-enter-animation-duration: $animation-duration-normal !default;
+$popup-exit-animation-duration: $animation-duration-fast !default;
 $popup-z-index: 10000 !default;
 $popup-shade-background-color: rgba(0, 0, 0, 0.1) !default;
 $popup-shade-filters: blur(1px) saturate(50%) !default;
