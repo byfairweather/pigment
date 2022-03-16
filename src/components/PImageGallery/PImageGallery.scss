@@ -8,8 +8,6 @@ $image-gallery-spacing: spacing("sm") !default;
   margin: math.div($image-gallery-spacing, -2);
 
   & > * {
-    box-sizing: border-box;
-    box-sizing: border-box;
     display: inline-block;
     margin: math.div($image-gallery-spacing, 2);
 

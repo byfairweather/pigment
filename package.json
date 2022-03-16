@@ -2,17 +2,20 @@
   "name": "pigment-ui",
   "version": "0.0.0",
   "type": "module",
-  "main": "dist/pigment.js",
+  "types": "./dist/pigment-ui/types",
+  "main": "./dist/pigment-ui/pigment-ui.js",
   "scripts": {
-    "build": "node scripts/build.js",
+    "build": "node scripts/build.js && npm run types",
     "dev": "node scripts/dev.js",
-    "docs": "node scripts/docs.js"
+    "docs": "node scripts/docs.js",
+    "types": "vue-tsc  --emitDeclarationOnly --declaration --outdir dist/pigment-ui/types"
   },
   "devDependencies": {
     "@types/marked": "^4.0.1",
     "@types/prismjs": "^1.16.6",
     "esbuild": "^0.14.7",
     "esbuild-copy-static-files": "^0.1.0",
+    "esbuild-node-externals": "^1.4.1",
     "esbuild-plugin-inline-import": "^1.0.1",
     "esbuild-plugin-vue3": "^0.3.0",
     "esbuild-sass-plugin": "^2.0.3",
@@ -22,7 +25,8 @@
     "prismjs": "^1.26.0",
     "sass": "^1.46.0",
     "typescript": "^4.5.4",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vue-tsc": "^0.32.1"
   },
   "peerDependencies": {
     "vue": "^3.2.0"

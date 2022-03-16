@@ -1,5 +1,5 @@
 <template>
-  <div class="p-navbar-item">
+  <div class="p-navbar-item" @mousedown.prevent>
     <slot></slot>
   </div>
 </template>

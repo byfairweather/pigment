@@ -54,7 +54,6 @@ $select-error-spacing: $form-control-error-spacing !default;
     background-color: $select-background-color;
     border: $select-border;
     border-radius: $select-border-radius;
-    box-sizing: border-box;
     color: $select-color;
     cursor: pointer;
     display: flex;
@@ -73,8 +72,6 @@ $select-error-spacing: $form-control-error-spacing !default;
     & > .chevron {
       border: 3px solid currentColor;
       border-top-width: 0px;
-      border-right-width: 0px;
-      box-shadow: border-box;
       height: 0.4rem;
       margin-left: auto;
       transform: rotate(-45deg) translateY(-3px);

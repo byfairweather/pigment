@@ -103,30 +103,6 @@ $layout-spacing: (
 }
 
 @each $size, $value in $layout-spacing {
-  .padding-#{$size} {
-    padding: $value !important;
-  }
-
-  .margin-#{$size} {
-    margin: $value !important;
-  }
-
-  .padding-vertical-#{$size} {
-    padding: $value 0 !important;
-  }
-
-  .margin-vertical-#{$size} {
-    margin: $value 0 !important;
-  }
-
-  .padding-horizontal-#{$size} {
-    padding: 0 $value !important;
-  }
-
-  .margin-horizontal-#{$size} {
-    margin: 0 $value !important;
-  }
-
   @each $side in ("top", "bottom", "left", "right") {
     .padding-#{$side}-#{$size} {
       padding-#{$side}: $value !important;
@@ -135,5 +111,29 @@ $layout-spacing: (
     .margin-#{$side}-#{$size} {
       margin-#{$side}: $value !important;
     }
+  }
+
+  .margin-#{$size},
+  .margin-vertical-#{$size} {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+
+  .margin-#{$size},
+  .margin-horizontal-#{$size} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+
+  .padding-#{$size},
+  .padding-vertical-#{$size} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+
+  .padding-#{$size},
+  .padding-horizontal-#{$size} {
+    padding-left: $value !important;
+    padding-right: $value !important;
   }
 }

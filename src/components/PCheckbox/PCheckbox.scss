@@ -68,7 +68,6 @@ $checkbox-error-spacing: spacing("xs") !default;
     & > .checkbox {
       align-items: center;
       border-radius: $checkbox-border-radius;
-      box-sizing: border-box;
       display: flex;
       justify-content: center;
       height: $checkbox-size;

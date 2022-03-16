@@ -9,6 +9,7 @@
     :anchor="anchor"
     :position="position"
     v-model:open="isOpen"
+    @click="close()"
   >
     <PBox class="p-navbar-dropdown">
       <slot></slot>
@@ -35,7 +36,12 @@ export default defineComponent({
     const anchor = ref<HTMLElement>();
     const isOpen = ref(false);
 
-    return { anchor, isOpen };
+    function close() {
+      console.log("Close");
+      isOpen.value = false;
+    }
+
+    return { anchor, isOpen, close };
   },
 });
 </script>

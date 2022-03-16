@@ -1,5 +1,6 @@
 @use "sass:math";
 @use "color" as *;
+@use "animation" as *;
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 @function scale-font($scale) {
@@ -9,7 +10,7 @@
 $font: "Roboto", sans-serif !default;
 $font-scale: 1.2 !default;
 $font-size: 1.1rem !default;
-$font-size-xs: scale-font(-2) !default;
+$font-size-xs: scale-font(-1) !default;
 $font-size-sm: scale-font(0) !default;
 $font-size-md: scale-font(2) !default;
 $font-size-lg: scale-font(4) !default;
@@ -25,6 +26,17 @@ $font-weight-black: 900 !default;
 body {
   font-family: $font;
   font-size: $font-size;
+}
+
+a {
+  color: color("primary", "500");
+  cursor: pointer;
+  transition: color $animation-duration-normal ease;
+
+  &:hover,
+  &:focus {
+    color: color("primary", "700");
+  }
 }
 
 h1,

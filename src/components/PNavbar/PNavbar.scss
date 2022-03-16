@@ -12,6 +12,7 @@ $navbar-item-color: color("grey", "700") !default;
 $navbar-item-font-size: $font-size-sm !default;
 $navbar-item-font-weight: $font-weight-normal !default;
 $navbar-item-spacing: spacing("md") !default;
+$navbar-item-spacing-mobile: spacing("lg") !default;
 $navbar-item-transition: color 200ms ease-in-out !default;
 
 .p-navbar {
@@ -21,7 +22,7 @@ $navbar-item-transition: color 200ms ease-in-out !default;
   padding: $navbar-padding;
 
   nav {
-    align-items: baseline;
+    align-items: center;
     display: flex;
     margin: 0 calc($navbar-item-spacing * -1);
 
@@ -30,6 +31,7 @@ $navbar-item-transition: color 200ms ease-in-out !default;
     & > .end,
     & > .mobile {
       display: flex;
+      align-items: center;
     }
 
     & > .end,
@@ -39,6 +41,10 @@ $navbar-item-transition: color 200ms ease-in-out !default;
 
     & > .mobile {
       display: none;
+
+      .p-navbar-dropdown .p-navbar-item {
+        margin: calc($navbar-item-spacing-mobile / 2);
+      }
     }
   }
 
@@ -63,7 +69,7 @@ $navbar-item-transition: color 200ms ease-in-out !default;
   display: block;
   font-size: $navbar-item-font-size;
   font-weight: $navbar-item-font-weight;
-  padding: 0 $navbar-item-spacing;
+  margin: 0 $navbar-item-spacing;
   transition: $navbar-item-transition;
   user-select: none;
   white-space: nowrap;
@@ -78,6 +84,6 @@ $navbar-item-transition: color 200ms ease-in-out !default;
   padding: calc($navbar-item-spacing / 2);
 
   .p-navbar-item {
-    padding: calc($navbar-item-spacing / 2);
+    margin: calc($navbar-item-spacing / 2);
   }
 }

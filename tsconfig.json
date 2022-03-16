@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
@@ -8,5 +8,6 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": true
-  }
+  },
+  "exclude": ["dist", "node_modules", "dev", "docs"]
 }
