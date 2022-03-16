@@ -72,10 +72,11 @@ $select-error-spacing: $form-control-error-spacing !default;
     & > .chevron {
       border: 3px solid currentColor;
       border-top-width: 0px;
-      height: 0.4rem;
+      border-right-width: 0px;
+      height: 0.6rem;
       margin-left: auto;
       transform: rotate(-45deg) translateY(-3px);
-      width: 0.4rem;
+      width: 0.6rem;
     }
   }
 

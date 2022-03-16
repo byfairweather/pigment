@@ -1,7 +1,14 @@
 <template>
   <div class="p-numberbox">
     <div class="input" :class="{ disabled, error }">
-      <button class="decrease" @click="decrease" :disabled="disabled">-</button>
+      <PButton
+        class="decrease"
+        :class="{ danger: error }"
+        @click="decrease"
+        :disabled="disabled"
+      >
+        -
+      </PButton>
       <input
         type="number"
         ref="numberbox"
@@ -9,7 +16,14 @@
         @input="input($event)"
         :disabled="disabled"
       />
-      <button class="increase" @click="increase" :disabled="disabled">+</button>
+      <PButton
+        class="increase"
+        :class="{ danger: error }"
+        @click="increase"
+        :disabled="disabled"
+      >
+        +
+      </PButton>
     </div>
     <label class="label" :for="id" v-if="label">{{ label }}</label>
     <span class="error-text" v-if="error">{{ error }}</span>
@@ -18,9 +32,11 @@
 
 <script lang="ts">
 import { defineComponent, getCurrentInstance, ref, watch } from "vue";
+import PButton from "../PButton/PButton.vue";
 
 export default defineComponent({
   name: "p-numberbox",
+  components: { PButton },
   props: {
     label: {
       type: String,

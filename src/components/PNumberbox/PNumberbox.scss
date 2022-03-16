@@ -58,8 +58,9 @@ $numberbox-error-button-color: color("danger", "100") !default;
   }
 
   & > .input {
-    align-content: stretch;
+    align-items: stretch;
     background-color: $numberbox-background-color;
+    border: $numberbox-border;
     border-radius: $numberbox-border-radius;
     color: $numberbox-color;
     display: flex;
@@ -70,9 +71,6 @@ $numberbox-error-button-color: color("danger", "100") !default;
 
     & > input {
       background-color: transparent;
-      border: $numberbox-border;
-      border-left: none !important;
-      border-right: none !important;
       color: inherit;
       flex-grow: 1;
       font-size: $numberbox-font-size;
@@ -103,50 +101,29 @@ $numberbox-error-button-color: color("danger", "100") !default;
 
     & > .decrease,
     & > .increase {
-      background-color: $numberbox-button-background-color;
-      color: $numberbox-button-color;
-      cursor: pointer;
-      flex: 0 0 2rem;
-      font-size: $numberbox-font-size;
-      font-weight: $numberbox-font-weight;
-      transition: $numberbox-transition;
+      height: auto;
+      border-radius: calc($numberbox-border-radius - 2px);
+      box-sizing: border-box;
+      margin: 3px;
     }
 
     &:hover:not(.disabled):not(.error):not(:focus-within) {
       background-color: $numberbox-hover-background-color;
+      border: $numberbox-hover-border;
       color: $numberbox-hover-color;
-
-      input {
-        border: $numberbox-hover-border;
-      }
 
       & + .label {
         color: $numberbox-hover-label-color;
-      }
-
-      & > .decrease,
-      & > .increase {
-        background-color: $numberbox-hover-button-background-color;
-        color: $numberbox-hover-button-color;
       }
     }
 
     &:focus-within:not(.disabled):not(.error) {
       background-color: $numberbox-focus-background-color;
+      border: $numberbox-focus-border;
       color: $numberbox-focus-color;
-
-      input {
-        border: $numberbox-focus-border;
-      }
 
       & + .label {
         color: $numberbox-focus-label-color;
-      }
-
-      & > .decrease,
-      & > .increase {
-        background-color: $numberbox-focus-button-background-color;
-        color: $numberbox-focus-button-color;
       }
     }
 
@@ -156,20 +133,11 @@ $numberbox-error-button-color: color("danger", "100") !default;
 
     &.error {
       background-color: $numberbox-error-background-color;
+      border: $numberbox-error-border;
       color: $numberbox-error-color;
-
-      input {
-        border: $numberbox-error-border;
-      }
 
       & + .label {
         color: $numberbox-error-label-color;
-      }
-
-      & > .decrease,
-      & > .increase {
-        background-color: $numberbox-error-button-background-color;
-        color: $numberbox-error-button-color;
       }
     }
   }

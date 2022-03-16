@@ -84,8 +84,8 @@ $checkbox-error-spacing: spacing("xs") !default;
         border-top-width: 0;
         position: absolute;
         margin-top: calc($checkbox-check-size * -0.8);
-        height: calc($checkbox-size / 4.5);
-        width: calc($checkbox-size / 2.5);
+        height: calc($checkbox-size / 3);
+        width: calc($checkbox-size / 2);
       }
     }
 
