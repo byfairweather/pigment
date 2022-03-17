@@ -4,8 +4,10 @@ $popup-margin: spacing("sm") !default;
 $popup-enter-animation-duration: $animation-duration-normal !default;
 $popup-exit-animation-duration: $animation-duration-fast !default;
 $popup-z-index: 10000 !default;
-$popup-shade-background-color: rgba(0, 0, 0, 0.1) !default;
+$popup-shade-background-color: rgba(0, 0, 0, 0.15) !default;
 $popup-shade-filters: blur(1px) saturate(50%) !default;
+$popup-immersive-shade-background-color: rgba(0, 0, 0, 0.6) !default;
+$popup-immersive-shade-filters: blur(2px) saturate(50%) !default;
 $popup-close-button-color: color("grey", "100") !default;
 $popup-close-button-size: 3rem !default;
 $popup-close-button-hit-target: 4rem !default;
@@ -83,16 +85,41 @@ $popup-close-button-hit-target: 4rem !default;
     backdrop-filter: none;
     background-color: transparent;
   }
+
+  &.immersive {
+    background-color: $popup-immersive-shade-background-color;
+    backdrop-filter: $popup-immersive-shade-filters;
+  }
+
+  & > .close-button {
+    align-items: center;
+    color: $popup-close-button-color;
+    cursor: pointer;
+    display: flex;
+    font-size: $popup-close-button-size;
+    justify-content: center;
+    position: fixed;
+    height: $popup-close-button-hit-target;
+    width: $popup-close-button-hit-target;
+    top: 0;
+    right: 0;
+    transition: transform $animation-duration-normal ease;
+    line-height: 0;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
 }
 
 .p-popup-anchor {
-  animation: p-popup-anchor-close 1ms ease $popup-exit-animation-duration
+  animation: p-popup-anchor-close 0ms ease $popup-exit-animation-duration
     forwards;
   position: relative;
   z-index: $popup-z-index;
 
   &.open {
-    animation: p-popup-anchor-open 1ms ease $popup-exit-animation-duration
+    animation: p-popup-anchor-open 0ms ease $popup-exit-animation-duration
       forwards;
   }
 }

@@ -17,7 +17,14 @@
   </transition>
   <teleport to="body">
     <transition name="shade">
-      <div class="p-popup-shade" v-if="open" @click.stop="close"></div>
+      <div
+        class="p-popup-shade"
+        :class="{ immersive: !anchor }"
+        v-if="open"
+        @click.stop="close"
+      >
+        <div class="close-button" v-if="!anchor">&times;</div>
+      </div>
     </transition>
   </teleport>
 </template>
@@ -41,7 +48,6 @@ export default defineComponent({
   },
   name: "p-popup",
   setup(props, context) {
-    const anchor = ref<HTMLDivElement>();
     const popup = ref<HTMLDivElement>();
     const xPosition = computed(() => {
       return props.position.split(" ")[0] ?? "center";
@@ -133,7 +139,6 @@ export default defineComponent({
     }
 
     return {
-      anchor,
       popup,
       position,
       yPosition,

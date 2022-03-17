@@ -19,18 +19,19 @@
         :src="image"
       />
     </div>
-    <div class="zoom" v-if="zoomed" @click="zoomed = false">
-      <img :src="zoom" @contextmenu.stop.prevent />
-      <button class="close-button" aria-label="Close">&times;</button>
-    </div>
+    <PPopup v-model:open="zoomed">
+      <img class="zoom-image" :src="zoom" @contextmenu.stop.prevent />
+    </PPopup>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref, watch } from "vue";
+import PPopup from "../PPopup/PPopup.vue";
 
 export default defineComponent({
   name: "p-image",
+  components: { PPopup },
   props: {
     lazy: {
       type: Boolean,
