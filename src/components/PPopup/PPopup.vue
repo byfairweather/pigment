@@ -76,9 +76,9 @@ export default defineComponent({
       if (!popup.value || !props.open) return;
 
       const a = props.anchor ?? {
-        offsetTop: 0,
+        offsetTop: window.scrollY,
         offsetHeight: window.innerHeight,
-        offsetLeft: 0,
+        offsetLeft: window.scrollX,
         offsetWidth: window.innerWidth,
       };
       const p = popup.value;
