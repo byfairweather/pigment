@@ -11,7 +11,7 @@
         <slot name="end"></slot>
       </div>
       <div class="mobile">
-        <PNavbarDropdown position="inside-right">
+        <PNavbarDropdown position="inside-right down">
           <template #label>☰</template>
           <slot name="mobile"></slot>
         </PNavbarDropdown>

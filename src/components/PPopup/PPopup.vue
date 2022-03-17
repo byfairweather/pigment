@@ -23,17 +23,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, PropType, ref, watch } from "vue";
+import { computed, defineComponent, nextTick, PropType, ref, watch } from "vue";
 
 export default defineComponent({
   props: {
     anchor: {
       type: Object as PropType<HTMLElement>,
-      default: document.body,
     },
     position: {
       type: String,
-      default: "inside-left down",
+      default: "center center",
     },
     open: {
       type: Boolean,
@@ -44,8 +43,12 @@ export default defineComponent({
   setup(props, context) {
     const anchor = ref<HTMLDivElement>();
     const popup = ref<HTMLDivElement>();
-    const yPosition = ref("");
-    const xPosition = ref("");
+    const xPosition = computed(() => {
+      return props.position.split(" ")[0] ?? "center";
+    });
+    const yPosition = computed(() => {
+      return props.position.split(" ")[1] ?? "center";
+    });
 
     const position = ref<{
       top?: string;
@@ -63,15 +66,17 @@ export default defineComponent({
 
     async function setPosition() {
       await nextTick();
-      props.anchor.classList.add("p-popup-anchor");
-      if (!props.anchor || !popup.value || !props.open) return;
+      props.anchor?.classList.add("p-popup-anchor");
+      if (!popup.value || !props.open) return;
 
-      xPosition.value = props.position.split(" ")[0] ?? "inside-left";
-      yPosition.value = props.position.split(" ")[1] ?? "down";
-
-      const a = props.anchor;
+      const a = props.anchor ?? {
+        offsetTop: 0,
+        offsetHeight: window.innerHeight,
+        offsetLeft: 0,
+        offsetWidth: window.innerWidth,
+      };
       const p = popup.value;
-      props.anchor.classList.add("open");
+      props.anchor?.classList.add("open");
 
       if (yPosition.value == "down") {
         position.value.top = `${
