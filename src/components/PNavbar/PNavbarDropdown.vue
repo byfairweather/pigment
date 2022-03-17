@@ -9,9 +9,8 @@
     :anchor="anchor"
     :position="position"
     v-model:open="isOpen"
-    @click="close()"
   >
-    <PBox class="p-navbar-dropdown">
+    <PBox class="p-navbar-dropdown" @click="close()">
       <slot></slot>
     </PBox>
   </PPopup>
@@ -37,7 +36,6 @@ export default defineComponent({
     const isOpen = ref(false);
 
     function close() {
-      console.log("Close");
       isOpen.value = false;
     }
 

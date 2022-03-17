@@ -73,6 +73,7 @@ export default defineComponent({
     async function setPosition() {
       await nextTick();
       props.anchor?.classList.add("p-popup-anchor");
+      props.anchor?.classList.remove("open");
       if (!popup.value || !props.open) return;
 
       const a = props.anchor ?? {
