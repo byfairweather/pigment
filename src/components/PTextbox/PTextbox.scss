@@ -126,8 +126,10 @@ $textbox-error-spacing: $form-control-error-spacing !default;
         color: $textbox-hover-label-color;
       }
 
-      &:-webkit-autofill:hover {
-        -webkit-text-fill-color: $textbox-hover-color;
+      & > input {
+        &:-webkit-autofill:hover {
+          -webkit-text-fill-color: $textbox-hover-color;
+        }
       }
     }
 
@@ -136,12 +138,14 @@ $textbox-error-spacing: $form-control-error-spacing !default;
       background-color: $textbox-focus-background-color;
       color: $textbox-focus-color;
 
-      &:-webkit-autofill:focus {
-        -webkit-text-fill-color: $textbox-focus-color;
-      }
-
       & + .label {
         color: $textbox-focus-label-color;
+      }
+
+      & > input {
+        &:-webkit-autofill:focus {
+          -webkit-text-fill-color: $textbox-focus-color;
+        }
       }
     }
 
@@ -154,16 +158,18 @@ $textbox-error-spacing: $form-control-error-spacing !default;
       background-color: $textbox-error-background-color;
       color: $textbox-error-color;
 
-      &:-webkit-autofill::first-line,
-      &:-webkit-autofill,
-      &:-webkit-autofill:hover,
-      &:-webkit-autofill:focus,
-      &:-webkit-autofill:active {
-        -webkit-text-fill-color: $textbox-error-color;
-      }
-
       & + .label {
         color: $textbox-error-label-color;
+      }
+
+      & > input {
+        &:-webkit-autofill::first-line,
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+          -webkit-text-fill-color: $textbox-error-color;
+        }
       }
     }
   }
