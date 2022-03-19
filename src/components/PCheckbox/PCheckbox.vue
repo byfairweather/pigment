@@ -2,7 +2,7 @@
   <div class="p-checkbox">
     <div
       class="input"
-      :class="{ disabled, error, checked: modelValue }"
+      :class="{ disabled, error: error != undefined, checked: modelValue }"
       @click="toggle()"
       @keydown.enter.exact.prevent="toggle()"
     >

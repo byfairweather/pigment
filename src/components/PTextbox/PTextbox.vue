@@ -1,6 +1,6 @@
 <template>
   <div class="p-textbox">
-    <div class="input" :class="{ disabled, error }">
+    <div class="input" :class="{ disabled, error: error != undefined }">
       <div class="prefix" v-if="prefix">{{ prefix }}</div>
       <input
         :type="inputType"

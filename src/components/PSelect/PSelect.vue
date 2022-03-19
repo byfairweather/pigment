@@ -1,7 +1,7 @@
 <template>
   <div
     class="p-select"
-    :class="{ disabled, error, open: isOpen }"
+    :class="{ disabled, error: error != undefined, open: isOpen }"
     ref="anchor"
     @focusout="focusOut"
     @keydown.enter.exact.prevent.stop="toggle()"

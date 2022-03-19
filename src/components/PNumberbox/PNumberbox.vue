@@ -1,6 +1,6 @@
 <template>
   <div class="p-numberbox">
-    <div class="input" :class="{ disabled, error }">
+    <div class="input" :class="{ disabled, error: error != undefined }">
       <PButton
         class="decrease"
         :class="{ danger: error }"

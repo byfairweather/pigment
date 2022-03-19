@@ -1,6 +1,6 @@
 <template>
   <div class="p-textarea">
-    <div class="input" :class="{ disabled, error }">
+    <div class="input" :class="{ disabled, error: error != undefined }">
       <textarea
         ref="textarea"
         :id="id"
