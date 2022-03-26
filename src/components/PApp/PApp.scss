@@ -4,6 +4,7 @@ $app-background-color: #f1f1f1 !default;
 
 body {
   background-color: $app-background-color;
+  color: $text-color;
   overflow-y: scroll;
 }
 
