@@ -52,8 +52,7 @@ $checkbox-error-spacing: spacing("xs") !default;
     cursor: pointer;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    height: $checkbox-height;
+    min-height: $checkbox-height;
 
     & > .label {
       cursor: inherit;
@@ -69,6 +68,7 @@ $checkbox-error-spacing: spacing("xs") !default;
       align-items: center;
       border-radius: $checkbox-border-radius;
       display: flex;
+      flex-shrink: 0;
       justify-content: center;
       height: $checkbox-size;
       position: relative;
