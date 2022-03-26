@@ -5,6 +5,7 @@ $checkbox-border: $form-control-border !default;
 $checkbox-border-radius: $form-control-border-radius !default;
 $checkbox-height: $form-control-height !default;
 $checkbox-size: 1.4em !default;
+$checkbox-padding: calc(calc($checkbox-height - $checkbox-size) / 2);
 $checkbox-transition: all $animation-duration-normal ease-in-out !default;
 $checkbox-disabled-opacity: $form-control-disabled-opacity !default;
 $checkbox-check-size: 0.2em !default;
@@ -52,7 +53,7 @@ $checkbox-error-spacing: spacing("xs") !default;
     cursor: pointer;
     display: flex;
     flex-direction: row;
-    min-height: $checkbox-height;
+    padding: $checkbox-padding 0;
 
     & > .label {
       cursor: inherit;
