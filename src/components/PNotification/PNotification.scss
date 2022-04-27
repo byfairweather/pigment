@@ -23,6 +23,7 @@ $notification-danger-color: color("danger", "600") !default;
 
 .p-notification {
   overflow: visible;
+  width: 100%;
 
   & > .content {
     background-color: $notification-background-color;

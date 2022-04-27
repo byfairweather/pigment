@@ -41,7 +41,7 @@ $button-grey-hover-color: color("grey", "900") !default;
   outline: none;
   padding: 0 $button-horizontal-padding;
   position: relative;
-  transition-property: background-color, color;
+  transition-property: background-color, color, opacity;
   transition-duration: $button-hover-animation-duration;
   transition-timing-function: ease-in-out;
   user-select: none;
