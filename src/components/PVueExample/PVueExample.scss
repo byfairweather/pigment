@@ -13,6 +13,7 @@ $vue-example-code-padding: 1em !default;
   box-shadow: $vue-example-box-shadow;
   border-radius: $vue-example-border-radius;
   overflow: hidden;
+  white-space: pre-wrap;
 
   & > .example {
     padding: 1em;

@@ -1,0 +1,81 @@
+@use "../../styles/utilities.scss" as *;
+
+$notification-border-radius: $surface-border-radius !default;
+$notification-box-shadow: $surface-box-shadow-xs !default;
+$notification-padding: spacing("sm") !default;
+$notification-tab-size: 0.5rem !default;
+
+$notification-background-color: color("primary", "200") !default;
+$notification-tab-color: color("primary", "500") !default;
+$notification-color: color("primary", "600") !default;
+
+$notification-success-background-color: color("success", "200") !default;
+$notification-success-tab-color: color("success", "500") !default;
+$notification-success-color: color("success", "600") !default;
+
+$notification-warning-background-color: color("warning", "200") !default;
+$notification-warning-tab-color: color("warning", "500") !default;
+$notification-warning-color: color("warning", "600") !default;
+
+$notification-danger-background-color: color("danger", "200") !default;
+$notification-danger-tab-color: color("danger", "500") !default;
+$notification-danger-color: color("danger", "600") !default;
+
+.p-notification {
+  overflow: visible;
+
+  & > .content {
+    background-color: $notification-background-color;
+    border-radius: $notification-border-radius;
+    border-left: $notification-tab-size solid $notification-tab-color;
+    border-right: $notification-tab-size solid $notification-tab-color;
+    box-shadow: $notification-box-shadow;
+    color: $notification-color;
+    text-align: center;
+    padding: $notification-padding;
+  }
+
+  &.success > .content {
+    background-color: $notification-success-background-color;
+    border-left-color: $notification-success-tab-color;
+    border-right-color: $notification-success-tab-color;
+    color: $notification-success-color;
+  }
+
+  &.warning > .content {
+    background-color: $notification-warning-background-color;
+    border-left-color: $notification-warning-tab-color;
+    border-right-color: $notification-warning-tab-color;
+    color: $notification-warning-color;
+  }
+
+  &.danger > .content {
+    background-color: $notification-danger-background-color;
+    border-left-color: $notification-danger-tab-color;
+    border-right-color: $notification-danger-tab-color;
+    color: $notification-danger-color;
+  }
+}
+
+.p-notification-enter-active,
+.p-notification-leave-active,
+.p-notification {
+  transition: transform $animation-duration-slow ease $animation-duration-fast,
+    opacity $animation-duration-slow ease $animation-duration-fast,
+    height $animation-duration-normal ease,
+    margin $animation-duration-normal ease;
+}
+
+.p-notification-leave-active {
+  transition: transform $animation-duration-normal ease,
+    opacity $animation-duration-normal ease,
+    height $animation-duration-normal ease $animation-duration-normal,
+    margin $animation-duration-normal ease $animation-duration-normal;
+}
+
+.p-notification-enter-from,
+.p-notification-leave-to {
+  transform: scale(0.92);
+  opacity: 0;
+  margin: 0 !important;
+}

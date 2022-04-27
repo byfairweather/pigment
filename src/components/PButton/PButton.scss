@@ -5,7 +5,6 @@ $button-border-radius: $surface-border-radius !default;
 $button-color: color("grey", "100") !default;
 $button-horizontal-padding: spacing("md") !default;
 $button-height: $form-control-height !default;
-$button-text-shadow: 0 0 3px rgba(0, 0, 0, 0.25) !default;
 $button-hover-animation-duration: $animation-duration-normal !default;
 $button-hover-background-color: color("primary", "600") !default;
 $button-hover-color: color("grey", "100") !default;
@@ -25,6 +24,11 @@ $button-danger-color: color("grey", "100") !default;
 $button-danger-hover-background-color: color("danger", "600") !default;
 $button-danger-hover-color: color("grey", "100") !default;
 
+$button-grey-background-color: color("grey", "400") !default;
+$button-grey-color: color("grey", "800") !default;
+$button-grey-hover-background-color: color("grey", "500") !default;
+$button-grey-hover-color: color("grey", "900") !default;
+
 .p-button {
   align-items: center;
   background-color: $button-background-color;
@@ -37,7 +41,6 @@ $button-danger-hover-color: color("grey", "100") !default;
   outline: none;
   padding: 0 $button-horizontal-padding;
   position: relative;
-  text-shadow: $button-text-shadow;
   transition-property: background-color, color;
   transition-duration: $button-hover-animation-duration;
   transition-timing-function: ease-in-out;
@@ -62,6 +65,10 @@ $button-danger-hover-color: color("grey", "100") !default;
 
   &:disabled {
     opacity: 0.5;
+  }
+
+  &.fill {
+    width: 100%;
   }
 
   &.success {
@@ -94,6 +101,17 @@ $button-danger-hover-color: color("grey", "100") !default;
     &:focus-within {
       background-color: $button-danger-hover-background-color;
       color: $button-danger-hover-color;
+    }
+  }
+
+  &.grey {
+    background-color: $button-grey-background-color;
+    color: $button-grey-color;
+
+    &:hover:not(:disabled),
+    &:focus-within {
+      background-color: $button-grey-hover-background-color;
+      color: $button-grey-hover-color;
     }
   }
 }

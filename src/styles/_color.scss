@@ -2,14 +2,14 @@
 @use "sass:map";
 @use "sass:math";
 
-@function generate-color-shades($color, $contrast: 92%) {
+@function generate-color-shades($color, $contrast: 95%) {
   $shade: math.div(math.clamp(0%, $contrast, 100%), 4);
 
   @return (
-    "100": color.scale($color, $lightness: $shade * 4),
-    "200": color.scale($color, $lightness: $shade * 3),
-    "300": color.scale($color, $lightness: $shade * 2),
-    "400": color.scale($color, $lightness: $shade * 1),
+    "100": color.scale($color, $lightness: $shade * 3.75),
+    "200": color.scale($color, $lightness: $shade * 2.75),
+    "300": color.scale($color, $lightness: $shade * 1.75),
+    "400": color.scale($color, $lightness: $shade * 0.75),
     "500": $color,
     "600": color.scale($color, $lightness: $shade * -1),
     "700": color.scale($color, $lightness: $shade * -2),
@@ -19,9 +19,9 @@
 }
 
 $color-primary: #25689b !default;
-$color-success: #75993a !default;
-$color-warning: #ebb236 !default;
-$color-danger: #c0443b !default;
+$color-success: #7c9247 !default;
+$color-warning: #bd842e !default;
+$color-danger: #ad4139 !default;
 $color-grey: #cfcfcf !default;
 
 $colors: (

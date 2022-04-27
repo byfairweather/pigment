@@ -17,6 +17,7 @@ import PImageGallery from "./components/PImageGallery/PImageGallery.vue";
 import PNavbar from "./components/PNavbar/PNavbar.vue";
 import PNavbarDropdown from "./components/PNavbar/PNavbarDropdown.vue";
 import PNavbarItem from "./components/PNavbar/PNavbarItem.vue";
+import PNotification from "./components/PNotification/PNotification.vue";
 import PNumberbox from "./components/PNumberbox/PNumberbox.vue";
 import PPanel from "./components/PPanel/PPanel.vue";
 import PPopup from "./components/PPopup/PPopup.vue";
@@ -47,6 +48,7 @@ export default {
     app.component(PNavbar.name, PNavbar);
     app.component(PNavbarItem.name, PNavbarItem);
     app.component(PNavbarDropdown.name, PNavbarDropdown);
+    app.component(PNotification.name, PNotification);
     app.component(PNumberbox.name, PNumberbox);
     app.component(PPanel.name, PPanel);
     app.component(PPopup.name, PPopup);

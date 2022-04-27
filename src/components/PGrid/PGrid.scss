@@ -13,6 +13,10 @@ $grid-spacing-xl: spacing("xl") !default;
   display: flex;
   flex-wrap: wrap;
 
+  .p-grid-item:empty {
+    display: none;
+  }
+
   @each $layout in map.keys($layouts) {
     @include layout($layout) {
       @for $width from 1 through $grid-columns {

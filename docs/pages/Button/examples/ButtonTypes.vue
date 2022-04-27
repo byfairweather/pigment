@@ -1,5 +1,5 @@
 <template>
-  <p-grid class="widths-3-all spacing-xs-all">
+  <p-grid class="widths-2-all spacing-xs-all">
     <p-grid-item>
       <p-button @click="example('Another Test')">Button</p-button>
     </p-grid-item>
@@ -13,6 +13,10 @@
       <p-button class="danger" @click="example()">Button</p-button>
     </p-grid-item>
     <p-grid-item>
+      <p-button class="grey" @click="example()">Button</p-button>
+    </p-grid-item>
+    <p-grid-item>&nbsp;</p-grid-item>
+    <p-grid-item>
       <p-button disabled @click="example()">Button</p-button>
     </p-grid-item>
     <p-grid-item>
@@ -23,6 +27,9 @@
     </p-grid-item>
     <p-grid-item>
       <p-button disabled class="danger" @click="example()">Button</p-button>
+    </p-grid-item>
+    <p-grid-item>
+      <p-button disabled class="grey" @click="example()">Button</p-button>
     </p-grid-item>
   </p-grid>
 </template>

@@ -78,7 +78,7 @@ export default defineComponent({
 
       const a = props.anchor ?? {
         offsetTop: window.scrollY,
-        offsetHeight: window.innerHeight,
+        offsetHeight: window.innerHeight * 0.75,
         offsetLeft: window.scrollX,
         offsetWidth: window.innerWidth,
       };

@@ -3,9 +3,8 @@
 @use "../../styles/utilities" as *;
 
 $navbar-background-color: transparent !default;
-$navbar-border-top: 5px solid color("primary", "500") !default;
 $navbar-padding: spacing("md") 0 !default;
-$navbar-bottom-margin: spacing("lg") !default;
+$navbar-bottom-margin: spacing("md") !default;
 $navbar-logo-color: color("primary", "500") !default;
 $navbar-item-active-color: color("primary", "500") !default;
 $navbar-item-color: color("grey", "700") !default;
@@ -17,7 +16,6 @@ $navbar-item-transition: color 200ms ease-in-out !default;
 
 .p-navbar {
   background-color: $navbar-background-color;
-  border-top: $navbar-border-top;
   margin-bottom: $navbar-bottom-margin;
   padding: $navbar-padding;
 

@@ -8,5 +8,6 @@ $box-shadow: $surface-box-shadow-sm !default;
   background-color: $box-background-color;
   box-shadow: $box-shadow;
   border-radius: $box-border-radius;
+  position: relative;
   overflow: hidden;
 }

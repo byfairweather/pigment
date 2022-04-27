@@ -95,6 +95,7 @@ export default defineComponent({
 
       selectedTab.value = tab;
       open.value = true;
+      context.emit("change");
     }
 
     function resize(): void {

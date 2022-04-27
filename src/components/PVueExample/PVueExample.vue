@@ -4,7 +4,7 @@
       <slot></slot>
     </div>
     <div class="code" ref="code" v-if="$props.code">
-      <PTabView :collapsible="true" :open="false">
+      <PTabView :collapsible="true" :open="false" @change="formatCode()">
         <PTab label="Template" v-if="template">
           <pre>
             <code class="language-html">{{template}}</code>
@@ -66,9 +66,8 @@ export default defineComponent({
     );
 
     function formatCode(): void {
-      nextTick(() => {
-        code.value && Prism.highlightAllUnder(code.value);
-      });
+      console.log("Format", Prism);
+      code.value && Prism.highlightAllUnder(code.value);
     }
 
     return { code, template, script, style, formatCode };

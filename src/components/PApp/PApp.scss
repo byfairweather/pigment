@@ -1,9 +1,11 @@
 @use "../../styles/utilities.scss" as *;
 
-$app-background-color: #f1f1f1 !default;
+$app-background-color: #f3f3f3 !default;
+$app-border-top: 5px solid color("primary", "500") !default;
 
 body {
   background-color: $app-background-color;
+  border-top: $app-border-top;
   color: $text-color;
   overflow-y: scroll;
 }
