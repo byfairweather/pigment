@@ -1,0 +1,9 @@
+@use "../../styles/utilities.scss" as *;
+
+$dialog-shadow: $surface-box-shadow-xl !default;
+$dialog-padding: spacing("lg") !default;
+
+.p-dialog {
+  box-shadow: $dialog-shadow;
+  padding: $dialog-padding;
+}

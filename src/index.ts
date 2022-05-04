@@ -4,10 +4,11 @@ import { Plugin } from "vue";
 import PAccordion from "./components/PAccordion/PAccordion.vue";
 import PAccordionItem from "./components/PAccordion/PAccordionItem.vue";
 import PApp from "./components/PApp/PApp.vue";
-import PButton from "./components/PButton/PButton.vue";
 import PBox from "./components/PBox/PBox.vue";
-import PCheckbox from "./components/PCheckbox/PCheckbox.vue";
+import PButton from "./components/PButton/PButton.vue";
 import PCard from "./components/PCard/PCard.vue";
+import PCheckbox from "./components/PCheckbox/PCheckbox.vue";
+import PDialog from "./components/PDialog/PDialog.vue";
 import PFooter from "./components/PFooter/PFooter.vue";
 import PGrid from "./components/PGrid/PGrid.vue";
 import PGridItem from "./components/PGrid/PGridItem.vue";
@@ -30,15 +31,19 @@ import PTextarea from "./components/PTextarea/PTextarea.vue";
 import PTextbox from "./components/PTextbox/PTextbox.vue";
 import PVueExample from "./components/PVueExample/PVueExample.vue";
 
+// Scripts
+export { default as Dialog } from "./components/PDialog";
+
 export default {
   install: (app, options) => {
     app.component(PAccordion.name, PAccordion);
     app.component(PAccordionItem.name, PAccordionItem);
     app.component(PApp.name, PApp);
-    app.component(PButton.name, PButton);
     app.component(PBox.name, PBox);
+    app.component(PButton.name, PButton);
     app.component(PCard.name, PCard);
     app.component(PCheckbox.name, PCheckbox);
+    app.component(PDialog.name, PDialog);
     app.component(PFooter.name, PFooter);
     app.component(PGrid.name, PGrid);
     app.component(PGridItem.name, PGridItem);

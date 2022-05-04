@@ -2,6 +2,7 @@
 
 $box-background-color: color("grey", "100") !default;
 $box-border-radius: $surface-border-radius !default;
+$box-border: $box-border-radius solid color("primary", "500") !default;
 $box-shadow: $surface-box-shadow-sm !default;
 
 .p-box {
@@ -10,4 +11,20 @@ $box-shadow: $surface-box-shadow-sm !default;
   border-radius: $box-border-radius;
   position: relative;
   overflow: hidden;
+
+  &.top-border {
+    border-top: $box-border;
+  }
+
+  &.left-border {
+    border-left: $box-border;
+  }
+
+  &.right-border {
+    border-right: $box-border;
+  }
+
+  &.bottom-border {
+    border-left: $box-border;
+  }
 }
