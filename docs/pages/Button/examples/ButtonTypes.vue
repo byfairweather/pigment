@@ -32,6 +32,29 @@
       <p-button disabled class="grey" @click="example()">Button</p-button>
     </p-grid-item>
   </p-grid>
+  <p-button-group class="margin-top-lg">
+    <p-button>Button 1</p-button>
+    <p-button>Button 2</p-button>
+    <p-button>Button 3</p-button>
+  </p-button-group>
+
+  <p-button-group class="collapse margin-top-lg">
+    <p-button>Button 1</p-button>
+    <p-button>Button 2</p-button>
+    <p-button>Button 3</p-button>
+  </p-button-group>
+
+  <p-button-group class="vertical margin-top-lg">
+    <p-button>Button 1</p-button>
+    <p-button>Button 2</p-button>
+    <p-button>Button 3</p-button>
+  </p-button-group>
+
+  <p-button-group class="vertical collapse margin-top-lg">
+    <p-button>Button 1</p-button>
+    <p-button>Button 2</p-button>
+    <p-button>Button 3</p-button>
+  </p-button-group>
 </template>
 
 <script lang="ts">
