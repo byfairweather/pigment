@@ -6,6 +6,7 @@ import PAccordionItem from "./components/PAccordion/PAccordionItem.vue";
 import PApp from "./components/PApp/PApp.vue";
 import PBox from "./components/PBox/PBox.vue";
 import PButton from "./components/PButton/PButton.vue";
+import PButtonGroup from "./components/PButton/PButtonGroup.vue";
 import PCard from "./components/PCard/PCard.vue";
 import PCheckbox from "./components/PCheckbox/PCheckbox.vue";
 import PDialog from "./components/PDialog/PDialog.vue";
@@ -41,6 +42,7 @@ export default {
     app.component(PApp.name, PApp);
     app.component(PBox.name, PBox);
     app.component(PButton.name, PButton);
+    app.component(PButtonGroup.name, PButtonGroup);
     app.component(PCard.name, PCard);
     app.component(PCheckbox.name, PCheckbox);
     app.component(PDialog.name, PDialog);

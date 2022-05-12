@@ -13,10 +13,8 @@ $popup-close-button-size: 3rem !default;
 $popup-close-button-hit-target: 4rem !default;
 
 .p-popup {
-  max-height: 75vh;
-  max-width: 75vw;
-  position: fixed;
   opacity: 1;
+  position: fixed;
   transition-property: margin, opacity, transform;
   transition-timing-function: ease-in-out;
   z-index: $popup-z-index;

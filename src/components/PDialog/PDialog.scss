@@ -2,8 +2,46 @@
 
 $dialog-shadow: $surface-box-shadow-xl !default;
 $dialog-padding: spacing("lg") !default;
+$dialog-padding-mobile: spacing("md") !default;
+$dialog-width-xs: 260px !default;
+$dialog-width-sm: 320px !default;
+$dialog-width-md: 460px !default;
+$dialog-width-lg: 640px !default;
+$dialog-width-xl: 800px !default;
 
 .p-dialog {
   box-shadow: $dialog-shadow;
-  padding: $dialog-padding;
+  max-width: 90vw;
+  max-height: 90vh;
+  position: relative;
+  overflow: hidden;
+
+  & > .wrapper {
+    overflow: auto auto;
+    padding: $dialog-padding;
+
+    @include layout("xs") {
+      padding: $dialog-padding-mobile;
+    }
+  }
+
+  &.xs {
+    width: $dialog-width-xs;
+  }
+
+  &.sm {
+    width: $dialog-width-sm;
+  }
+
+  &.md {
+    width: $dialog-width-md;
+  }
+
+  &.lg {
+    width: $dialog-width-lg;
+  }
+
+  &.xl {
+    width: $dialog-width-xl;
+  }
 }

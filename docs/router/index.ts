@@ -11,6 +11,7 @@ import Progress from "../pages/Progress/Progress.vue";
 import Surfaces from "../pages/Surfaces/Surfaces.vue";
 import Images from "../pages/Images/Images.vue";
 import Accordion from "../pages/Accordion/Accordion.vue";
+import Notifications from "../pages/Notifications/Notifications.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -60,6 +61,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/progress",
     component: Progress,
+  },
+  {
+    path: "/notifications",
+    component: Notifications,
   },
 ];
 

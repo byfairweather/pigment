@@ -1,7 +1,9 @@
 <template>
   <p-popup :open="open" @update:open="$emit('update:open', $event)">
-    <p-box class="p-dialog">
-      <slot></slot>
+    <p-box class="p-dialog" :class="$attrs.class">
+      <div class="wrapper">
+        <slot></slot>
+      </div>
     </p-box>
   </p-popup>
 </template>

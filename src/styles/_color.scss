@@ -7,22 +7,22 @@
 
   @return (
     "100": color.scale($color, $lightness: $shade * 3.75),
-    "200": color.scale($color, $lightness: $shade * 2.75),
-    "300": color.scale($color, $lightness: $shade * 1.75),
-    "400": color.scale($color, $lightness: $shade * 0.75),
+    "200": color.scale($color, $lightness: $shade * 3),
+    "300": color.scale($color, $lightness: $shade * 2),
+    "400": color.scale($color, $lightness: $shade * 1),
     "500": $color,
     "600": color.scale($color, $lightness: $shade * -1),
     "700": color.scale($color, $lightness: $shade * -2),
     "800": color.scale($color, $lightness: $shade * -3),
-    "900": color.scale($color, $lightness: $shade * -4)
+    "900": color.scale($color, $lightness: $shade * -3.75)
   );
 }
 
 $color-primary: #25689b !default;
-$color-success: #7c9247 !default;
-$color-warning: #bd842e !default;
-$color-danger: #ad4139 !default;
-$color-grey: #cfcfcf !default;
+$color-success: #819c42 !default;
+$color-warning: #d89f43 !default;
+$color-danger: #c6534b !default;
+$color-grey: #bababa !default;
 
 $colors: (
   "primary": generate-color-shades($color-primary),

@@ -29,6 +29,8 @@ $button-grey-color: color("grey", "800") !default;
 $button-grey-hover-background-color: color("grey", "500") !default;
 $button-grey-hover-color: color("grey", "900") !default;
 
+$button-group-spacing: spacing("sm") !default;
+
 .p-button {
   align-items: center;
   background-color: $button-background-color;
@@ -113,5 +115,28 @@ $button-grey-hover-color: color("grey", "900") !default;
       background-color: $button-grey-hover-background-color;
       color: $button-grey-hover-color;
     }
+  }
+}
+
+.p-button-group {
+  &:not(.collapse) > .wrapper {
+    display: flex;
+    margin: -($button-group-spacing / 2);
+
+    & > .p-button {
+      margin: $button-group-spacing / 2;
+    }
+  }
+
+  &.left {
+    justify-content: flex-start;
+  }
+
+  &.center {
+    justify-content: center;
+  }
+
+  &.right {
+    justify-content: flex-end;
   }
 }

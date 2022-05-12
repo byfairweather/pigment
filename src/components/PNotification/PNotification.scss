@@ -5,9 +5,9 @@ $notification-box-shadow: $surface-box-shadow-xs !default;
 $notification-padding: spacing("sm") !default;
 $notification-tab-size: 0.5rem !default;
 
-$notification-background-color: color("primary", "200") !default;
+$notification-background-color: color("primary", "100") !default;
 $notification-tab-color: color("primary", "500") !default;
-$notification-color: color("primary", "600") !default;
+$notification-color: color("primary", "500") !default;
 
 $notification-success-background-color: color("success", "200") !default;
 $notification-success-tab-color: color("success", "500") !default;
@@ -15,7 +15,7 @@ $notification-success-color: color("success", "600") !default;
 
 $notification-warning-background-color: color("warning", "200") !default;
 $notification-warning-tab-color: color("warning", "500") !default;
-$notification-warning-color: color("warning", "600") !default;
+$notification-warning-color: color("warning", "700") !default;
 
 $notification-danger-background-color: color("danger", "200") !default;
 $notification-danger-tab-color: color("danger", "500") !default;
