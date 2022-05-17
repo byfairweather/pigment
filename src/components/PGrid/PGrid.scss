@@ -10,30 +10,32 @@ $grid-spacing-lg: spacing("lg") !default;
 $grid-spacing-xl: spacing("xl") !default;
 
 .p-grid {
-  display: flex;
-  flex-wrap: wrap;
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
 
-  .p-grid-item:empty {
-    display: none;
+    .p-grid-item:empty {
+      display: none;
+    }
   }
 
   @each $layout in map.keys($layouts) {
     @include layout($layout) {
       @for $width from 1 through $grid-columns {
-        &.widths-#{$width}-#{$layout} > .p-grid-item,
-        & > div.p-grid-item.width-#{$width}-#{$layout} {
+        &.widths-#{$width}-#{$layout} > .wrapper > .p-grid-item,
+        & > .wrapper > div.p-grid-item.width-#{$width}-#{$layout} {
           flex-basis: math.percentage(math.div($width, $grid-columns));
           max-width: math.percentage(math.div($width, $grid-columns));
         }
       }
 
-      &.widths-grow-#{$layout} > .p-grid-item,
-      & > .p-grid-item.width-grow-#{$layout} {
+      &.widths-grow-#{$layout} > .wrapper > .p-grid-item,
+      & > .wrapper > .p-grid-item.width-grow-#{$layout} {
         flex: 1 1 0;
       }
 
-      &.widths-shrink-#{$layout} > .p-grid-item,
-      & > .p-grid-item.width-shrink-#{$layout} {
+      &.widths-shrink-#{$layout} > .wrapper > .p-grid-item,
+      & > .wrapper > .p-grid-item.width-shrink-#{$layout} {
         flex: 0 1 0;
         white-space: nowrap;
       }
@@ -42,7 +44,7 @@ $grid-spacing-xl: spacing("xl") !default;
         display: none;
       }
 
-      &.spacing-none-#{$layout} {
+      &.spacing-none-#{$layout} > .wrapper {
         margin: 0;
 
         & > .p-grid-item {
@@ -50,7 +52,7 @@ $grid-spacing-xl: spacing("xl") !default;
         }
       }
 
-      &.spacing-xl-#{$layout} {
+      &.spacing-xl-#{$layout} > .wrapper {
         margin: calc(#{$grid-spacing-xl} / -2);
 
         & > .p-grid-item {
@@ -58,8 +60,8 @@ $grid-spacing-xl: spacing("xl") !default;
         }
       }
 
-      &,
-      &.spacing-lg-#{$layout} {
+      & > .wrapper,
+      &.spacing-lg-#{$layout} > .wrapper {
         margin: calc(#{$grid-spacing-lg} / -2);
 
         & > .p-grid-item {
@@ -67,7 +69,7 @@ $grid-spacing-xl: spacing("xl") !default;
         }
       }
 
-      &.spacing-md-#{$layout} {
+      &.spacing-md-#{$layout} > .wrapper {
         margin: calc(#{$grid-spacing-md} / -2);
 
         & > .p-grid-item {
@@ -75,7 +77,7 @@ $grid-spacing-xl: spacing("xl") !default;
         }
       }
 
-      &.spacing-sm-#{$layout} {
+      &.spacing-sm-#{$layout} > .wrapper {
         margin: calc(#{$grid-spacing-sm} / -2);
 
         & > .p-grid-item {
@@ -83,7 +85,7 @@ $grid-spacing-xl: spacing("xl") !default;
         }
       }
 
-      &.spacing-xs-#{$layout} {
+      &.spacing-xs-#{$layout} > .wrapper {
         margin: calc(#{$grid-spacing-xs} / -2);
 
         & > .p-grid-item {

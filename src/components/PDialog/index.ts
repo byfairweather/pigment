@@ -6,7 +6,7 @@ export default class Dialog<T> {
   resolve?: (value: T | PromiseLike<T | undefined> | undefined) => void;
   reject?: (reason?: string) => any;
 
-  open(): Promise<T | undefined> {
+  open(parameters?: any): Promise<T | undefined> {
     this.isVisible.value = true;
 
     return new Promise<T | undefined>((resolve, reject) => {

@@ -2,7 +2,6 @@
   <div
     class="p-select"
     :class="{ disabled, error: error != undefined, open: isOpen }"
-    ref="anchor"
     @focusout="focusOut"
     @keydown.enter.exact.prevent.stop="toggle()"
     @keydown.esc.exact.prevent.stop="close()"
@@ -13,26 +12,28 @@
     @keypress.down.prevent.stop
     @keypress.up.prevent.stop
   >
-    <div
-      class="input"
-      :id="id"
-      role="combobox"
-      :tabindex="disabled ? -1 : 0"
-      @click="toggle()"
-      aria-owns="quack"
-      :aria-expanded="isOpen"
-      :aria-active-item="selectedIndex != -1 && `${id}-${selectedIndex}`"
-    >
-      <span class="placeholder" v-if="placeholder && !selectedOption">
-        {{ placeholder }}
-      </span>
-      <span v-else>
-        {{ display(selectedOption) }}
-      </span>
-      <div class="chevron"></div>
+    <div class="wrapper" ref="anchor">
+      <div
+        class="input"
+        :id="id"
+        role="combobox"
+        :tabindex="disabled ? -1 : 0"
+        @click="toggle()"
+        aria-owns="quack"
+        :aria-expanded="isOpen"
+        :aria-active-item="selectedIndex != -1 && `${id}-${selectedIndex}`"
+      >
+        <span class="placeholder" v-if="placeholder && !selectedOption">
+          {{ placeholder }}
+        </span>
+        <span v-else>
+          {{ display(selectedOption) }}
+        </span>
+        <div class="chevron"></div>
+      </div>
+      <label class="label" :for="id" v-if="label">{{ label }}</label>
+      <span class="error-text" v-if="error && !isOpen">{{ error }}</span>
     </div>
-    <label class="label" :for="id" v-if="label">{{ label }}</label>
-    <span class="error-text" v-if="error && !isOpen">{{ error }}</span>
     <PPopup
       v-if="anchor"
       :anchor="anchor"

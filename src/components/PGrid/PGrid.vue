@@ -1,6 +1,8 @@
 <template>
   <div class="p-grid">
-    <slot></slot>
+    <div class="wrapper">
+      <slot></slot>
+    </div>
   </div>
 </template>
 

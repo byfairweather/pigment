@@ -35,11 +35,13 @@ $select-error-font-size: $form-control-error-font-size !default;
 $select-error-spacing: $form-control-error-spacing !default;
 
 .p-select {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-  & > .label {
+  .label {
     color: $select-label-color;
     display: block;
     font-size: $select-label-font-size;
@@ -49,7 +51,7 @@ $select-error-spacing: $form-control-error-spacing !default;
     order: 1;
   }
 
-  & > .input {
+  .input {
     align-items: center;
     background-color: $select-background-color;
     border: $select-border;
@@ -65,11 +67,11 @@ $select-error-spacing: $form-control-error-spacing !default;
     padding: 0 $select-padding;
     transition: $select-transition;
 
-    & > .placeholder {
+    .placeholder {
       opacity: 0.5;
     }
 
-    & > .chevron {
+    .chevron {
       border: 3px solid currentColor;
       border-top-width: 0px;
       border-right-width: 0px;
@@ -80,7 +82,7 @@ $select-error-spacing: $form-control-error-spacing !default;
     }
   }
 
-  & > .error-text {
+  .error-text {
     color: $select-error-text-color;
     display: block;
     font-size: $select-error-font-size;
@@ -89,12 +91,12 @@ $select-error-spacing: $form-control-error-spacing !default;
   }
 
   &:not(.disabled):not(.error):not(:focus-within) {
-    & > .input:hover {
+    .input:hover {
       border: $select-hover-border;
       background-color: $select-hover-background-color;
       color: $select-hover-color;
 
-      & + .label {
+      .label {
         color: $select-hover-label-color;
       }
     }
@@ -106,7 +108,7 @@ $select-error-spacing: $form-control-error-spacing !default;
       background-color: $select-focus-background-color;
       color: $select-focus-color;
 
-      & + .label {
+      .label {
         color: $select-focus-label-color;
       }
     }
@@ -115,18 +117,18 @@ $select-error-spacing: $form-control-error-spacing !default;
   &.disabled {
     pointer-events: none;
 
-    & > .input {
+    .input {
       opacity: $select-disabled-opacity;
     }
   }
 
   &.error {
-    & > .input {
+    .input {
       border: $select-error-border;
       background-color: $select-error-background-color;
       color: $select-error-color;
 
-      & + .label {
+      .label {
         color: $select-error-label-color;
       }
     }
@@ -136,7 +138,7 @@ $select-error-spacing: $form-control-error-spacing !default;
 .p-select-options {
   padding: calc($select-item-spacing / 2) 0;
 
-  & > .option {
+  .option {
     color: $select-color;
     cursor: pointer;
     padding: calc($select-item-spacing / 2) $select-item-spacing;

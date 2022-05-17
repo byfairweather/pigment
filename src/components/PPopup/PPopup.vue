@@ -10,27 +10,28 @@
         left: position.left,
         top: position.top,
         width: position.width,
+        zIndex: zIndex,
       }"
     >
       <slot></slot>
     </div>
   </transition>
-  <teleport to="body">
-    <transition name="shade">
-      <div
-        class="p-popup-shade"
-        :class="{ immersive: !anchor }"
-        v-if="open"
-        @click.stop="close"
-      >
-        <div class="close-button" v-if="!anchor">&times;</div>
-      </div>
-    </transition>
-  </teleport>
+  <transition name="shade">
+    <div
+      class="p-popup-shade"
+      :class="{ immersive: !anchor }"
+      :style="{ zIndex: zIndex - 1 }"
+      @click.stop="close"
+      v-if="open"
+    >
+      <div class="close-button" v-if="!anchor">&times;</div>
+    </div>
+  </transition>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, nextTick, PropType, ref, watch } from "vue";
+import { popupIndex } from ".";
 
 export default defineComponent({
   props: {
@@ -49,6 +50,7 @@ export default defineComponent({
   name: "p-popup",
   setup(props, context) {
     const popup = ref<HTMLDivElement>();
+    const zIndex = ref(0);
     const xPosition = computed(() => {
       return props.position.split(" ")[0] ?? "center";
     });
@@ -62,7 +64,27 @@ export default defineComponent({
       width?: string;
     }>({});
 
-    watch(() => props.open, setPosition, { immediate: true });
+    watch(
+      () => props.open,
+      () => {
+        setPosition();
+
+        if (props.open) {
+          popupIndex.value += 2;
+          zIndex.value = popupIndex.value;
+          console.log("Index: ", zIndex.value);
+
+          if (props.anchor) {
+            props.anchor.style.zIndex = zIndex.value.toString();
+          }
+        } else {
+          if (props.anchor) {
+            props.anchor.style.zIndex = "";
+          }
+        }
+      },
+      { immediate: true }
+    );
     window.addEventListener("resize", setPosition);
     window.addEventListener("scroll", setPosition, { passive: true });
 
@@ -141,6 +163,7 @@ export default defineComponent({
 
     return {
       popup,
+      zIndex,
       position,
       yPosition,
       xPosition,

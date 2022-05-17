@@ -17,7 +17,6 @@ $popup-close-button-hit-target: 4rem !default;
   position: fixed;
   transition-property: margin, opacity, transform;
   transition-timing-function: ease-in-out;
-  z-index: $popup-z-index;
 
   &.up {
     margin-top: -$popup-margin;
@@ -68,7 +67,6 @@ $popup-close-button-hit-target: 4rem !default;
   backdrop-filter: $popup-shade-filters;
   transition-property: background-color;
   transition-timing-function: ease-in-out;
-  z-index: $popup-z-index - 1;
 
   &.shade-enter-active {
     transition-duration: $popup-enter-animation-duration;
@@ -112,21 +110,15 @@ $popup-close-button-hit-target: 4rem !default;
 }
 
 .p-popup-anchor {
-  animation: p-popup-anchor-close 0ms ease $popup-exit-animation-duration
-    forwards;
+  animation: p-popup-anchor-close 0ms ease $popup-exit-animation-duration;
   position: relative;
-  z-index: $popup-z-index;
 
   &.open {
-    animation: p-popup-anchor-open 0ms ease $popup-exit-animation-duration
-      forwards;
+    animation: p-popup-anchor-open 0ms ease $popup-exit-animation-duration;
   }
 }
 
 @keyframes p-popup-anchor-close {
-  from {
-    z-index: $popup-z-index;
-  }
   to {
     z-index: 1;
   }
@@ -135,8 +127,5 @@ $popup-close-button-hit-target: 4rem !default;
 @keyframes p-popup-anchor-open {
   from {
     z-index: 1;
-  }
-  to {
-    z-index: $popup-z-index;
   }
 }
