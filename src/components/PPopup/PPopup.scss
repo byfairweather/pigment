@@ -14,7 +14,7 @@ $popup-close-button-hit-target: 4rem !default;
 
 .p-popup {
   opacity: 1;
-  position: fixed;
+  position: fixed !important;
   transition-property: margin, opacity, transform;
   transition-timing-function: ease-in-out;
 
@@ -35,7 +35,7 @@ $popup-close-button-hit-target: 4rem !default;
   }
 
   &.center {
-    transform: scale(1);
+    //transform: scale(1);
   }
 
   &.popup-enter-active {

@@ -51,12 +51,8 @@ export default defineComponent({
   setup(props, context) {
     const popup = ref<HTMLDivElement>();
     const zIndex = ref(0);
-    const xPosition = computed(() => {
-      return props.position.split(" ")[0] ?? "center";
-    });
-    const yPosition = computed(() => {
-      return props.position.split(" ")[1] ?? "center";
-    });
+    const xPosition = computed(() => props.position.split(" ")[0] ?? "center");
+    const yPosition = computed(() => props.position.split(" ")[1] ?? "center");
 
     const position = ref<{
       top?: string;
@@ -72,7 +68,6 @@ export default defineComponent({
         if (props.open) {
           popupIndex.value += 2;
           zIndex.value = popupIndex.value;
-          console.log("Index: ", zIndex.value);
 
           if (props.anchor) {
             props.anchor.style.zIndex = zIndex.value.toString();
@@ -98,67 +93,53 @@ export default defineComponent({
       props.anchor?.classList.remove("open");
       if (!popup.value || !props.open) return;
 
-      const a = props.anchor ?? {
-        offsetTop: window.scrollY,
-        offsetHeight: window.innerHeight * 0.75,
-        offsetLeft: window.scrollX,
-        offsetWidth: window.innerWidth,
+      console.log(props.anchor);
+      const a = props.anchor?.getBoundingClientRect() ?? {
+        top: 0,
+        height: window.innerHeight * 0.75,
+        left: 0,
+        width: window.innerWidth,
       };
-      const p = popup.value;
+
+      const p = popup.value.getBoundingClientRect();
       props.anchor?.classList.add("open");
 
       if (yPosition.value == "down") {
-        position.value.top = `${
-          a.offsetTop + a.offsetHeight - window.scrollY
-        }px`;
+        position.value.top = `${a.top + a.height}px`;
       }
 
       if (yPosition.value == "up") {
-        position.value.top = `${
-          a.offsetTop - p.offsetHeight - window.scrollY
-        }px`;
+        position.value.top = `${a.top - p.height}px`;
       }
 
       if (yPosition.value == "center") {
-        position.value.top = `${
-          a.offsetTop + (a.offsetHeight - p.offsetHeight) / 2 - window.scrollY
-        }px`;
+        position.value.top = `${a.top + (a.height - p.height) / 2}px`;
       }
 
       if (xPosition.value == "inside-left") {
-        position.value.left = `${a.offsetLeft - window.scrollX}px`;
+        position.value.left = `${a.left}px`;
       }
 
       if (xPosition.value == "inside-right") {
-        position.value.left = `${
-          a.offsetLeft + (a.offsetWidth - p.offsetWidth) - window.scrollX
-        }px`;
+        position.value.left = `${a.left + (a.width - p.width)}px`;
       }
 
       if (xPosition.value == "left") {
-        position.value.left = `${
-          a.offsetLeft - p.offsetWidth - window.scrollX
-        }px`;
+        position.value.left = `${a.left - p.width}px`;
       }
 
       if (xPosition.value == "right") {
-        position.value.left = `${
-          a.offsetLeft + a.offsetWidth - window.scrollX
-        }px`;
+        position.value.left = `${a.left + a.width}px`;
       }
 
       if (xPosition.value == "fill") {
-        position.value.left = `${a.offsetLeft - window.scrollX}px`;
-        position.value.width = `${a.offsetWidth}px`;
+        position.value.left = `${a.left}px`;
+        position.value.width = `${a.width}px`;
       }
 
       if (xPosition.value == "center") {
-        position.value.left = `${
-          a.offsetLeft + (a.offsetWidth - p.offsetWidth) / 2 - window.scrollX
-        }px`;
+        position.value.left = `${a.left + (a.width - p.width) / 2}px`;
       }
-
-      position.value.left;
     }
 
     return {
