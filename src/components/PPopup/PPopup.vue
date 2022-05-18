@@ -93,7 +93,6 @@ export default defineComponent({
       props.anchor?.classList.remove("open");
       if (!popup.value || !props.open) return;
 
-      console.log(props.anchor);
       const a = props.anchor?.getBoundingClientRect() ?? {
         top: 0,
         height: window.innerHeight * 0.75,
@@ -101,7 +100,12 @@ export default defineComponent({
         width: window.innerWidth,
       };
 
-      const p = popup.value.getBoundingClientRect();
+      const p = {
+        top: popup.value.offsetTop,
+        height: popup.value.offsetHeight,
+        left: popup.value.offsetLeft,
+        width: popup.value.offsetWidth,
+      };
       props.anchor?.classList.add("open");
 
       if (yPosition.value == "down") {
