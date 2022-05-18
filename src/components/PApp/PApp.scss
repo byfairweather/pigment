@@ -1,17 +1,20 @@
 @use "../../styles/utilities.scss" as *;
 
 $app-background-color: #f1f1f1 !default;
-$app-border-top: 5px solid color("primary", "500") !default;
+$app-border-top: 6px solid color("primary", "500") !default;
+$app-border-bottom: 10px solid color("primary", "500") !default;
 
 body {
-  background-color: $app-background-color;
-  border-top: $app-border-top;
-  color: $text-color;
   overflow-y: scroll;
 }
 
 .p-app {
   align-items: flex-start;
+  background-color: $app-background-color;
+  border-bottom: $app-border-bottom;
+  border-top: $app-border-top;
+  box-sizing: border-box;
+  color: $text-color;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
