@@ -10,7 +10,7 @@ $grid-spacing-lg: spacing("lg") !default;
 $grid-spacing-xl: spacing("xl") !default;
 
 .p-grid {
-  .wrapper {
+  & > .wrapper {
     display: flex;
     flex-wrap: wrap;
 

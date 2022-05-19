@@ -8,6 +8,7 @@
       tabindex="1"
       :style="{
         left: position.left,
+        maxHeight: position.maxHeight,
         top: position.top,
         width: position.width,
         zIndex: zIndex,
@@ -21,7 +22,7 @@
       class="p-popup-shade"
       :class="{ immersive: !anchor }"
       :style="{ zIndex: zIndex - 1 }"
-      @click.stop="close"
+      @click.stop="close()"
       v-if="open"
     >
       <div class="close-button" v-if="!anchor">&times;</div>
@@ -58,6 +59,7 @@ export default defineComponent({
       top?: string;
       left?: string;
       width?: string;
+      maxHeight?: string;
     }>({});
 
     watch(
@@ -110,6 +112,9 @@ export default defineComponent({
 
       if (yPosition.value == "down") {
         position.value.top = `${a.top + a.height}px`;
+        position.value.maxHeight = `${
+          (window.innerHeight - a.top - a.height) * 0.9
+        }px`;
       }
 
       if (yPosition.value == "up") {

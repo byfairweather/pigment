@@ -12,32 +12,32 @@
     @keypress.down.prevent.stop
     @keypress.up.prevent.stop
   >
-    <div class="wrapper" ref="anchor">
-      <div
-        class="input"
-        :id="id"
-        role="combobox"
-        :tabindex="disabled ? -1 : 0"
-        @click="toggle()"
-        aria-owns="quack"
-        :aria-expanded="isOpen"
-        :aria-active-item="selectedIndex != -1 && `${id}-${selectedIndex}`"
-      >
-        <span class="placeholder" v-if="placeholder && !selectedOption">
-          {{ placeholder }}
-        </span>
-        <span v-else>
-          {{ display(selectedOption) }}
-        </span>
-        <div class="chevron"></div>
-      </div>
-      <label class="label" :for="id" v-if="label">{{ label }}</label>
-      <span class="error-text" v-if="error && !isOpen">{{ error }}</span>
+    <div
+      class="input"
+      :id="id"
+      role="combobox"
+      :tabindex="disabled ? -1 : 0"
+      @click="toggle()"
+      aria-owns="quack"
+      :aria-expanded="isOpen"
+      :aria-active-item="selectedIndex != -1 && `${id}-${selectedIndex}`"
+      ref="anchor"
+    >
+      <span class="placeholder" v-if="placeholder && !selectedOption">
+        {{ placeholder }}
+      </span>
+      <span v-else>
+        {{ display(selectedOption) }}
+      </span>
+      <div class="chevron"></div>
     </div>
+    <label class="label" :for="id" v-if="label">{{ label }}</label>
+    <span class="error-text" v-if="error && !isOpen">{{ error }}</span>
     <PPopup
       v-if="anchor"
       :anchor="anchor"
       position="fill down"
+      ref="popup"
       v-model:open="isOpen"
     >
       <PBox class="p-select-options" id="quack">
@@ -108,6 +108,7 @@ export default defineComponent({
   setup(props, context) {
     const id = `p-select-${getCurrentInstance()!.uid}`;
     const anchor = ref<HTMLElement>();
+    const popup = ref<HTMLElement>();
     const isOpen = ref(false);
     const selectedOption = computed(() => {
       if (selectedIndex.value != undefined) {
@@ -153,6 +154,7 @@ export default defineComponent({
       nextTick(() => {
         if (
           anchor.value &&
+          !popup.value?.contains(event.relatedTarget as Node) &&
           !anchor.value.contains(event.relatedTarget as Node)
         ) {
           isOpen.value = false;
@@ -163,6 +165,7 @@ export default defineComponent({
     return {
       id,
       anchor,
+      popup,
       isOpen,
       selectedOption,
       selectedIndex,

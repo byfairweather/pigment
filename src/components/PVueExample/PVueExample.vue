@@ -66,7 +66,6 @@ export default defineComponent({
     );
 
     function formatCode(): void {
-      console.log("Format", Prism);
       code.value && Prism.highlightAllUnder(code.value);
     }
 

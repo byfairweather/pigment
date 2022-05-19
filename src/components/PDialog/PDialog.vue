@@ -1,15 +1,13 @@
-<template inheritAttrs="false">
+<template>
   <p-popup :open="open" @update:open="$emit('update:open', $event)">
     <p-box class="p-dialog" :class="$attrs.class">
-      <div class="wrapper">
-        <slot></slot>
-      </div>
+      <slot></slot>
     </p-box>
   </p-popup>
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   props: {
@@ -18,6 +16,7 @@ export default defineComponent({
       required: true,
     },
   },
+  inheritAttrs: false,
   name: "p-dialog",
 });
 </script>

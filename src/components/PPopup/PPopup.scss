@@ -13,7 +13,10 @@ $popup-close-button-size: 3rem !default;
 $popup-close-button-hit-target: 4rem !default;
 
 .p-popup {
+  display: flex;
+  flex-direction: column;
   opacity: 1;
+  overflow: hidden;
   position: fixed !important;
   transition-property: margin, opacity, transform;
   transition-timing-function: ease-in-out;
@@ -32,10 +35,6 @@ $popup-close-button-hit-target: 4rem !default;
 
   &.right {
     margin-left: $popup-margin;
-  }
-
-  &.center {
-    //transform: scale(1);
   }
 
   &.popup-enter-active {

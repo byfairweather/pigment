@@ -9,7 +9,13 @@ $box-shadow: $surface-box-shadow-sm !default;
   background-color: $box-background-color;
   box-shadow: $box-shadow;
   border-radius: $box-border-radius;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+
+  & > .wrapper {
+    overflow: auto;
+  }
 
   &.top-border {
     border-top: $box-border;

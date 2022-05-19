@@ -13,15 +13,10 @@ $dialog-width-xl: 800px !default;
   box-shadow: $dialog-shadow;
   max-width: 90vw;
   max-height: 90vh;
-  overflow: hidden;
+  padding: $dialog-padding;
 
-  & > .wrapper {
-    overflow: auto auto;
-    padding: $dialog-padding;
-
-    @include layout("xs") {
-      padding: $dialog-padding-mobile;
-    }
+  @include layout("xs") {
+    padding: $dialog-padding-mobile;
   }
 
   &.xs {

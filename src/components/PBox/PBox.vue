@@ -1,6 +1,8 @@
 <template>
   <div class="p-box">
-    <slot></slot>
+    <div class="wrapper" :class="$attrs.class">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -9,5 +11,6 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "p-box",
+  inheritAttrs: false,
 });
 </script>
