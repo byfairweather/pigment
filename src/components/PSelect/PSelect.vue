@@ -48,20 +48,22 @@
       ref="popup"
       v-model:open="isOpen"
     >
-      <PBox class="p-select-options" id="quack">
-        <template v-for="(option, index) in options" :key="index">
-          <div
-            :id="`${id}-${index}`"
-            class="option"
-            :class="{ selected: selectedIndex == index }"
-            :aria-selected="selectedIndex == index"
-            @click="select(option, true)"
-            @mousedown.prevent
-            role="option"
-          >
-            {{ display(option) }}
-          </div>
-        </template>
+      <PBox id="quack">
+        <div class="p-select-options">
+          <template v-for="(option, index) in options" :key="index">
+            <div
+              :id="`${id}-${index}`"
+              class="option"
+              :class="{ selected: selectedIndex == index }"
+              :aria-selected="selectedIndex == index"
+              @click="select(option, true)"
+              @mousedown.prevent
+              role="option"
+            >
+              {{ display(option) }}
+            </div>
+          </template>
+        </div>
       </PBox>
     </PPopup>
   </div>

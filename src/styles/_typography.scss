@@ -50,7 +50,7 @@ h6 {
   line-height: 1.1;
   margin: 1em 0 0.3em;
 
-  &:first-child {
+  &:first-of-type {
     margin-top: 0;
   }
 }

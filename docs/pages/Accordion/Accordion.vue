@@ -5,7 +5,7 @@
     <Accordion />
   </p-vue-example>
   <h3>Stepped Accordion</h3>
-  <p-vue-example :code="SteppedAccordion">
+  <p-vue-example :code="SteppedAccordionCode">
     <SteppedAccordion />
   </p-vue-example>
 </template>

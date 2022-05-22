@@ -5,17 +5,18 @@ $box-border-radius: $surface-border-radius !default;
 $box-border: $box-border-radius solid color("primary", "500") !default;
 $box-shadow: $surface-box-shadow-sm !default;
 
+$box-scrollbar-color: color("grey", "500") !default;
+$box-scrollbar-margin: 5px !default;
+$box-scrollbar-width: 6px !default;
+
+$box-scrollfade-size: 60px !default;
+$box-scrollfade-animation-duration: $animation-duration-slow !default;
+
 .p-box {
   background-color: $box-background-color;
   box-shadow: $box-shadow;
   border-radius: $box-border-radius;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-
-  & > .wrapper {
-    overflow: auto;
-  }
+  overflow: auto;
 
   &.top-border {
     border-top: $box-border;
@@ -31,5 +32,46 @@ $box-shadow: $surface-box-shadow-sm !default;
 
   &.bottom-border {
     border-left: $box-border;
+  }
+
+  ::-webkit-scrollbar {
+    width: calc($box-scrollbar-width + $box-scrollbar-margin * 2);
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: $box-scrollbar-color;
+    border-radius: 1000px;
+    border: $box-scrollbar-margin solid $box-background-color;
+  }
+
+  & > .wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    & > .scroll-fade {
+      display: block;
+      height: $box-scrollfade-size;
+      position: sticky;
+      left: 0;
+      right: 0;
+      pointer-events: none;
+      transition: opacity $box-scrollfade-animation-duration ease;
+      z-index: 1;
+
+      &.top {
+        background: linear-gradient($box-background-color, 70%, transparent);
+        top: 0;
+        margin-bottom: -$box-scrollfade-size;
+      }
+
+      &.bottom {
+        background: linear-gradient(transparent, 30%, $box-background-color);
+        bottom: 0;
+        margin-top: -$box-scrollfade-size;
+      }
+    }
   }
 }
