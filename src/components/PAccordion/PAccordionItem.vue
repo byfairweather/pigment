@@ -8,7 +8,7 @@
       <div class="label">
         {{ label }}
       </div>
-      <div v-if="!isStaged" class="chevron">
+      <div v-if="!isStepped" class="chevron">
         <i class="fa-solid fa-chevron-down"></i>
       </div>
       <div v-else class="checkmark">
@@ -41,10 +41,10 @@ export default defineComponent({
     const height = ref<number>();
     const isOpen = computed(() => accordion.selectedItems.value.includes(id));
     const canSelect = computed(
-      () => !accordion.staged || id <= (accordion.selectedItems.value[0] ?? 0)
+      () => !accordion.stepped || id <= (accordion.selectedItems.value[0] ?? 0)
     );
     const isComplete = computed(
-      () => accordion.staged && accordion.selectedItems.value[0] > id
+      () => accordion.stepped && accordion.selectedItems.value[0] > id
     );
 
     onMounted(resize);
@@ -65,7 +65,7 @@ export default defineComponent({
       isOpen,
       canSelect,
       isComplete,
-      isStaged: accordion?.staged,
+      isStepped: accordion?.stepped,
       select: accordion.select,
     };
   },

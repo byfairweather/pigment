@@ -1,5 +1,5 @@
 <template>
-  <p-accordion #default="{ next, previous }" staged>
+  <p-accordion #default="{ next, previous }" stepped>
     <p-accordion-item label="Step 1">
       Hello World!
       <p-button-group>

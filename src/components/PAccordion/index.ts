@@ -1,7 +1,7 @@
 import { InjectionKey, Ref } from "vue";
 
 export const AccordionProvider: InjectionKey<{
-  staged: boolean;
+  stepped: boolean;
   selectedItems: Ref<number[]>;
   register: () => number;
   select: (id: number) => void;

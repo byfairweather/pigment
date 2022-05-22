@@ -20,7 +20,7 @@ export default defineComponent({
     preselect: {
       type: [Number, Array],
     },
-    staged: {
+    stepped: {
       type: Boolean,
     },
   },
@@ -29,7 +29,7 @@ export default defineComponent({
     let items = 0;
 
     provide(AccordionProvider, {
-      staged: props.staged,
+      stepped: props.stepped,
       selectedItems,
       register,
       select,

@@ -4,9 +4,9 @@
   <p-vue-example :code="AccordionCode">
     <Accordion />
   </p-vue-example>
-  <h3>Staged Accordion</h3>
-  <p-vue-example :code="StagedAccordionCode">
-    <StagedAccordion />
+  <h3>Stepped Accordion</h3>
+  <p-vue-example :code="SteppedAccordion">
+    <SteppedAccordion />
   </p-vue-example>
 </template>
 
@@ -14,14 +14,14 @@
 import { defineComponent } from "vue";
 import AccordionCode from "inline:./examples/Accordion.vue";
 import Accordion from "./examples/Accordion.vue";
-import StagedAccordionCode from "inline:./examples/StagedAccordion.vue";
-import StagedAccordion from "./examples/StagedAccordion.vue";
+import SteppedAccordionCode from "inline:./examples/SteppedAccordion.vue";
+import SteppedAccordion from "./examples/SteppedAccordion.vue";
 
 export default defineComponent({
   name: "Buttons",
   setup() {
-    return { AccordionCode, StagedAccordionCode };
+    return { AccordionCode, SteppedAccordionCode };
   },
-  components: { Accordion, StagedAccordion },
+  components: { Accordion, SteppedAccordion },
 });
 </script>
