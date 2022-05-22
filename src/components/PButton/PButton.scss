@@ -9,6 +9,8 @@ $button-hover-animation-duration: $animation-duration-normal !default;
 $button-hover-background-color: color("primary", "600") !default;
 $button-hover-color: color("grey", "100") !default;
 
+$button-group-spacing: spacing("sm") !default;
+
 $button-success-background-color: color("success", "500") !default;
 $button-success-color: color("grey", "100") !default;
 $button-success-hover-background-color: color("success", "600") !default;
@@ -29,8 +31,6 @@ $button-grey-color: color("grey", "800") !default;
 $button-grey-hover-background-color: color("grey", "500") !default;
 $button-grey-hover-color: color("grey", "900") !default;
 
-$button-group-spacing: spacing("sm") !default;
-
 .p-button {
   align-items: center;
   background-color: $button-background-color;
@@ -38,8 +38,8 @@ $button-group-spacing: spacing("sm") !default;
   color: $button-color;
   cursor: pointer;
   display: flex;
-  height: $button-height;
   justify-content: center;
+  min-height: $button-height;
   outline: none;
   padding: 0 $button-horizontal-padding;
   position: relative;
@@ -53,10 +53,8 @@ $button-group-spacing: spacing("sm") !default;
     position: absolute;
   }
 
-  &:hover:not(:disabled),
-  &:focus-within {
-    background-color: $button-hover-background-color;
-    color: $button-hover-color;
+  &.fill {
+    width: 100%;
   }
 
   &.loading {
@@ -65,19 +63,22 @@ $button-group-spacing: spacing("sm") !default;
     }
   }
 
-  &:disabled {
-    opacity: 0.5;
+  &:hover,
+  &:focus-within {
+    background-color: $button-hover-background-color;
+    color: $button-hover-color;
   }
 
-  &.fill {
-    width: 100%;
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 
   &.success {
     background-color: $button-success-background-color;
     color: $button-success-color;
 
-    &:hover:not(:disabled),
+    &:hover,
     &:focus-within {
       background-color: $button-success-hover-background-color;
       color: $button-success-hover-color;
@@ -88,7 +89,7 @@ $button-group-spacing: spacing("sm") !default;
     background-color: $button-warning-background-color;
     color: $button-warning-color;
 
-    &:hover:not(:disabled),
+    &:hover,
     &:focus-within {
       background-color: $button-warning-hover-background-color;
       color: $button-warning-hover-color;
@@ -99,7 +100,7 @@ $button-group-spacing: spacing("sm") !default;
     background-color: $button-danger-background-color;
     color: $button-danger-color;
 
-    &:hover:not(:disabled),
+    &:hover,
     &:focus-within {
       background-color: $button-danger-hover-background-color;
       color: $button-danger-hover-color;
@@ -110,7 +111,7 @@ $button-group-spacing: spacing("sm") !default;
     background-color: $button-grey-background-color;
     color: $button-grey-color;
 
-    &:hover:not(:disabled),
+    &:hover,
     &:focus-within {
       background-color: $button-grey-hover-background-color;
       color: $button-grey-hover-color;

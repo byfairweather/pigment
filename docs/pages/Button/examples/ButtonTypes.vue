@@ -1,7 +1,7 @@
 <template>
   <p-grid class="widths-2-all spacing-xs-all">
     <p-grid-item>
-      <p-button @click="example('Another Test')">Button</p-button>
+      <p-button @click="example('Example Attribute')">Button</p-button>
     </p-grid-item>
     <p-grid-item>
       <p-button class="success" @click="example()">Button</p-button>
@@ -62,7 +62,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   setup() {
-    function example(message: string = "Test"): Promise<void> {
+    function example(message: string = "No Attribute Provided"): Promise<void> {
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve();
