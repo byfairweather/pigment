@@ -1,19 +1,17 @@
 @use "../../styles/utilities.scss" as *;
 
-$card-background-color: color("grey", "100") !default;
-$card-border-radius: $surface-border-radius !default;
-$card-box-shadow: $surface-box-shadow-sm !default;
 $card-padding: spacing("md") !default;
+
 $card-title-color: color("primary", "500") !default;
 $card-title-font-size: $font-size-md !default;
+$card-title-font-weight: $font-weight-medium !default;
+
 $card-subtitle-color: color("grey", "600") !default;
 $card-subtitle-font-size: $font-size-sm !default;
+$card-subtitle-font-weight: $font-weight-normal !default;
+
 $card-body-color: color("grey", "800") !default;
 $card-body-font-size: $font-size-sm !default;
-
-$card-hover-animation-duration: $animation-duration-normal !default;
-$card-hover-box-shadow: $surface-box-shadow-lg !default;
-$card-hover-transform: translateY(-2px) !default;
 
 .p-card {
   & > .image {
@@ -26,18 +24,26 @@ $card-hover-transform: translateY(-2px) !default;
   & > .content {
     padding: $card-padding;
 
-    & > span {
+    &:empty {
+      display: none;
+    }
+
+    & > .title,
+    & > .subtitle,
+    & > .body {
       display: block;
     }
 
     & > .title {
       color: $card-title-color;
       font-size: $card-title-font-size;
+      font-weight: $card-title-font-weight;
     }
 
     & > .subtitle {
       color: $card-subtitle-color;
       font-size: $card-subtitle-font-size;
+      font-weight: $card-subtitle-font-weight;
     }
 
     & > .body {
@@ -45,22 +51,8 @@ $card-hover-transform: translateY(-2px) !default;
       font-size: $card-body-font-size;
 
       &:not(:only-child) {
-        margin-top: spacing("md");
+        margin-top: 0.5rem;
       }
-    }
-  }
-
-  &.clickable {
-    cursor: pointer;
-    transition-property: transform, box-shadow;
-    transition-duration: $card-hover-animation-duration;
-    transition-timing-function: ease-in-out;
-
-    &:hover,
-    &:focus-within {
-      box-shadow: $card-hover-box-shadow;
-      outline: none;
-      transform: $card-hover-transform;
     }
   }
 }
