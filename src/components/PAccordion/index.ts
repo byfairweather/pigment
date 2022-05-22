@@ -1,8 +1,8 @@
 import { InjectionKey, Ref } from "vue";
 
 export const AccordionProvider: InjectionKey<{
-  staged: Ref<boolean>;
-  currentItem: Ref<number | undefined>;
+  staged: boolean;
+  selectedItems: Ref<number[]>;
   register: () => number;
-  select: (item: number | undefined) => void;
+  select: (id: number) => void;
 }> = Symbol();

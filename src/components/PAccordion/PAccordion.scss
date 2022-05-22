@@ -1,93 +1,115 @@
 @use "sass:math";
 @use "../../styles/utilities" as *;
 
-$accordion-border: 1px solid color("grey", "500") !default;
+$accordion-background-color: color("grey", "100") !default;
 $accordion-border-radius: $surface-border-radius !default;
-$accordion-box-shadow: $surface-box-shadow-sm !default;
+$accordion-box-shadow: $surface-box-shadow-md !default;
+$accordion-checkmark-animation-duration: $animation-duration-normal !default;
+$accordion-chevron-animation-duration: $animation-duration-slow !default;
+$accordion-padding: spacing("md") !default;
 $accordion-spacing: spacing("lg") !default;
+$accordion-resize-animation-duration: $animation-duration-slow !default;
 
-$accordion-padding: spacing("md");
+$accordion-header-animation-duration: $animation-duration-normal !default;
 $accordion-header-background-color: color("grey", "100") !default;
 $accordion-header-color: color("primary", "500") !default;
 $accordion-header-font-size: $font-size-sm !default;
 $accordion-header-font-weight: $font-weight-medium !default;
+
 $accordion-open-header-background-color: color("primary", "500") !default;
 $accordion-open-header-color: color("grey", "100") !default;
-$accordion-check-size: 0.25rem !default;
-$accordion-resize-animation-duration: $animation-duration-slow !default;
-$accordion-header-animation-duration: $animation-duration-normal !default;
+
+$accordion-complete-header-background-color: color("primary", "600") !default;
+$accordion-complete-header-color: color("grey", "100") !default;
 
 .p-accordion {
-  position: relative;
   margin: calc($accordion-spacing / -2) 0;
-}
 
-.p-accordion-item {
-  border-radius: $accordion-border-radius;
-  box-shadow: $accordion-box-shadow;
-  margin: calc($accordion-spacing / 2) 0;
-  overflow: hidden;
-  position: relative;
-  transition: all $accordion-header-animation-duration ease-in-out;
-
-  & > .header {
-    align-items: center;
-    display: flex;
-    color: $accordion-header-color;
-    cursor: pointer;
-    font-size: $accordion-header-font-size;
-    font-weight: $accordion-header-font-weight;
-    justify-content: space-between;
-    padding: $accordion-padding;
+  .p-accordion-item {
+    border-radius: $accordion-border-radius;
+    box-shadow: $accordion-box-shadow;
+    margin: calc($accordion-spacing / 2) 0;
+    overflow: hidden;
     transition: all $accordion-header-animation-duration ease-in-out;
 
-    & > .checkmark {
-      animation: p-accordion-checkmark-enter 300ms ease-in-out 200ms forwards;
-      border: 4px solid currentColor;
-      border-right: none;
-      border-top: none;
-      height: calc(1rem / 1.5);
-      margin-top: -3px;
-      transform: rotate(-50deg) scale(0);
-      width: 1rem;
-    }
-
-    & > .chevron {
-      border: 3px solid currentColor;
-      border-right: none;
-      border-top: none;
-      height: 0.6rem;
-      margin-top: -3px;
-      transform: rotate(-45deg);
-      width: 0.6rem;
-    }
-  }
-
-  & > .content {
-    overflow: hidden;
-    transition: height $accordion-resize-animation-duration ease-in-out;
-
-    & > .wrapper {
-      padding: $accordion-padding;
-    }
-  }
-
-  &.open {
     & > .header {
-      background: $accordion-open-header-background-color;
-      color: $accordion-open-header-color;
+      align-items: center;
+      background-color: $accordion-header-background-color;
+      color: $accordion-header-color;
+      cursor: pointer;
+      display: flex;
+      font-size: $accordion-header-font-size;
+      font-weight: $accordion-header-font-weight;
+      justify-content: space-between;
+      transition: all $accordion-header-animation-duration ease-in-out;
+
+      & > .label {
+        padding: $accordion-padding;
+      }
+
+      & > .chevron {
+        padding: 0 $accordion-padding;
+        transition: all $accordion-chevron-animation-duration ease;
+      }
+
+      & > .checkmark {
+        font-size: $font-size-md;
+        opacity: 0;
+        padding: 0 $accordion-padding;
+        transform: scale(0);
+        transition: all $accordion-checkmark-animation-duration ease-out;
+      }
+    }
+
+    & > .content {
+      background-color: $accordion-background-color;
+      transition: height $accordion-resize-animation-duration ease-in-out;
+
+      & > .wrapper {
+        padding: $accordion-padding;
+      }
+    }
+
+    &.open {
+      & > .header {
+        background: $accordion-open-header-background-color;
+        color: $accordion-open-header-color;
+
+        & > .chevron {
+          transform: rotate(180deg);
+        }
+      }
+
+      & > .content {
+        animation-name: p-accordion-height-reset;
+        animation-duration: 1ms;
+        animation-fill-mode: forwards;
+        animation-delay: $accordion-resize-animation-duration;
+      }
+    }
+
+    &.complete {
+      & > .header {
+        background: $accordion-complete-header-background-color;
+        color: $accordion-complete-header-color;
+
+        & > .checkmark {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    }
+
+    &:not(.selectable) {
+      & > .header {
+        cursor: not-allowed;
+      }
     }
   }
 }
 
-@keyframes p-accordion-checkmark-enter {
-  0% {
-    transform: rotate(-50deg) scale(0);
-  }
-  80% {
-    transform: rotate(-50deg) scale(1.1);
-  }
-  100% {
-    transform: rotate(-50deg) scale(1);
+@keyframes p-accordion-height-reset {
+  to {
+    height: auto;
   }
 }

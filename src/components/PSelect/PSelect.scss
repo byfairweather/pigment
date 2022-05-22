@@ -35,9 +35,11 @@ $select-error-font-size: $form-control-error-font-size !default;
 $select-error-spacing: $form-control-error-spacing !default;
 
 .p-select {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
   .label {
     color: $select-label-color;
@@ -64,6 +66,27 @@ $select-error-spacing: $form-control-error-spacing !default;
     outline: none;
     padding: 0 $select-padding;
     transition: $select-transition;
+
+    input {
+      background-color: transparent;
+      transition: $select-transition;
+
+      &::placeholder {
+        color: inherit;
+        opacity: 0.5;
+      }
+
+      &:-webkit-autofill::first-line,
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        -webkit-text-fill-color: $select-color;
+        font-size: $select-font-size;
+        font-weight: $select-font-weight;
+        transition: select-color 999999s ease-in-out 999999s;
+      }
+    }
 
     .placeholder {
       opacity: 0.5;

@@ -1,5 +1,8 @@
 import { Plugin } from "vue";
 
+// Icons
+import "@fortawesome/fontawesome-free/js/all.js";
+
 // Components
 import PAccordion from "./components/PAccordion/PAccordion.vue";
 import PAccordionItem from "./components/PAccordion/PAccordionItem.vue";

@@ -1,60 +1,80 @@
 <template>
   <div class="p-accordion">
-    <slot></slot>
+    <div class="wrapper">
+      <slot :next="nextStage" :previous="previousStage" :select="select"></slot>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, provide, ref, toRef, watch } from "vue";
+import { defineComponent, provide, ref } from "vue";
 import { AccordionProvider } from ".";
 
 export default defineComponent({
   name: "p-accordion",
   props: {
-    stage: {
-      type: Number,
-    },
-    multiple: {
+    multiselect: {
       type: Boolean,
-      default: true,
+      default: false,
+    },
+    preselect: {
+      type: [Number, Array],
+    },
+    staged: {
+      type: Boolean,
     },
   },
-  setup(props, context) {
-    const staged = computed(() => props.stage != undefined);
-    let currentItem = ref<number>();
+  setup(props) {
+    const selectedItems = ref(new Array<number>());
     let items = 0;
 
-    watch(
-      () => props.stage,
-      () => {
-        currentItem.value = props.stage;
-      }
-    );
-
-    function register(): number {
-      const item = ++items;
-
-      if (item == 1) {
-        select(item);
-      }
-
-      return item;
-    }
-
-    function select(id: number | undefined): void {
-      if (staged.value && (!id || !props.stage || props.stage < id)) return;
-      context.emit("update:stage", id);
-      currentItem.value = id;
-    }
-
     provide(AccordionProvider, {
-      staged,
-      currentItem,
+      staged: props.staged,
+      selectedItems,
       register,
       select,
     });
 
-    return;
+    function register(): number {
+      const id = items++;
+
+      if (
+        Array.isArray(props.preselect)
+          ? props.preselect.includes(id)
+          : props.preselect == id
+      ) {
+        select(id);
+      }
+
+      return id;
+    }
+
+    function select(id: number): void {
+      if (id < 0 || id >= items) return;
+
+      const index = selectedItems.value.indexOf(id);
+      if (props.multiselect) {
+        index == -1
+          ? selectedItems.value.push(id)
+          : selectedItems.value.splice(index, 1);
+      } else {
+        selectedItems.value = index == -1 ? [id] : [];
+      }
+    }
+
+    function nextStage(): void {
+      select(Math.max(0, ...selectedItems.value) + 1);
+    }
+
+    function previousStage(): void {
+      select(Math.max(0, ...selectedItems.value) - 1);
+    }
+
+    return {
+      select,
+      nextStage,
+      previousStage,
+    };
   },
 });
 </script>

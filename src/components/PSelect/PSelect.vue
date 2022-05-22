@@ -12,27 +12,35 @@
     @keypress.down.prevent.stop
     @keypress.up.prevent.stop
   >
-    <div
-      class="input"
-      :id="id"
-      role="combobox"
-      :tabindex="disabled ? -1 : 0"
-      @click="toggle()"
-      aria-owns="quack"
-      :aria-expanded="isOpen"
-      :aria-active-item="selectedIndex != -1 && `${id}-${selectedIndex}`"
-      ref="anchor"
-    >
-      <span class="placeholder" v-if="placeholder && !selectedOption">
-        {{ placeholder }}
-      </span>
-      <span v-else>
-        {{ display(selectedOption) }}
-      </span>
-      <div class="chevron"></div>
+    <div class="wrapper" ref="anchor">
+      <div
+        class="input"
+        :id="id"
+        role="combobox"
+        :tabindex="disabled ? -1 : 0"
+        @click="toggle()"
+        aria-owns="quack"
+        :aria-expanded="isOpen"
+        :aria-active-item="selectedIndex != -1 && `${id}-${selectedIndex}`"
+      >
+        <input
+          :placeholder="placeholder"
+          autocomplete="address-level1"
+          :value="selectedOption && display(selectedOption)"
+          @change="autocomplete($event.target.value)"
+        />
+
+        <!-- <span class="placeholder" v-if="placeholder && !selectedOption">
+          {{ placeholder }}
+        </span>
+        <span v-else>
+          {{ display(selectedOption) }}
+        </span> -->
+        <div class="chevron"></div>
+      </div>
+      <label class="label" :for="id" v-if="label">{{ label }}</label>
+      <span class="error-text" v-if="error && !isOpen">{{ error }}</span>
     </div>
-    <label class="label" :for="id" v-if="label">{{ label }}</label>
-    <span class="error-text" v-if="error && !isOpen">{{ error }}</span>
     <PPopup
       v-if="anchor"
       :anchor="anchor"
@@ -66,6 +74,7 @@ import {
   getCurrentInstance,
   nextTick,
   ref,
+  watch,
 } from "vue";
 import PBox from "../PBox/PBox.vue";
 import PPopup from "../PPopup/PPopup.vue";
@@ -110,11 +119,14 @@ export default defineComponent({
     const anchor = ref<HTMLElement>();
     const popup = ref<HTMLElement>();
     const isOpen = ref(false);
+    const autocompleteValue = ref("");
+
     const selectedOption = computed(() => {
       if (selectedIndex.value != undefined) {
         return props.options[selectedIndex.value];
       }
     });
+
     const selectedIndex = computed(() => {
       if (props.options) {
         return props.options.findIndex((option) => {
@@ -122,6 +134,8 @@ export default defineComponent({
         });
       }
     });
+
+    watch(() => autocompleteValue.value, autocomplete);
 
     function select(option: unknown, close = false): void {
       context.emit("update:modelValue", props.value(option));
@@ -136,6 +150,18 @@ export default defineComponent({
     function selectPreviousOption(): void {
       const index = (selectedIndex.value ?? 1) - 1;
       index >= 0 && select(props.options[index]);
+    }
+
+    function autocomplete(value: String): void {
+      console.log("Autocomplete:", value);
+      console.log(props.options);
+
+      for (const option of props.options) {
+        console.log(option);
+        if (props.display(option) == value || props.value(option) == value) {
+          select(option);
+        }
+      }
     }
 
     function open(): void {
@@ -169,6 +195,7 @@ export default defineComponent({
       isOpen,
       selectedOption,
       selectedIndex,
+      autocomplete,
       select,
       selectNextOption,
       selectPreviousOption,
