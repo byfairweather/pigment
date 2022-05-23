@@ -1,9 +1,11 @@
 <template>
   <div class="p-checkbox">
+    <label class="label-fill"></label>
     <div
       class="input"
-      :class="{ disabled, error: error != undefined, checked: modelValue }"
+      :class="{ disabled, checked: modelValue, error: error != undefined }"
       @click="toggle()"
+      @mousedown.prevent
       @keydown.enter.exact.prevent="toggle()"
     >
       <div
@@ -13,7 +15,7 @@
         :aria-labelledby="`label-${id}`"
         :tabindex="disabled ? -1 : 0"
       >
-        <div class="check" v-if="modelValue"></div>
+        <i class="check fa-solid fa-check"></i>
       </div>
       <label v-if="label" class="label" :id="`label-${id}`">
         {{ label }}
@@ -49,9 +51,7 @@ export default defineComponent({
     const id = getCurrentInstance()?.uid;
 
     function toggle(): void {
-      if (!props.disabled) {
-        context.emit("update:modelValue", !props.modelValue);
-      }
+      context.emit("update:modelValue", !props.modelValue);
     }
 
     return {

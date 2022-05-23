@@ -1,18 +1,18 @@
 @use "../../styles/utilities.scss" as *;
 
+$checkbox-animation-duration: $animation-duration-normal !default;
 $checkbox-background-color: $form-control-background-color !default;
 $checkbox-border: $form-control-border !default;
 $checkbox-border-radius: $form-control-border-radius !default;
 $checkbox-height: $form-control-height !default;
 $checkbox-size: 1.4em !default;
-$checkbox-padding: calc(calc($checkbox-height - $checkbox-size) / 2);
-$checkbox-transition: all $animation-duration-normal ease-in-out !default;
+$checkbox-padding: calc(calc($checkbox-height - $checkbox-size) / 2) !default;
 $checkbox-disabled-opacity: $form-control-disabled-opacity !default;
-$checkbox-check-size: 0.2em !default;
+
 $checkbox-label-color: $form-control-label-color !default;
 $checkbox-label-font-size: $form-control-label-font-size !default;
 $checkbox-label-font-weight: $form-control-label-font-weight !default;
-$checkbox-label-margin-left: $form-control-padding !default;
+$checkbox-label-spacing: $form-control-padding !default;
 
 $checkbox-hover-background-color: $form-control-hover-background-color !default;
 $checkbox-hover-border: $form-control-hover-border !default;
@@ -39,15 +39,21 @@ $checkbox-checked-focus-check-color: $form-control-filled-focus-color !default;
 
 $checkbox-error-background-color: $form-control-error-background-color !default;
 $checkbox-error-border: $form-control-error-border !default;
-$checkbox-error-color: $form-control-error-color !default;
 $checkbox-error-label-color: $form-control-error-label-color !default;
 $checkbox-error-check-color: color("grey", "100") !default;
-$checkbox-error-checked-background-color: color("danger", "500") !default;
+
+$checkbox-error-checked-background-color: $form-control-filled-error-background-color !default;
+$checkbox-error-checked-border: $form-control-filled-error-border !default;
+$checkbox-error-checked-label-color: $form-control-filled-error-label-color !default;
+$checkbox-error-checked-check-color: color("grey", "100") !default;
+
 $checkbox-error-text-color: $form-control-error-text-color !default;
 $checkbox-error-font-size: $form-control-error-font-size !default;
 $checkbox-error-spacing: spacing("xs") !default;
 
 .p-checkbox {
+  user-select: none;
+
   & > .input {
     align-items: center;
     cursor: pointer;
@@ -56,52 +62,34 @@ $checkbox-error-spacing: spacing("xs") !default;
     padding: $checkbox-padding 0;
 
     & > .label {
+      color: $checkbox-label-color;
       cursor: inherit;
       display: block;
       font-size: $checkbox-label-font-size;
       font-weight: $checkbox-label-font-weight;
-      margin-left: $checkbox-label-margin-left;
-      transition: $checkbox-transition;
-      user-select: none;
+      margin-left: $checkbox-label-spacing;
     }
 
     & > .checkbox {
       align-items: center;
+      background-color: $checkbox-background-color;
+      border: $checkbox-border;
       border-radius: $checkbox-border-radius;
       display: flex;
-      flex-shrink: 0;
-      justify-content: center;
       height: $checkbox-size;
-      position: relative;
-      outline: none;
-      transition: $checkbox-transition;
+      justify-content: center;
+      transition: all $checkbox-animation-duration ease-in-out;
       width: $checkbox-size;
 
       & > .check {
-        animation: p-checkbox-check $animation-duration-normal ease forwards;
-        border-width: $checkbox-check-size;
-        border-style: solid;
-        border-right-width: 0;
-        border-top-width: 0;
-        position: absolute;
-        margin-top: calc($checkbox-check-size * -0.8);
-        height: calc($checkbox-size / 3);
-        width: calc($checkbox-size / 2);
+        color: $checkbox-checked-check-color;
+        transform: scale(0);
+        transition: all $checkbox-animation-duration ease-in-out;
+        opacity: 0;
       }
     }
 
-    &:not(.checked) {
-      & > .checkbox {
-        background-color: $checkbox-background-color;
-        border: $checkbox-border;
-      }
-
-      & > .label {
-        color: $checkbox-label-color;
-      }
-    }
-
-    &:not(.checked):hover:not(:focus-within):not(.disabled):not(.error) {
+    &:hover {
       & > .checkbox {
         background-color: $checkbox-hover-background-color;
         border: $checkbox-hover-border;
@@ -112,7 +100,7 @@ $checkbox-error-spacing: spacing("xs") !default;
       }
     }
 
-    &:not(.checked):focus-within:not(.disabled):not(.error) {
+    &:focus-within {
       & > .checkbox {
         background-color: $checkbox-focus-background-color;
         border: $checkbox-focus-border;
@@ -123,13 +111,27 @@ $checkbox-error-spacing: spacing("xs") !default;
       }
     }
 
+    &.error {
+      & > .checkbox {
+        background-color: $checkbox-error-background-color;
+        border: $checkbox-error-border;
+        color: $checkbox-checked-focus-check-color;
+      }
+
+      & > .label {
+        color: $checkbox-error-label-color;
+      }
+    }
+
     &.checked {
       & > .checkbox {
         background-color: $checkbox-checked-background-color;
         border: $checkbox-checked-border;
+        color: $checkbox-checked-check-color;
 
         & > .check {
-          border-color: $checkbox-checked-check-color;
+          transform: scale(1);
+          opacity: 1;
         }
       }
 
@@ -138,14 +140,11 @@ $checkbox-error-spacing: spacing("xs") !default;
       }
     }
 
-    &.checked:hover:not(:focus-within):not(.disabled):not(.error) {
+    &.checked:hover {
       & > .checkbox {
         background-color: $checkbox-checked-hover-background-color;
         border: $checkbox-checked-hover-border;
-
-        & > .check {
-          border-color: $checkbox-checked-hover-check-color;
-        }
+        color: $checkbox-checked-hover-check-color;
       }
 
       & > .label {
@@ -153,14 +152,11 @@ $checkbox-error-spacing: spacing("xs") !default;
       }
     }
 
-    &.checked:focus-within:not(.disabled):not(.error) {
+    &.checked:focus-within {
       & > .checkbox {
         background-color: $checkbox-checked-focus-background-color;
         border: $checkbox-checked-focus-border;
-
-        & > .check {
-          border-color: $checkbox-checked-focus-check-color;
-        }
+        color: $checkbox-checked-focus-check-color;
       }
 
       & > .label {
@@ -168,38 +164,20 @@ $checkbox-error-spacing: spacing("xs") !default;
       }
     }
 
-    &.error.checked {
+    &.checked.error {
       & > .checkbox {
         background-color: $checkbox-error-checked-background-color;
-        border: $checkbox-error-border;
-
-        & > .check {
-          border-color: $checkbox-error-check-color;
-        }
+        border: $checkbox-error-checked-border;
+        color: $checkbox-error-checked-check-color;
       }
 
       & > .label {
-        color: $checkbox-error-label-color;
-      }
-    }
-
-    &.error:not(.checked) {
-      & > .checkbox {
-        background-color: $checkbox-error-background-color;
-        border: $checkbox-error-border;
-
-        & > .check {
-          border-color: $checkbox-checked-focus-check-color;
-        }
-      }
-
-      & > .label {
-        color: $checkbox-error-label-color;
+        color: $checkbox-error-checked-label-color;
       }
     }
 
     &.disabled {
-      cursor: initial;
+      pointer-events: none;
 
       & > .checkbox {
         opacity: $checkbox-disabled-opacity;
@@ -213,13 +191,20 @@ $checkbox-error-spacing: spacing("xs") !default;
     font-size: $checkbox-error-font-size;
     margin-top: $checkbox-error-spacing;
   }
-}
 
-@keyframes p-checkbox-check {
-  0% {
-    transform: scale(0) rotateZ(-50deg);
+  & > .label-fill {
+    display: none;
   }
-  100% {
-    transform: scale(1) rotateZ(-50deg);
+
+  &.offset {
+    & > .label-fill {
+      display: block;
+      font-size: $form-control-label-font-size;
+      margin-bottom: $form-control-label-margin-bottom;
+
+      &::before {
+        content: " ";
+      }
+    }
   }
 }
