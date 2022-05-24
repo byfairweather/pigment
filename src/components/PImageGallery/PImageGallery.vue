@@ -12,7 +12,7 @@ export default defineComponent({
   props: {
     minHeight: {
       type: Number,
-      default: 100,
+      default: 200,
     },
   },
   setup(props, context) {
@@ -21,8 +21,7 @@ export default defineComponent({
     onMounted(() => {
       if (gallery.value) {
         window.addEventListener("resize", fitGallery, { passive: true });
-        const observer = new MutationObserver(fitGallery);
-        observer.observe(gallery.value, {
+        new MutationObserver(fitGallery).observe(gallery.value, {
           attributes: true,
           subtree: true,
           childList: true,
@@ -34,13 +33,13 @@ export default defineComponent({
       if (!gallery.value) return;
 
       const galleryWidth = getGalleryWidth();
+      let row = new Array<HTMLDivElement>();
       const images = Array.from(
-        gallery.value.querySelectorAll(".p-image")
-      ) as HTMLDivElement[];
-      let row: HTMLDivElement[] = [];
+        gallery.value.querySelectorAll<HTMLDivElement>(".p-image")
+      );
 
       images.forEach((div) => {
-        const image = div.querySelector(".image")! as HTMLImageElement;
+        const image = div.querySelector(".image") as HTMLImageElement;
         const rowWidth = getRowWidth(row);
         const imageAspect = image.naturalWidth / image.naturalHeight;
         const imageWidth = props.minHeight * imageAspect + getSpacing();
@@ -55,6 +54,7 @@ export default defineComponent({
           row.push(div);
         }
       });
+
       fitRow(row, false);
     }
 

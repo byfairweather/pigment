@@ -1,5 +1,5 @@
 <template>
-  <p-image-gallery>
+  <p-image-gallery min-height="100">
     <template v-for="(image, index) in images" :key="index">
       <p-image :zoom="zoom" :image="image"></p-image>
     </template>
@@ -10,7 +10,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  setup(props, context) {
+  setup() {
     const zoom =
       "https://firebasestorage.googleapis.com/v0/b/coho-prints.appspot.com/o/products%2FEdrYuxjhwew3QlcUnoKl%2Fa0362b30-695a-47da-a089-464c1baf0b13.jpg?alt=media&token=def5890d-ebac-4759-8d66-259f3e9debda";
     const images = [

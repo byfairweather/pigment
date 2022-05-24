@@ -1,5 +1,6 @@
-@use "../../styles/utilities.scss" as *;
 @use "sass:math";
+@use "sass:map";
+@use "../../styles/utilities" as *;
 
 $image-gallery-spacing: spacing("sm") !default;
 
@@ -7,12 +8,60 @@ $image-gallery-spacing: spacing("sm") !default;
   font-size: 0;
   margin: math.div($image-gallery-spacing, -2);
 
-  & > * {
+  & > .p-image {
     display: inline-block;
     margin: math.div($image-gallery-spacing, 2);
+  }
 
-    .image {
-      object-fit: cover;
+  @each $layout in map.keys($layouts) {
+    @include layout($layout) {
+      &.spacing-none-#{$layout} {
+        margin: 0;
+
+        & > .p-image {
+          margin: 0;
+        }
+      }
+
+      &.spacing-xs-#{$layout} {
+        margin: math.div(spacing("xs"), -2);
+
+        & > .p-image {
+          margin: math.div(spacing("xs"), 2);
+        }
+      }
+
+      &.spacing-sm-#{$layout} {
+        margin: math.div(spacing("sm"), -2);
+
+        & > .p-image {
+          margin: math.div(spacing("sm"), 2);
+        }
+      }
+
+      &.spacing-md-#{$layout} {
+        margin: math.div(spacing("md"), -2);
+
+        & > .p-image {
+          margin: math.div(spacing("md"), 2);
+        }
+      }
+
+      &.spacing-lg-#{$layout} {
+        margin: math.div(spacing("lg"), -2);
+
+        & > .p-image {
+          margin: math.div(spacing("lg"), 2);
+        }
+      }
+
+      &.spacing-xl-#{$layout} {
+        margin: math.div(spacing("xl"), -2);
+
+        & > .p-image {
+          margin: math.div(spacing("xl"), 2);
+        }
+      }
     }
   }
 }
