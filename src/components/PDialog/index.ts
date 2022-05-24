@@ -1,21 +1,21 @@
 import { ref, watch, WatchStopHandle } from "vue";
 
 export default class Dialog<T> {
-  isVisible = ref(false);
+  isOpen = ref(false);
   stopWatchingVisibility?: WatchStopHandle;
-  resolve?: (value: T | PromiseLike<T | undefined> | undefined) => void;
+  resolve?: (value: T | undefined | PromiseLike<T | undefined>) => void;
   reject?: (reason?: string) => any;
 
-  open(parameters?: any): Promise<T | undefined> {
-    this.isVisible.value = true;
+  open(...args: any): Promise<T | undefined> {
+    this.isOpen.value = true;
 
     return new Promise<T | undefined>((resolve, reject) => {
       this.resolve = resolve;
       this.reject = reject;
       this.stopWatchingVisibility = watch(
-        () => this.isVisible.value,
+        () => this.isOpen.value,
         () => {
-          if (!this.isVisible.value) this.close();
+          if (!this.isOpen.value) this.close();
         }
       );
     });
@@ -23,13 +23,13 @@ export default class Dialog<T> {
 
   close(result?: T): void {
     this.stopWatchingVisibility?.();
-    this.isVisible.value = false;
+    this.isOpen.value = false;
     this.resolve?.(result);
   }
 
   error(message?: string) {
     this.stopWatchingVisibility?.();
-    this.isVisible.value = false;
+    this.isOpen.value = false;
     this.reject?.(message);
   }
 }

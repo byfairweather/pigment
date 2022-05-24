@@ -1,8 +1,8 @@
 @use "../../styles/utilities.scss" as *;
 
-$dialog-shadow: $surface-box-shadow-xl !default;
 $dialog-padding: spacing("lg") !default;
 $dialog-padding-mobile: spacing("md") !default;
+$dialog-shadow: $surface-box-shadow-xl !default;
 $dialog-width-xs: 260px !default;
 $dialog-width-sm: 320px !default;
 $dialog-width-md: 460px !default;
