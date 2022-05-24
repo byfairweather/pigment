@@ -8,7 +8,6 @@ $image-crop-handle-hit-target: 32px !default;
 $image-crop-handle-size: 15px !default;
 $image-crop-handle-thickness: 3px !default;
 $image-crop-handle-offset: 5px !default;
-$image-crop-diagonal-rotation-threshold: 80px !default;
 $image-crop-max-height: 70vh !default;
 
 .p-image-crop {
@@ -172,12 +171,6 @@ $image-crop-max-height: 70vh !default;
           opacity: 0;
         }
       }
-    }
-
-    & > .diagonal {
-      position: absolute;
-      width: $image-crop-diagonal-rotation-threshold;
-      height: 10000%;
     }
   }
 }

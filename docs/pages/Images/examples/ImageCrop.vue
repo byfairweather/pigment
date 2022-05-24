@@ -2,7 +2,7 @@
   <p-grid class="widths-12-all">
     <p-grid-item>
       <p-image-crop
-        :aspect="aspect"
+        :aspect-ratio="aspect"
         image="https://www.nps.gov/common/uploads/cropped_image/primary/D9ADD2C0-AD37-D7BB-AEB8B49FB6F656A7.jpg"
       />
     </p-grid-item>
