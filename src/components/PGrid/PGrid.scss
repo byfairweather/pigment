@@ -14,7 +14,7 @@ $grid-spacing-xl: spacing("xl") !default;
     display: flex;
     flex-wrap: wrap;
 
-    .p-grid-item:empty {
+    & > .p-grid-item:empty {
       display: none;
     }
   }
