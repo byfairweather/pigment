@@ -1,57 +1,30 @@
 @use "../../styles/utilities.scss" as *;
 
-$image-placeholder-blur: 4px !default;
-$image-close-button-color: color("grey", "100") !default;
-$image-zoom-background-color: rgba(black, 0.75) !default;
-$image-zoom-background-filter: blur(5px) !default;
-$image-zoom-close-button-size: 3rem !default;
-$image-zoom-shadow: $surface-box-shadow-xl !default;
-
 .p-image {
   overflow: hidden;
 
   & > .wrapper {
-    & > .image {
+    & > img {
       object-fit: contain;
       width: 100%;
-    }
-
-    & > .placeholder {
-      animation: p-image-placeholder-pulse 1s ease-in-out infinite alternate;
-      filter: blur($image-placeholder-blur);
-      transform: scale(1.2);
     }
   }
 
   &.zoomable {
-    cursor: pointer;
+    & > .wrapper {
+      cursor: pointer;
+    }
   }
 
-  .zoom-image {
-    box-shadow: $image-zoom-shadow;
-    max-width: 70vw;
-    max-height: 70vh;
-  }
-}
+  & > .zoom {
+    & > img {
+      max-width: 70vw;
+      max-height: 70vh;
+    }
 
-@keyframes p-image-placeholder-pulse {
-  from {
-    opacity: 0.75;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes p-image-zoom-image {
-  from {
-    opacity: 0.9;
-    transform: scale(0.95);
-  }
-}
-
-@keyframes p-image-zoom-shade {
-  from {
-    opacity: 0;
+    & > .spinner {
+      background-color: rgba(color("grey", "900"), 0.3);
+      color: color("grey", "100");
+    }
   }
 }

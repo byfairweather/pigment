@@ -3,6 +3,7 @@
     <div
       class="p-popup"
       :class="`${yPosition} ${xPosition} ${open && 'open'}`"
+      v-bind="$attrs"
       v-if="open"
       ref="popup"
       tabindex="1"
@@ -31,7 +32,15 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, nextTick, PropType, ref, watch } from "vue";
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  onMounted,
+  PropType,
+  ref,
+  watch,
+} from "vue";
 import { popupIndex } from ".";
 
 export default defineComponent({
@@ -48,6 +57,7 @@ export default defineComponent({
       required: true,
     },
   },
+  inheritAttrs: false,
   name: "p-popup",
   setup(props, context) {
     const popup = ref<HTMLDivElement>();
@@ -85,6 +95,14 @@ export default defineComponent({
     window.addEventListener("resize", setPosition);
     window.addEventListener("scroll", setPosition, { passive: true });
 
+    watch(
+      () => popup.value,
+      () => {
+        if (popup.value) new ResizeObserver(setPosition).observe(popup.value);
+      },
+      { immediate: true }
+    );
+
     function close(): void {
       context.emit("update:open", false);
     }
@@ -97,7 +115,7 @@ export default defineComponent({
 
       const a = props.anchor?.getBoundingClientRect() ?? {
         top: 0,
-        height: window.innerHeight * 0.75,
+        height: window.innerHeight,
         left: 0,
         width: window.innerWidth,
       };

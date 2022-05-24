@@ -5,33 +5,31 @@
     ref="component"
     @contextmenu.stop.prevent
   >
-    <div class="wrapper" @click.capture.stop="zoomIn">
-      <img
-        class="placeholder"
-        v-if="placeholder && !loaded && lazy"
-        :src="placeholder"
-      />
+    <div class="wrapper" @click="zoom && (isZoomed = true)">
+      <img v-if="placeholder && !isLoaded.image && lazy" :src="placeholder" />
       <img
         class="image"
-        v-if="visible || !lazy"
-        v-show="loaded"
-        @load="loaded = true"
+        v-if="!lazy || isVisible"
+        v-show="isLoaded.image"
         :src="image"
+        @load="isLoaded.image = true"
       />
     </div>
-    <PPopup v-model:open="zoomed">
-      <img class="zoom-image" :src="zoom" @contextmenu.stop.prevent />
+    <PPopup v-model:open="isZoomed" class="zoom shadow-lg">
+      <img :src="zoom" @contextmenu.stop.prevent @load="isLoaded.zoom = true" />
+      <PProgressSpinner class="spinner lg" v-if="!isLoaded.zoom" />
     </PPopup>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import PPopup from "../PPopup/PPopup.vue";
+import PProgressSpinner from "../PProgressSpinner/PProgressSpinner.vue";
 
 export default defineComponent({
   name: "p-image",
-  components: { PPopup },
+  components: { PPopup, PProgressSpinner },
   props: {
     lazy: {
       type: Boolean,
@@ -49,34 +47,26 @@ export default defineComponent({
     },
   },
   setup(props, context) {
-    const loaded = ref(false);
-    const visible = ref(false);
-    const zoomed = ref(false);
     const component = ref<HTMLElement>();
+    const isVisible = ref(false);
+    const isZoomed = ref(false);
+    const isLoaded = ref({
+      image: false,
+      zoom: false,
+    });
 
     window.addEventListener("scroll", checkViewport, { passive: true });
-    watch(
-      () => component.value,
-      () => checkViewport(),
-      { immediate: true }
-    );
-
-    watch;
+    watch(() => component.value, checkViewport, { immediate: true });
 
     function checkViewport() {
-      if (!component.value || visible.value) return;
+      if (!component.value || isVisible.value) return;
 
+      const scrollBuffer = 250;
       const rect = component.value.getBoundingClientRect();
-      visible.value = rect.top <= window.innerHeight + 500;
+      isVisible.value = rect.top <= window.innerHeight + scrollBuffer;
     }
 
-    function zoomIn(): void {
-      if (props.zoom) {
-        zoomed.value = true;
-      }
-    }
-
-    return { component, loaded, visible, zoomed, zoomIn };
+    return { component, isLoaded, isVisible, isZoomed };
   },
 });
 </script>
