@@ -11,7 +11,6 @@ $navbar-item-color: color("grey", "700") !default;
 $navbar-item-font-size: $font-size-sm !default;
 $navbar-item-font-weight: $font-weight-normal !default;
 $navbar-item-spacing: spacing("md") !default;
-$navbar-item-spacing-mobile: spacing("lg") !default;
 $navbar-item-transition: color 200ms ease-in-out !default;
 
 .p-navbar {
@@ -23,6 +22,10 @@ $navbar-item-transition: color 200ms ease-in-out !default;
     align-items: center;
     display: flex;
     margin: 0 calc($navbar-item-spacing * -1);
+
+    & > .logo > .p-navbar-item {
+      color: $navbar-logo-color;
+    }
 
     & > .logo,
     & > .start,
@@ -39,10 +42,6 @@ $navbar-item-transition: color 200ms ease-in-out !default;
 
     & > .mobile {
       display: none;
-
-      .p-navbar-dropdown .p-navbar-item {
-        margin: calc($navbar-item-spacing-mobile / 2);
-      }
     }
   }
 

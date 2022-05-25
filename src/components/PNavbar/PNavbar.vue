@@ -12,7 +12,9 @@
       </div>
       <div class="mobile">
         <PNavbarDropdown position="inside-right down">
-          <template #label>☰</template>
+          <template #label>
+            <i class="fa-solid fa-bars"></i>
+          </template>
           <slot name="mobile"></slot>
         </PNavbarDropdown>
       </div>
