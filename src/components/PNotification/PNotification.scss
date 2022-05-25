@@ -25,7 +25,7 @@ $notification-danger-color: color("danger", "700") !default;
   overflow: visible;
   width: 100%;
 
-  & > .content {
+  & > .notification {
     background-color: $notification-background-color;
     border-radius: $notification-border-radius;
     border-left: $notification-tab-size solid $notification-tab-color;
@@ -36,21 +36,21 @@ $notification-danger-color: color("danger", "700") !default;
     padding: $notification-padding;
   }
 
-  &.success > .content {
+  &.success > .notification {
     background-color: $notification-success-background-color;
     border-left-color: $notification-success-tab-color;
     border-right-color: $notification-success-tab-color;
     color: $notification-success-color;
   }
 
-  &.warning > .content {
+  &.warning > .notification {
     background-color: $notification-warning-background-color;
     border-left-color: $notification-warning-tab-color;
     border-right-color: $notification-warning-tab-color;
     color: $notification-warning-color;
   }
 
-  &.danger > .content {
+  &.danger > .notification {
     background-color: $notification-danger-background-color;
     border-left-color: $notification-danger-tab-color;
     border-right-color: $notification-danger-tab-color;
@@ -58,11 +58,9 @@ $notification-danger-color: color("danger", "700") !default;
   }
 }
 
-.p-notification-enter-active,
-.p-notification-leave-active,
-.p-notification {
-  transition: transform $animation-duration-slow ease $animation-duration-fast,
-    opacity $animation-duration-slow ease $animation-duration-fast,
+.p-notification-enter-active {
+  transition: transform $animation-duration-normal ease $animation-duration-fast,
+    opacity $animation-duration-normal ease $animation-duration-fast,
     height $animation-duration-normal ease,
     margin $animation-duration-normal ease;
 }
@@ -70,13 +68,13 @@ $notification-danger-color: color("danger", "700") !default;
 .p-notification-leave-active {
   transition: transform $animation-duration-normal ease,
     opacity $animation-duration-normal ease,
-    height $animation-duration-normal ease $animation-duration-normal,
-    margin $animation-duration-normal ease $animation-duration-normal;
+    height $animation-duration-normal ease $animation-duration-fast,
+    margin $animation-duration-normal ease $animation-duration-fast;
 }
 
 .p-notification-enter-from,
 .p-notification-leave-to {
   transform: scale(0.92);
   opacity: 0;
-  margin: 0 !important;
+  margin: 0;
 }

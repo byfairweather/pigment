@@ -2,10 +2,10 @@
   <Transition name="p-notification">
     <div
       class="p-notification"
-      :style="{ height: height }"
-      v-show="open && mounted"
+      :style="{ height: height + 'px' }"
+      v-show="open"
     >
-      <div ref="content" class="content">
+      <div ref="notification" class="notification">
         <slot></slot>
       </div>
     </div>
@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, onMounted, ref, watch } from "vue";
+import { defineComponent, nextTick, ref, watch } from "vue";
 
 export default defineComponent({
   name: "p-notification",
@@ -24,29 +24,22 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const content = ref<HTMLDivElement>();
-    const height = ref("0px");
-    const mounted = ref(false);
-
-    onMounted(() => {
-      mounted.value = true;
-    });
+    const notification = ref<HTMLDivElement>();
+    const height = ref(0);
 
     watch(
-      [() => props.open, () => content.value, () => mounted.value],
+      [() => props.open, () => notification.value],
       () => {
         nextTick(() => {
-          if (content.value) {
-            height.value = props.open
-              ? content.value?.scrollHeight + "px"
-              : "0px";
+          if (notification.value) {
+            height.value = props.open ? notification.value?.scrollHeight : 0;
           }
         });
       },
       { immediate: true }
     );
 
-    return { content, height, mounted };
+    return { notification, height };
   },
 });
 </script>

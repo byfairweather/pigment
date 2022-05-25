@@ -20,5 +20,25 @@
         Danger Notification
       </p-notification>
     </p-grid-item>
+    <p-grid-item>
+      <p-notification class="danger" :open="open">
+        Danger Notification
+      </p-notification>
+    </p-grid-item>
+    <p-grid-item>
+      <p-button @click="open = !open">Toggle Notification</p-button>
+    </p-grid-item>
   </p-grid>
 </template>
+
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+
+export default defineComponent({
+  setup() {
+    const open = ref(false);
+
+    return { open };
+  },
+});
+</script>
