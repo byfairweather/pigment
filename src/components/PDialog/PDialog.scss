@@ -2,7 +2,6 @@
 
 $dialog-padding: spacing("lg") !default;
 $dialog-padding-mobile: spacing("md") !default;
-$dialog-shadow: $surface-box-shadow-xl !default;
 $dialog-width-xs: 260px !default;
 $dialog-width-sm: 320px !default;
 $dialog-width-md: 460px !default;
@@ -10,32 +9,31 @@ $dialog-width-lg: 640px !default;
 $dialog-width-xl: 800px !default;
 
 .p-dialog {
-  box-shadow: $dialog-shadow;
-  max-width: 90vw;
-  max-height: 90vh;
-  padding: $dialog-padding;
+  & > .wrapper {
+    padding: $dialog-padding;
 
-  @include layout("xs") {
-    padding: $dialog-padding-mobile;
+    @include layout("xs") {
+      padding: $dialog-padding-mobile;
+    }
   }
 
-  &.xs {
+  &.xs > .wrapper {
     width: $dialog-width-xs;
   }
 
-  &.sm {
+  &.sm > .wrapper {
     width: $dialog-width-sm;
   }
 
-  &.md {
+  &.md > .wrapper {
     width: $dialog-width-md;
   }
 
-  &.lg {
+  &.lg > .wrapper {
     width: $dialog-width-lg;
   }
 
-  &.xl {
+  &.xl > .wrapper {
     width: $dialog-width-xl;
   }
 }

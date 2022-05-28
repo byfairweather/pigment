@@ -32,16 +32,8 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  nextTick,
-  onMounted,
-  PropType,
-  ref,
-  watch,
-} from "vue";
-import { popupIndex } from ".";
+import { computed, defineComponent, nextTick, PropType, ref, watch } from "vue";
+import { popupZIndex } from ".";
 
 export default defineComponent({
   props: {
@@ -78,8 +70,9 @@ export default defineComponent({
         setPosition();
 
         if (props.open) {
-          popupIndex.value += 2;
-          zIndex.value = popupIndex.value;
+          popupZIndex.value += 2;
+          zIndex.value = popupZIndex.value;
+          popup.value?.focus();
 
           if (props.anchor) {
             props.anchor.style.zIndex = zIndex.value.toString();
@@ -107,7 +100,7 @@ export default defineComponent({
       context.emit("update:open", false);
     }
 
-    async function setPosition() {
+    async function setPosition(): Promise<void> {
       await nextTick();
       props.anchor?.classList.add("p-popup-anchor");
       props.anchor?.classList.remove("open");
@@ -115,7 +108,7 @@ export default defineComponent({
 
       const a = props.anchor?.getBoundingClientRect() ?? {
         top: 0,
-        height: window.innerHeight,
+        height: window.innerHeight * 0.8,
         left: 0,
         width: window.innerWidth,
       };
@@ -140,7 +133,10 @@ export default defineComponent({
       }
 
       if (yPosition.value == "center") {
-        position.value.top = `${a.top + (a.height - p.height) / 2}px`;
+        position.value.top = `${Math.max(
+          a.top + a.height / 2 - p.height / 2,
+          10
+        )}px`;
       }
 
       if (xPosition.value == "inside-left") {
@@ -165,7 +161,7 @@ export default defineComponent({
       }
 
       if (xPosition.value == "center") {
-        position.value.left = `${a.left + (a.width - p.width) / 2}px`;
+        position.value.left = `${a.left + a.width / 2 - p.width / 2}px`;
       }
     }
 

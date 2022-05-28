@@ -6,6 +6,7 @@ $box-border: $box-border-radius solid color("primary", "500") !default;
 $box-shadow: $surface-box-shadow-sm !default;
 
 $box-scrollbar-color: color("grey", "500") !default;
+$box-scrollbar-hover-color: color("grey", "600") !default;
 $box-scrollbar-margin: 5px !default;
 $box-scrollbar-width: 6px !default;
 
@@ -16,7 +17,10 @@ $box-scrollfade-animation-duration: $animation-duration-slow !default;
   background-color: $box-background-color;
   box-shadow: $box-shadow;
   border-radius: $box-border-radius;
+  max-height: 90vh;
+  max-width: 90vw;
   overflow: auto;
+  position: relative;
 
   &.top-border {
     border-top: $box-border;
@@ -34,44 +38,43 @@ $box-scrollfade-animation-duration: $animation-duration-slow !default;
     border-left: $box-border;
   }
 
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: calc($box-scrollbar-width + $box-scrollbar-margin * 2);
   }
-  ::-webkit-scrollbar-track {
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-corner {
     background: transparent;
   }
-  ::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     background-color: $box-scrollbar-color;
     border-radius: 1000px;
     border: $box-scrollbar-margin solid $box-background-color;
+
+    &:hover {
+      background-color: $box-scrollbar-hover-color;
+    }
   }
 
-  & > .wrapper {
-    display: flex;
-    flex-direction: column;
-    position: relative;
+  & > .scroll-fade {
+    display: block;
+    height: $box-scrollfade-size;
+    position: sticky;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    transition: opacity $box-scrollfade-animation-duration ease;
+    z-index: 100000;
 
-    & > .scroll-fade {
-      display: block;
-      height: $box-scrollfade-size;
-      position: sticky;
-      left: 0;
-      right: 0;
-      pointer-events: none;
-      transition: opacity $box-scrollfade-animation-duration ease;
-      z-index: 1;
+    &.top {
+      background: linear-gradient($box-background-color, 70%, transparent);
+      margin-bottom: -$box-scrollfade-size;
+      top: -1px;
+    }
 
-      &.top {
-        background: linear-gradient($box-background-color, 70%, transparent);
-        top: 0;
-        margin-bottom: -$box-scrollfade-size;
-      }
-
-      &.bottom {
-        background: linear-gradient(transparent, 30%, $box-background-color);
-        bottom: 0;
-        margin-top: -$box-scrollfade-size;
-      }
+    &.bottom {
+      background: linear-gradient(transparent, 30%, $box-background-color);
+      bottom: -1px;
+      margin-top: -$box-scrollfade-size;
     }
   }
 }

@@ -1,3 +1,3 @@
 import { ref } from "vue";
 
-export const popupIndex = ref(10000);
+export const popupZIndex = ref(10000);

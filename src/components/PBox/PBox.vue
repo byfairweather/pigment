@@ -1,16 +1,14 @@
 <template>
   <div ref="box" class="p-box">
-    <div class="wrapper">
-      <div
-        class="scroll-fade top"
-        :style="{ opacity: scrollFade.top ? 1 : 0 }"
-      ></div>
-      <slot></slot>
-      <div
-        class="scroll-fade bottom"
-        :style="{ opacity: scrollFade.bottom ? 1 : 0 }"
-      ></div>
-    </div>
+    <div
+      class="scroll-fade top"
+      :style="{ opacity: scrollFade.top ? 1 : 0 }"
+    ></div>
+    <slot></slot>
+    <div
+      class="scroll-fade bottom"
+      :style="{ opacity: scrollFade.bottom ? 1 : 0 }"
+    ></div>
   </div>
 </template>
 
