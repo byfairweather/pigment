@@ -1,9 +1,7 @@
 <template>
-  <p-popup :open="open" @update:open="$emit('update:open', $event)">
+  <p-popup :open="open" @update:open="$emit('update:open', $event)" immersive>
     <p-box class="shadow-lg p-dialog" v-bind="$attrs">
-      <div class="wrapper">
-        <slot></slot>
-      </div>
+      <slot></slot>
     </p-box>
   </p-popup>
 </template>

@@ -13,6 +13,7 @@ $grid-spacing-xl: spacing("xl") !default;
   & > .wrapper {
     display: flex;
     flex-wrap: wrap;
+    overflow: hidden;
 
     & > .p-grid-item:empty {
       display: none;

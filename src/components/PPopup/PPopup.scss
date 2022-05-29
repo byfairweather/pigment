@@ -1,22 +1,24 @@
 @use "../../styles/utilities.scss" as *;
 
 $popup-margin: spacing("sm") !default;
+
+$popup-shade-background-color: rgba(0, 0, 0, 0.15) !default;
+$popup-shade-filters: saturate(50%) !default;
+
+$popup-immersive-shade-background-color: rgba(0, 0, 0, 0.7) !default;
+$popup-immersive-shade-filters: blur(2px) saturate(50%) !default;
+
+$popup-close-button-color: color("grey", "100") !default;
+$popup-close-button-size: 2rem !default;
+$popup-close-button-hit-target: 5rem !default;
+
 $popup-enter-animation-duration: $animation-duration-normal !default;
 $popup-exit-animation-duration: $animation-duration-fast !default;
-$popup-z-index: 10000 !default;
-$popup-shade-background-color: rgba(0, 0, 0, 0.15) !default;
-$popup-shade-filters: blur(1px) saturate(50%) !default;
-$popup-immersive-shade-background-color: rgba(0, 0, 0, 0.6) !default;
-$popup-immersive-shade-filters: blur(1px) saturate(50%) !default;
-$popup-close-button-color: color("grey", "100") !default;
-$popup-close-button-size: 3rem !default;
-$popup-close-button-hit-target: 4rem !default;
 
 .p-popup {
   display: flex;
   flex-direction: column;
   opacity: 1;
-  overflow: hidden;
   position: fixed !important;
   transition-property: margin, opacity, transform;
   transition-timing-function: ease-in-out;
@@ -109,22 +111,10 @@ $popup-close-button-hit-target: 4rem !default;
 }
 
 .p-popup-anchor {
-  animation: p-popup-anchor-close 0ms ease $popup-exit-animation-duration;
+  transform: z-index 1ms ease $popup-exit-animation-duration;
   position: relative;
 
   &.open {
-    animation: p-popup-anchor-open 0ms ease $popup-exit-animation-duration;
-  }
-}
-
-@keyframes p-popup-anchor-close {
-  to {
-    z-index: 1;
-  }
-}
-
-@keyframes p-popup-anchor-open {
-  from {
-    z-index: 1;
+    transition-delay: 0ms;
   }
 }

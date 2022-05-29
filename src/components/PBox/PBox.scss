@@ -22,6 +22,10 @@ $box-scrollfade-animation-duration: $animation-duration-slow !default;
   overflow: auto;
   position: relative;
 
+  & > .content {
+    overflow: hidden;
+  }
+
   &.top-border {
     border-top: $box-border;
   }
@@ -64,6 +68,7 @@ $box-scrollfade-animation-duration: $animation-duration-slow !default;
     pointer-events: none;
     transition: opacity $box-scrollfade-animation-duration ease;
     z-index: 100000;
+    overflow: hidden;
 
     &.top {
       background: linear-gradient($box-background-color, 70%, transparent);

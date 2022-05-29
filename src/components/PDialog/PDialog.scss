@@ -9,31 +9,29 @@ $dialog-width-lg: 640px !default;
 $dialog-width-xl: 800px !default;
 
 .p-dialog {
-  & > .wrapper {
-    padding: $dialog-padding;
+  padding: $dialog-padding;
 
-    @include layout("xs") {
-      padding: $dialog-padding-mobile;
-    }
+  @include layout("xs") {
+    padding: $dialog-padding-mobile;
   }
 
-  &.xs > .wrapper {
+  &.xs {
     width: $dialog-width-xs;
   }
 
-  &.sm > .wrapper {
+  &.sm {
     width: $dialog-width-sm;
   }
 
-  &.md > .wrapper {
+  &.md {
     width: $dialog-width-md;
   }
 
-  &.lg > .wrapper {
+  &.lg {
     width: $dialog-width-lg;
   }
 
-  &.xl > .wrapper {
+  &.xl {
     width: $dialog-width-xl;
   }
 }

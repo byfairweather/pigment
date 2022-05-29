@@ -1,4 +1,17 @@
 <template>
+  <transition name="shade">
+    <div
+      class="p-popup-shade"
+      :class="{ immersive }"
+      :style="{ zIndex: zIndex - 1 }"
+      @click.stop="close()"
+      v-if="open"
+    >
+      <div class="close-button" v-if="immersive">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+    </div>
+  </transition>
   <transition name="popup">
     <div
       class="p-popup"
@@ -16,17 +29,6 @@
       }"
     >
       <slot></slot>
-    </div>
-  </transition>
-  <transition name="shade">
-    <div
-      class="p-popup-shade"
-      :class="{ immersive: !anchor }"
-      :style="{ zIndex: zIndex - 1 }"
-      @click.stop="close()"
-      v-if="open"
-    >
-      <div class="close-button" v-if="!anchor">&times;</div>
     </div>
   </transition>
 </template>
@@ -47,6 +49,10 @@ export default defineComponent({
     open: {
       type: Boolean,
       required: true,
+    },
+    immersive: {
+      type: Boolean,
+      default: false,
     },
   },
   inheritAttrs: false,
