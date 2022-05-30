@@ -10,16 +10,16 @@
       <p-progress-spinner class="lg" />
     </p-grid-item>
     <p-grid-item class="width-3-all">
-      <p-progress-spinner class="md text-primary" />
+      <p-progress-spinner class="md primary" />
     </p-grid-item>
     <p-grid-item class="width-3-all">
-      <p-progress-spinner class="md text-success" />
+      <p-progress-spinner class="md white" />
     </p-grid-item>
     <p-grid-item class="width-3-all">
-      <p-progress-spinner class="md text-warning" />
+      <p-progress-spinner class="md black" />
     </p-grid-item>
     <p-grid-item class="width-3-all">
-      <p-progress-spinner class="md text-danger" />
+      <p-progress-spinner class="md color text-danger" />
     </p-grid-item>
   </p-grid>
 </template>

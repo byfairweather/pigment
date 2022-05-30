@@ -1,7 +1,6 @@
 @use "../../styles/utilities.scss" as *;
 
 $progress-spinner-animation-duration: $animation-duration-slow !default;
-$progress-spinner-color: currentColor !default;
 $progress-spinner-size-sm: 1rem !default;
 $progress-spinner-size-md: 2rem !default;
 $progress-spinner-size-lg: 3rem !default;
@@ -25,7 +24,6 @@ $progress-spinner-thickness-lg: 0.4rem !default;
     border-color: transparent;
     border-radius: 50%;
     border-style: solid;
-    border-top-color: $progress-spinner-color;
   }
 
   &,
@@ -50,6 +48,31 @@ $progress-spinner-thickness-lg: 0.4rem !default;
       border-width: $progress-spinner-thickness-lg;
       height: $progress-spinner-size-lg;
       width: $progress-spinner-size-lg;
+    }
+  }
+
+  &,
+  &.primary {
+    .wheel {
+      border-top-color: color("primary", "500");
+    }
+  }
+
+  &.black {
+    .wheel {
+      border-top-color: color("grey", "900");
+    }
+  }
+
+  &.white {
+    .wheel {
+      border-top-color: color("grey", "100");
+    }
+  }
+
+  &.color {
+    .wheel {
+      border-top-color: currentColor;
     }
   }
 }

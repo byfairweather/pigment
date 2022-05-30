@@ -8,7 +8,7 @@
     <div class="label">
       <slot></slot>
     </div>
-    <PProgressSpinner class="spinner" v-if="loading" />
+    <PProgressSpinner class="spinner color" v-if="loading" />
   </button>
 </template>
 
