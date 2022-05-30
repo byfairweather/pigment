@@ -4,7 +4,7 @@
       class="scroll-fade top"
       :style="{ opacity: scrollFade.top ? 1 : 0 }"
     ></div>
-    <div class="content">
+    <div class="wrapper">
       <slot></slot>
     </div>
     <div

@@ -17,12 +17,10 @@ $box-scrollfade-animation-duration: $animation-duration-slow !default;
   background-color: $box-background-color;
   box-shadow: $box-shadow;
   border-radius: $box-border-radius;
-  max-height: 90vh;
-  max-width: 90vw;
   overflow: auto;
   position: relative;
 
-  & > .content {
+  & > .wrapper {
     overflow: hidden;
   }
 
@@ -67,8 +65,7 @@ $box-scrollfade-animation-duration: $animation-duration-slow !default;
     right: 0;
     pointer-events: none;
     transition: opacity $box-scrollfade-animation-duration ease;
-    z-index: 100000;
-    overflow: hidden;
+    z-index: 10;
 
     &.top {
       background: linear-gradient($box-background-color, 70%, transparent);

@@ -18,10 +18,10 @@ $popup-exit-animation-duration: $animation-duration-fast !default;
 .p-popup {
   display: flex;
   flex-direction: column;
-  opacity: 1;
-  position: fixed !important;
+  position: fixed;
   transition-property: margin, opacity, transform;
   transition-timing-function: ease-in-out;
+  overflow: hidden;
 
   &.up {
     margin-top: -$popup-margin;
@@ -49,8 +49,8 @@ $popup-exit-animation-duration: $animation-duration-fast !default;
 
   &.popup-enter-from,
   &.popup-leave-to {
-    opacity: 0;
     margin: 0;
+    opacity: 0;
 
     &.center {
       transform: scale(0.95);
@@ -59,14 +59,14 @@ $popup-exit-animation-duration: $animation-duration-fast !default;
 }
 
 .p-popup-shade {
-  position: fixed;
+  background-color: $popup-shade-background-color;
+  backdrop-filter: $popup-shade-filters;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: $popup-shade-background-color;
-  backdrop-filter: $popup-shade-filters;
-  transition-property: background-color;
+  position: fixed;
+  transition-property: background-color, opacity;
   transition-timing-function: ease-in-out;
 
   &.shade-enter-active {
@@ -80,7 +80,7 @@ $popup-exit-animation-duration: $animation-duration-fast !default;
   &.shade-enter-from,
   &.shade-leave-to {
     backdrop-filter: none;
-    background-color: transparent !important;
+    opacity: 0;
   }
 
   &.immersive {
@@ -100,7 +100,6 @@ $popup-exit-animation-duration: $animation-duration-fast !default;
     width: $popup-close-button-hit-target;
     top: 0;
     right: 0;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
     transition: transform $animation-duration-normal ease;
     line-height: 0;
 

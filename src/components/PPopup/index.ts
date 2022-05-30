@@ -1,3 +1,8 @@
 import { ref } from "vue";
 
-export const popupZIndex = ref(10000);
+const popupZIndex = ref(100000);
+
+export function getNewPopupLayer() {
+  const zIndex = (popupZIndex.value += 10);
+  return zIndex;
+}

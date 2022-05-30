@@ -9,10 +9,15 @@ $dialog-width-lg: 640px !default;
 $dialog-width-xl: 800px !default;
 
 .p-dialog {
-  padding: $dialog-padding;
+  max-height: 90vh;
+  max-width: 90vw;
 
-  @include layout("xs") {
-    padding: $dialog-padding-mobile;
+  & > .wrapper {
+    padding: $dialog-padding;
+
+    @include layout("xs") {
+      padding: $dialog-padding-mobile;
+    }
   }
 
   &.xs {

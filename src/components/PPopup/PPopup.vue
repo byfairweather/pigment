@@ -16,7 +16,6 @@
     <div
       class="p-popup"
       :class="`${yPosition} ${xPosition} ${open && 'open'}`"
-      v-bind="$attrs"
       v-if="open"
       ref="popup"
       tabindex="1"
@@ -34,8 +33,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, nextTick, PropType, ref, watch } from "vue";
-import { popupZIndex } from ".";
+import { computed, defineComponent, PropType, ref, watch } from "vue";
+import { getNewPopupLayer } from ".";
 
 export default defineComponent({
   props: {
@@ -55,14 +54,12 @@ export default defineComponent({
       default: false,
     },
   },
-  inheritAttrs: false,
   name: "p-popup",
   setup(props, context) {
     const popup = ref<HTMLDivElement>();
     const zIndex = ref(0);
-    const xPosition = computed(() => props.position.split(" ")[0] ?? "center");
-    const yPosition = computed(() => props.position.split(" ")[1] ?? "center");
-
+    const xPosition = computed(() => props.position.split(" ")[0]);
+    const yPosition = computed(() => props.position.split(" ")[1]);
     const position = ref<{
       top?: string;
       left?: string;
@@ -70,44 +67,32 @@ export default defineComponent({
       maxHeight?: string;
     }>({});
 
-    watch(
-      () => props.open,
-      () => {
+    watch(() => props.open, open, { immediate: true });
+    watch(() => popup.value, setupRepositioning, { immediate: true });
+
+    function setupRepositioning(): void {
+      if (popup.value) new ResizeObserver(setPosition).observe(popup.value);
+      window.addEventListener("resize", setPosition);
+      window.addEventListener("scroll", setPosition, { passive: true });
+    }
+
+    function open(): void {
+      if (props.open) {
+        zIndex.value = getNewPopupLayer();
+        popup.value?.focus();
         setPosition();
+      }
 
-        if (props.open) {
-          popupZIndex.value += 2;
-          zIndex.value = popupZIndex.value;
-          popup.value?.focus();
-
-          if (props.anchor) {
-            props.anchor.style.zIndex = zIndex.value.toString();
-          }
-        } else {
-          if (props.anchor) {
-            props.anchor.style.zIndex = "";
-          }
-        }
-      },
-      { immediate: true }
-    );
-    window.addEventListener("resize", setPosition);
-    window.addEventListener("scroll", setPosition, { passive: true });
-
-    watch(
-      () => popup.value,
-      () => {
-        if (popup.value) new ResizeObserver(setPosition).observe(popup.value);
-      },
-      { immediate: true }
-    );
+      if (props.anchor) {
+        props.anchor.style.zIndex = props.open ? zIndex.value.toString() : "";
+      }
+    }
 
     function close(): void {
       context.emit("update:open", false);
     }
 
     async function setPosition(): Promise<void> {
-      await nextTick();
       props.anchor?.classList.add("p-popup-anchor");
       props.anchor?.classList.remove("open");
       if (!popup.value || !props.open) return;
@@ -136,6 +121,7 @@ export default defineComponent({
 
       if (yPosition.value == "up") {
         position.value.top = `${a.top - p.height}px`;
+        position.value.maxHeight = `${a.top * 0.9}px`;
       }
 
       if (yPosition.value == "center") {
