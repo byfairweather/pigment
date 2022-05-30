@@ -14,7 +14,7 @@ export default defineComponent({
   props: {
     progress: {
       type: Number,
-      default: true,
+      default: 0,
     },
   },
 });
