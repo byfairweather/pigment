@@ -2,6 +2,7 @@ import { Plugin } from "vue";
 
 // Icons
 import "@fortawesome/fontawesome-free/js/all.js";
+import {} from "@fortawesome/fontawesome-free/js/all.js";
 
 // Components
 import PAccordion from "./components/PAccordion/PAccordion.vue";

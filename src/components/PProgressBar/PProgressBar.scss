@@ -6,7 +6,7 @@ $progress-bar-border-radius: 10000px !default;
 $progress-bar-color: color("primary", "500") !default;
 $progress-bar-label-color: color("grey", "100") !default;
 $progress-bar-label-font-size: 0.75rem !default;
-$progress-bar-size-sm: 0.5rem !default;
+$progress-bar-size-sm: 0.75rem !default;
 $progress-bar-size-md: 1.5rem !default;
 $progress-bar-size-lg: 2rem !default;
 
@@ -18,6 +18,7 @@ $progress-bar-size-lg: 2rem !default;
   & > .bar {
     align-items: center;
     background-color: $progress-bar-color;
+    border-radius: $progress-bar-border-radius;
     display: flex;
     justify-content: flex-end;
     height: inherit;
@@ -33,6 +34,10 @@ $progress-bar-size-lg: 2rem !default;
   &.sm {
     height: $progress-bar-size-sm;
 
+    & > .bar {
+      min-width: $progress-bar-size-sm;
+    }
+
     & > .bar > .label {
       display: none;
     }
@@ -41,9 +46,17 @@ $progress-bar-size-lg: 2rem !default;
   &,
   &.md {
     height: $progress-bar-size-md;
+
+    & > .bar {
+      min-width: $progress-bar-size-md;
+    }
   }
 
   &.lg {
     height: $progress-bar-size-lg;
+
+    & > .bar {
+      min-width: $progress-bar-size-lg;
+    }
   }
 }
