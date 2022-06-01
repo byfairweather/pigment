@@ -1,42 +1,33 @@
 <template>
-  <div class="p-numberbox">
-    <div class="input" :class="{ disabled, error: error != undefined }">
-      <PButton
-        class="decrease"
-        :class="{ danger: error }"
-        @click="decrease"
-        :disabled="disabled"
-      >
-        -
-      </PButton>
-      <input
-        type="number"
-        ref="numberbox"
-        :id="id"
-        @input="input($event)"
-        :disabled="disabled"
-      />
-      <PButton
-        class="increase"
-        :class="{ danger: error }"
-        @click="increase"
-        :disabled="disabled"
-      >
-        +
-      </PButton>
-    </div>
-    <label class="label" :for="id" v-if="label">{{ label }}</label>
-    <span class="error-text" v-if="error">{{ error }}</span>
-  </div>
+  <PTextbox
+    class="p-numberbox"
+    type="number"
+    :modelValue="stringValue"
+    @update:modelValue="update($event)"
+    :label="label"
+    :disabled="disabled"
+    :error="error"
+  >
+    <template #prefix>
+      <button class="decrease" @click="decrease()">
+        <i class="fa-solid fa-minus"></i>
+      </button>
+    </template>
+    <template #suffix>
+      <button class="increase" @click="increase()">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </template>
+  </PTextbox>
 </template>
 
 <script lang="ts">
-import { defineComponent, getCurrentInstance, ref, watch } from "vue";
-import PButton from "../PButton/PButton.vue";
+import { computed, defineComponent, ref, watch } from "vue";
+import PTextbox from "../PTextbox/PTextbox.vue";
 
 export default defineComponent({
   name: "p-numberbox",
-  components: { PButton },
+  components: { PTextbox },
   props: {
     label: {
       type: String,
@@ -61,36 +52,49 @@ export default defineComponent({
     },
   },
   setup(props, context) {
-    const id = "p-numberbox-" + getCurrentInstance()!.uid.toString();
-    const numberbox = ref<HTMLInputElement>();
+    const stringValue = ref("");
+    const error = computed(() => {
+      const value = Number(props.modelValue);
 
-    watch(() => props.modelValue, updateValue, { immediate: true });
+      if (props.max != undefined && props.max < value) {
+        return `Maximum is ${props.max}`;
+      }
 
-    function input(event: Event): void {
-      let value = parseInt((event.target as HTMLInputElement)?.value);
+      if (props.min != undefined && props.min > value) {
+        return `Minimum is ${props.min}`;
+      }
+    });
+
+    watch(
+      () => props.modelValue,
+      () => {
+        stringValue.value = props.modelValue.toString();
+      },
+      { immediate: true }
+    );
+
+    function decrease(): void {
+      const number = Number(props.modelValue) - 1;
+      const value = Math.max(props.min ?? Number("-Infinity"), number);
       context.emit("update:modelValue", value);
     }
 
-    function updateValue(value: number): void {
-      if (numberbox.value) {
-        numberbox.value.value = value.toString();
-      }
-    }
-
-    function decrease(): void {
-      context.emit("update:modelValue", props.modelValue - 1);
-    }
-
     function increase(): void {
-      context.emit("update:modelValue", props.modelValue + 1);
+      const number = Number(props.modelValue) + 1;
+      const value = Math.min(props.max ?? Number("Infinity"), number);
+      context.emit("update:modelValue", value);
+    }
+
+    function update(value: string): void {
+      context.emit("update:modelValue", Number(value));
     }
 
     return {
-      id,
-      numberbox,
-      input,
+      stringValue,
+      error,
       increase,
       decrease,
+      update,
     };
   },
 });

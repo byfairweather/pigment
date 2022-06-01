@@ -1,5 +1,6 @@
 @use "../../styles/utilities.scss" as *;
 
+$textbox-animation-duration: $animation-duration-normal !default;
 $textbox-background-color: $form-control-background-color !default;
 $textbox-border: $form-control-border !default;
 $textbox-border-radius: $form-control-border-radius !default;
@@ -12,7 +13,6 @@ $textbox-label-font-size: $form-control-label-font-size !default;
 $textbox-label-font-weight: $form-control-label-font-weight !default;
 $textbox-label-margin-bottom: $form-control-label-margin-bottom !default;
 $textbox-padding: $form-control-padding !default;
-$textbox-transition: all $animation-duration-normal ease-in-out !default;
 $textbox-disabled-opacity: $form-control-disabled-opacity !default;
 
 $textbox-focus-background-color: $form-control-focus-background-color !default;
@@ -49,7 +49,7 @@ $textbox-error-spacing: $form-control-error-spacing !default;
   }
 
   & > .input {
-    align-items: center;
+    align-items: stretch;
     background-color: $textbox-background-color;
     border: $textbox-border;
     border-radius: $textbox-border-radius;
@@ -58,9 +58,9 @@ $textbox-error-spacing: $form-control-error-spacing !default;
     height: $textbox-height;
     order: 2;
     overflow: hidden;
-    transition: $textbox-transition;
+    transition: all $textbox-animation-duration ease;
 
-    input {
+    & > input {
       background-color: transparent;
       border: none;
       color: inherit;
@@ -68,21 +68,20 @@ $textbox-error-spacing: $form-control-error-spacing !default;
       font-size: $textbox-font-size;
       font-weight: $textbox-font-weight;
       margin: 0;
-      min-width: 0;
-      outline: none;
+      min-width: 0px;
       padding: 0 $textbox-padding;
-      transition: $textbox-transition;
+      transition: all $textbox-animation-duration ease;
 
       &::placeholder {
         color: inherit;
-        opacity: 0.5;
+        opacity: 0.6;
       }
 
-      &:-webkit-autofill::first-line,
       &:-webkit-autofill,
       &:-webkit-autofill:hover,
-      &:-webkit-autofill:focus,
-      &:-webkit-autofill:active {
+      &:-webkit-autofill:focus-within,
+      &:-webkit-autofill:active,
+      &:-webkit-autofill::first-line {
         -webkit-text-fill-color: $textbox-color;
         font-size: $textbox-font-size;
         font-weight: $textbox-font-weight;
@@ -90,34 +89,36 @@ $textbox-error-spacing: $form-control-error-spacing !default;
       }
     }
 
-    .prefix,
-    .suffix {
-      align-items: center;
-      color: inherit;
+    & > .prefix,
+    & > .suffix {
+      align-content: center;
       display: flex;
+      color: inherit;
       font-size: $textbox-font-size;
       font-weight: 500;
-      transition: $textbox-transition;
+      transition: all $textbox-animation-duration ease;
+      margin: auto;
       user-select: none;
+
+      &:empty {
+        display: none;
+      }
     }
 
-    .prefix {
+    & > .prefix {
       padding-left: $textbox-padding;
     }
 
-    .suffix {
+    & > .suffix {
       padding-right: $textbox-padding;
     }
 
-    .reveal-password {
-      cursor: pointer;
-      height: $textbox-font-size;
-      fill: currentColor;
-      margin-right: $textbox-padding;
-      width: $textbox-font-size;
+    & > .custom-prefix:empty,
+    & > .custom-suffix:empty {
+      display: none;
     }
 
-    &:hover:not(.disabled):not(.error):not(:focus-within) {
+    &:hover {
       border: $textbox-hover-border;
       background-color: $textbox-hover-background-color;
       color: $textbox-hover-color;
@@ -133,7 +134,7 @@ $textbox-error-spacing: $form-control-error-spacing !default;
       }
     }
 
-    &:focus-within:not(.disabled):not(.error) {
+    &:focus-within {
       border: $textbox-focus-border;
       background-color: $textbox-focus-background-color;
       color: $textbox-focus-color;
@@ -143,14 +144,10 @@ $textbox-error-spacing: $form-control-error-spacing !default;
       }
 
       & > input {
-        &:-webkit-autofill:focus {
+        &:-webkit-autofill:focus-within {
           -webkit-text-fill-color: $textbox-focus-color;
         }
       }
-    }
-
-    &.disabled {
-      opacity: $textbox-disabled-opacity;
     }
 
     &.error {
@@ -163,14 +160,19 @@ $textbox-error-spacing: $form-control-error-spacing !default;
       }
 
       & > input {
-        &:-webkit-autofill::first-line,
         &:-webkit-autofill,
         &:-webkit-autofill:hover,
-        &:-webkit-autofill:focus,
-        &:-webkit-autofill:active {
+        &:-webkit-autofill:focus-within,
+        &:-webkit-autofill:active,
+        &:-webkit-autofill::first-line {
           -webkit-text-fill-color: $textbox-error-color;
         }
       }
+    }
+
+    &.disabled {
+      opacity: $textbox-disabled-opacity;
+      pointer-events: none;
     }
   }
 

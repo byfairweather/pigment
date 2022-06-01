@@ -1,7 +1,12 @@
 <template>
   <p-grid class="widths-4-all">
     <p-grid-item>
-      <p-textbox label="Label" placeholder="Placeholder" v-model="value" />
+      <p-textbox
+        label="Label"
+        placeholder="Placeholder"
+        v-model="value"
+        autocomplete="name"
+      />
     </p-grid-item>
     <p-grid-item>
       <p-textbox
@@ -112,7 +117,7 @@
     </p-grid-item>
     <p-grid-item></p-grid-item>
     <p-grid-item>
-      <p-numberbox label="Label" v-model="value" />
+      <p-numberbox label="Label" :min="-5" :max="5" v-model="value" />
     </p-grid-item>
     <p-grid-item>
       <p-numberbox label="Label" :disabled="true" v-model="value" />
@@ -139,7 +144,7 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "Grid",
   setup() {
-    const value = ref(0);
+    const value = ref(1);
     const options = [
       {
         name: "a",
