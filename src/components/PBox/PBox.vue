@@ -27,7 +27,6 @@ export default defineComponent({
       () => box.value,
       () => {
         if (!box.value) return;
-
         new ResizeObserver(setScrollfade).observe(box.value);
         box.value.addEventListener("scroll", setScrollfade);
       },
@@ -43,6 +42,16 @@ export default defineComponent({
         box.value.scrollHeight > box.value.offsetHeight &&
         box.value.scrollHeight - box.value.scrollTop >=
           box.value.offsetHeight + scrollTolerance;
+
+      console.log(
+        "Top Fade:",
+        scrollFade.value.top,
+        "Bottom Fade:",
+        scrollFade.value.bottom,
+        box.value.scrollHeight,
+        box.value.scrollTop,
+        box.value.offsetHeight
+      );
     }
 
     return {

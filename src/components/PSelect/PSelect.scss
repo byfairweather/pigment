@@ -1,176 +1,192 @@
 @use "../../styles/utilities.scss" as *;
 
-$select-background-color: $form-control-background-color !default;
-$select-border: $form-control-border !default;
-$select-border-radius: $form-control-border-radius !default;
-$select-color: $form-control-color !default;
-$select-font-size: $form-control-font-size !default;
-$select-font-weight: $form-control-font-weight !default;
-$select-height: $form-control-height !default;
-$select-label-color: $form-control-label-color !default;
-$select-label-font-size: $form-control-label-font-size !default;
-$select-label-font-weight: $form-control-label-font-weight !default;
-$select-label-margin-bottom: $form-control-label-margin-bottom !default;
-$select-padding: $form-control-padding !default;
-$select-transition: all $animation-duration-normal ease-in-out !default;
-$select-disabled-opacity: $form-control-disabled-opacity !default;
-$select-item-spacing: spacing("md") !default;
-
-$select-focus-background-color: $form-control-focus-background-color !default;
-$select-focus-border: $form-control-focus-border !default;
-$select-focus-color: $form-control-focus-color !default;
-$select-focus-label-color: $form-control-focus-label-color !default;
-
-$select-hover-background-color: $form-control-hover-background-color !default;
-$select-hover-border: $form-control-hover-border !default;
-$select-hover-color: $form-control-hover-color !default;
-$select-hover-label-color: $form-control-hover-label-color !default;
-
-$select-error-background-color: $form-control-error-background-color !default;
-$select-error-border: $form-control-error-border !default;
-$select-error-color: $form-control-error-color !default;
-$select-error-label-color: $form-control-error-label-color !default;
-$select-error-text-color: $form-control-error-text-color !default;
-$select-error-font-size: $form-control-error-font-size !default;
-$select-error-spacing: $form-control-error-spacing !default;
-
 .p-select {
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .label {
-    color: $select-label-color;
-    display: block;
-    font-size: $select-label-font-size;
-    font-weight: $select-label-font-weight;
-    margin-bottom: $select-label-margin-bottom;
-    user-select: none;
-    order: 1;
-  }
-
-  .input {
-    align-items: center;
-    background-color: $select-background-color;
-    border: $select-border;
-    border-radius: $select-border-radius;
-    color: $select-color;
+  & > .input {
     cursor: pointer;
-    display: flex;
-    font-size: $select-font-size;
-    font-weight: $select-font-weight;
-    height: $select-height;
-    order: 2;
-    outline: none;
-    padding: 0 $select-padding;
-    transition: $select-transition;
-
-    input {
-      background-color: transparent;
-      transition: $select-transition;
-
-      &::placeholder {
-        color: inherit;
-        opacity: 0.5;
-      }
-
-      &:-webkit-autofill::first-line,
-      &:-webkit-autofill,
-      &:-webkit-autofill:hover,
-      &:-webkit-autofill:focus,
-      &:-webkit-autofill:active {
-        -webkit-text-fill-color: $select-color;
-        font-size: $select-font-size;
-        font-weight: $select-font-weight;
-        transition: select-color 999999s ease-in-out 999999s;
-      }
-    }
-
-    .placeholder {
-      opacity: 0.5;
-    }
 
     .chevron {
-      border: 3px solid currentColor;
-      border-top-width: 0px;
-      border-right-width: 0px;
-      height: 0.6rem;
-      margin-left: auto;
-      transform: rotate(-45deg) translateY(-3px);
-      width: 0.6rem;
-    }
-  }
-
-  .error-text {
-    color: $select-error-text-color;
-    display: block;
-    font-size: $select-error-font-size;
-    margin-top: $select-error-spacing;
-    order: 3;
-  }
-
-  &:not(.disabled):not(.error):not(:focus-within) {
-    .input:hover {
-      border: $select-hover-border;
-      background-color: $select-hover-background-color;
-      color: $select-hover-color;
-
-      .label {
-        color: $select-hover-label-color;
-      }
-    }
-  }
-
-  &:focus-within:not(.disabled):not(.error) {
-    .input {
-      border: $select-focus-border;
-      background-color: $select-focus-background-color;
-      color: $select-focus-color;
-
-      .label {
-        color: $select-focus-label-color;
-      }
-    }
-  }
-
-  &.disabled {
-    pointer-events: none;
-
-    .input {
-      opacity: $select-disabled-opacity;
-    }
-  }
-
-  &.error {
-    .input {
-      border: $select-error-border;
-      background-color: $select-error-background-color;
-      color: $select-error-color;
-
-      .label {
-        color: $select-error-label-color;
-      }
+      align-self: stretch;
+      align-items: center;
+      display: flex;
+      padding: 0 $form-control-padding;
+      transition: all $animation-duration-normal ease;
     }
   }
 }
 
-.p-select-options {
-  padding: calc($select-item-spacing / 2) 0;
-  position: relative;
+// @use "../../styles/utilities.scss" as *;
 
-  .option {
-    color: $select-color;
-    cursor: pointer;
-    padding: calc($select-item-spacing / 2) $select-item-spacing;
-    outline: none;
+// $select-background-color: $form-control-background-color !default;
+// $select-border: $form-control-border !default;
+// $select-border-radius: $form-control-border-radius !default;
+// $select-color: $form-control-color !default;
+// $select-font-size: $form-control-font-size !default;
+// $select-font-weight: $form-control-font-weight !default;
+// $select-height: $form-control-height !default;
+// $select-label-color: $form-control-label-color !default;
+// $select-label-font-size: $form-control-label-font-size !default;
+// $select-label-font-weight: $form-control-label-font-weight !default;
+// $select-label-margin-bottom: $form-control-label-margin-bottom !default;
+// $select-padding: $form-control-padding !default;
+// $select-transition: all $animation-duration-normal ease-in-out !default;
+// $select-disabled-opacity: $form-control-disabled-opacity !default;
+// $select-item-spacing: spacing("md") !default;
 
-    &:hover,
-    &:focus-within,
-    &.selected {
-      background-color: $select-focus-background-color;
-      color: $select-focus-color;
-    }
-  }
-}
+// $select-focus-background-color: $form-control-focus-background-color !default;
+// $select-focus-border: $form-control-focus-border !default;
+// $select-focus-color: $form-control-focus-color !default;
+// $select-focus-label-color: $form-control-focus-label-color !default;
+
+// $select-hover-background-color: $form-control-hover-background-color !default;
+// $select-hover-border: $form-control-hover-border !default;
+// $select-hover-color: $form-control-hover-color !default;
+// $select-hover-label-color: $form-control-hover-label-color !default;
+
+// $select-error-background-color: $form-control-error-background-color !default;
+// $select-error-border: $form-control-error-border !default;
+// $select-error-color: $form-control-error-color !default;
+// $select-error-label-color: $form-control-error-label-color !default;
+// $select-error-text-color: $form-control-error-text-color !default;
+// $select-error-font-size: $form-control-error-font-size !default;
+// $select-error-spacing: $form-control-error-spacing !default;
+
+// .p-select {
+//   .wrapper {
+//     display: flex;
+//     flex-direction: column;
+//     width: 100%;
+//   }
+
+//   .label {
+//     color: $select-label-color;
+//     display: block;
+//     font-size: $select-label-font-size;
+//     font-weight: $select-label-font-weight;
+//     margin-bottom: $select-label-margin-bottom;
+//     user-select: none;
+//     order: 1;
+//   }
+
+//   .input {
+//     align-items: center;
+//     background-color: $select-background-color;
+//     border: $select-border;
+//     border-radius: $select-border-radius;
+//     color: $select-color;
+//     cursor: pointer;
+//     display: flex;
+//     font-size: $select-font-size;
+//     font-weight: $select-font-weight;
+//     height: $select-height;
+//     order: 2;
+//     outline: none;
+//     padding: 0 $select-padding;
+//     transition: $select-transition;
+
+//     input {
+//       background-color: transparent;
+//       transition: $select-transition;
+
+//       &::placeholder {
+//         color: inherit;
+//         opacity: 0.5;
+//       }
+
+//       &:-webkit-autofill::first-line,
+//       &:-webkit-autofill,
+//       &:-webkit-autofill:hover,
+//       &:-webkit-autofill:focus,
+//       &:-webkit-autofill:active {
+//         -webkit-text-fill-color: $select-color;
+//         font-size: $select-font-size;
+//         font-weight: $select-font-weight;
+//         transition: select-color 999999s ease-in-out 999999s;
+//       }
+//     }
+
+//     .placeholder {
+//       opacity: 0.5;
+//     }
+
+//     .chevron {
+//       border: 3px solid currentColor;
+//       border-top-width: 0px;
+//       border-right-width: 0px;
+//       height: 0.6rem;
+//       margin-left: auto;
+//       transform: rotate(-45deg) translateY(-3px);
+//       width: 0.6rem;
+//     }
+//   }
+
+//   .error-text {
+//     color: $select-error-text-color;
+//     display: block;
+//     font-size: $select-error-font-size;
+//     margin-top: $select-error-spacing;
+//     order: 3;
+//   }
+
+//   &:not(.disabled):not(.error):not(:focus-within) {
+//     .input:hover {
+//       border: $select-hover-border;
+//       background-color: $select-hover-background-color;
+//       color: $select-hover-color;
+
+//       .label {
+//         color: $select-hover-label-color;
+//       }
+//     }
+//   }
+
+//   &:focus-within:not(.disabled):not(.error) {
+//     .input {
+//       border: $select-focus-border;
+//       background-color: $select-focus-background-color;
+//       color: $select-focus-color;
+
+//       .label {
+//         color: $select-focus-label-color;
+//       }
+//     }
+//   }
+
+//   &.disabled {
+//     pointer-events: none;
+
+//     .input {
+//       opacity: $select-disabled-opacity;
+//     }
+//   }
+
+//   &.error {
+//     .input {
+//       border: $select-error-border;
+//       background-color: $select-error-background-color;
+//       color: $select-error-color;
+
+//       .label {
+//         color: $select-error-label-color;
+//       }
+//     }
+//   }
+// }
+
+// .p-select-options {
+//   padding: calc($select-item-spacing / 2) 0;
+//   position: relative;
+
+//   .option {
+//     color: $select-color;
+//     cursor: pointer;
+//     padding: calc($select-item-spacing / 2) $select-item-spacing;
+//     outline: none;
+
+//     &:hover,
+//     &:focus-within,
+//     &.selected {
+//       background-color: $select-focus-background-color;
+//       color: $select-focus-color;
+//     }
+//   }
+// }

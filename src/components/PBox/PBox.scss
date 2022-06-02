@@ -10,7 +10,7 @@ $box-scrollbar-hover-color: color("grey", "600") !default;
 $box-scrollbar-margin: 5px !default;
 $box-scrollbar-width: 6px !default;
 
-$box-scrollfade-size: 60px !default;
+$box-scrollfade-size: 40px !default;
 $box-scrollfade-animation-duration: $animation-duration-slow !default;
 
 .p-box {
@@ -66,17 +66,16 @@ $box-scrollfade-animation-duration: $animation-duration-slow !default;
     pointer-events: none;
     transition: opacity $box-scrollfade-animation-duration ease;
     z-index: 10;
+    height: 0px;
+    box-shadow: 0 0 $box-scrollfade-size $box-scrollfade-size
+      $box-background-color;
 
     &.top {
-      background: linear-gradient($box-background-color, 70%, transparent);
-      margin-bottom: -$box-scrollfade-size;
       top: -1px;
     }
 
     &.bottom {
-      background: linear-gradient(transparent, 30%, $box-background-color);
       bottom: -1px;
-      margin-top: -$box-scrollfade-size;
     }
   }
 }

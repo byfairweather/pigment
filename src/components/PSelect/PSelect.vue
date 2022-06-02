@@ -1,4 +1,123 @@
 <template>
+  <div ref="textbox">
+    <PTextbox
+      class="p-select"
+      type="text"
+      :modelValue="value"
+      @update:modelValue="update($event)"
+      :label="label"
+      :disabled="disabled"
+      :error="error"
+      @click="isOpen = !isOpen"
+    >
+      <template #suffix>
+        <div class="chevron">
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+      </template>
+    </PTextbox>
+  </div>
+  <PPopup v-model:open="isOpen" :anchor="textbox" position="fill down">
+    <PBox class="padding-md"
+      >Test
+      <!-- <div class="p-select-options">
+        <template v-for="(option, index) in options" :key="index">
+          <div
+            :id="`${id}-${index}`"
+            class="option"
+            :class="{ selected: selectedIndex == index }"
+            :aria-selected="selectedIndex == index"
+            @click="select(option, true)"
+            @mousedown.prevent
+            role="option"
+          >
+            {{ display(option) }}
+          </div>
+        </template>
+      </div> -->
+    </PBox>
+  </PPopup>
+</template>
+
+<script lang="ts">
+import { defineComponent, getCurrentInstance, ref, watch } from "vue";
+import PBox from "../PBox/PBox.vue";
+import PPopup from "../PPopup/PPopup.vue";
+import PTextbox from "../PTextbox/PTextbox.vue";
+
+export default defineComponent({
+  name: "p-select",
+  components: { PBox, PPopup, PTextbox },
+  props: {
+    label: {
+      type: String,
+      required: false,
+    },
+    modelValue: {
+      type: String,
+      required: true,
+    },
+    options: {
+      type: Array,
+      required: true,
+    },
+    display: {
+      type: Function,
+      default: (option: any) => option,
+    },
+    value: {
+      type: Function,
+      default: (option: any) => option,
+    },
+    placeholder: {
+      type: String,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    error: {
+      type: String,
+    },
+  },
+  setup(props, context) {
+    const id = `p-select-${getCurrentInstance()!.uid}`;
+    const value = ref("");
+    const textbox = ref<HTMLElement>();
+    const isOpen = ref(false);
+    const selectedIndex = 0;
+
+    watch(
+      () => props.modelValue,
+      () => {
+        value.value = props.modelValue;
+      },
+      { immediate: true }
+    );
+
+    function update(value: string): void {
+      context.emit("update:modelValue", value);
+    }
+
+    function select(option: unknown, close = false): void {
+      context.emit("update:modelValue", props.value(option));
+      if (close) isOpen.value = false;
+    }
+
+    return {
+      id,
+      value,
+      textbox,
+      isOpen,
+      selectedIndex,
+      update,
+      select,
+    };
+  },
+});
+</script>
+
+<!-- <template>
   <div
     class="p-select"
     :class="{ disabled, error: error != undefined, open: isOpen }"
@@ -30,12 +149,12 @@
           @change="autocomplete($event.target.value)"
         />
 
-        <!-- <span class="placeholder" v-if="placeholder && !selectedOption">
+        <span class="placeholder" v-if="placeholder && !selectedOption">
           {{ placeholder }}
         </span>
         <span v-else>
           {{ display(selectedOption) }}
-        </span> -->
+        </span>
         <div class="chevron"></div>
       </div>
       <label class="label" :for="id" v-if="label">{{ label }}</label>
@@ -67,9 +186,9 @@
       </PBox>
     </PPopup>
   </div>
-</template>
+</template> -->
 
-<script lang="ts">
+<!-- <script lang="ts">
 import {
   computed,
   defineComponent,
@@ -208,4 +327,4 @@ export default defineComponent({
     };
   },
 });
-</script>
+</script> -->

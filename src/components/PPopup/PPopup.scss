@@ -21,7 +21,6 @@ $popup-exit-animation-duration: $animation-duration-fast !default;
   position: fixed;
   transition-property: margin, opacity, transform;
   transition-timing-function: ease-in-out;
-  overflow: hidden;
 
   &.up {
     margin-top: -$popup-margin;

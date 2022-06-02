@@ -3,7 +3,7 @@
     class="p-image"
     :class="{ zoomable: zoom }"
     ref="component"
-    @contextmenu.stop.prevent
+    @contextmenu.prevent.stop
   >
     <div class="wrapper" @click="zoom && (isZoomed = true)">
       <img v-if="placeholder && !isLoaded.image && lazy" :src="placeholder" />
@@ -15,8 +15,10 @@
         @load="isLoaded.image = true"
       />
     </div>
-    <PPopup v-model:open="isZoomed" class="zoom shadow-lg">
-      <img :src="zoom" @contextmenu.stop.prevent @load="isLoaded.zoom = true" />
+    <PPopup v-model:open="isZoomed" immersive>
+      <div class="zoom shadow-lg">
+        <img :src="zoom" @load="isLoaded.zoom = true" />
+      </div>
       <PProgressSpinner class="spinner lg" v-if="!isLoaded.zoom" />
     </PPopup>
   </div>
