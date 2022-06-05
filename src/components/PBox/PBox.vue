@@ -42,16 +42,6 @@ export default defineComponent({
         box.value.scrollHeight > box.value.offsetHeight &&
         box.value.scrollHeight - box.value.scrollTop >=
           box.value.offsetHeight + scrollTolerance;
-
-      console.log(
-        "Top Fade:",
-        scrollFade.value.top,
-        "Bottom Fade:",
-        scrollFade.value.bottom,
-        box.value.scrollHeight,
-        box.value.scrollTop,
-        box.value.offsetHeight
-      );
     }
 
     return {

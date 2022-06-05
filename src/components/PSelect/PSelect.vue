@@ -1,32 +1,45 @@
 <template>
-  <div ref="textbox">
+  <div
+    class="p-select"
+    ref="textbox"
+    role="combobox"
+    @focusout="close()"
+    @keydown.enter.exact.prevent.stop="toggle()"
+    @keydown.esc.exact.prevent.stop="close()"
+    @keydown.alt.down.prevent.stop="open()"
+    @keydown.alt.up.prevent.stop="close()"
+    @keydown.down.exact.prevent.stop="selectNextOption()"
+    @keydown.up.exact.prevent.stop="selectPreviousOption()"
+    @keypress.down.prevent.stop
+    @keypress.up.prevent.stop
+  >
     <PTextbox
-      class="p-select"
       type="text"
-      :modelValue="value"
+      :modelValue="textboxValue"
       @update:modelValue="update($event)"
       :label="label"
+      :placeholder="placeholder"
+      :autocomplete="autocomplete"
       :disabled="disabled"
       :error="error"
       @click="isOpen = !isOpen"
     >
       <template #suffix>
-        <div class="chevron">
+        <button class="chevron" tabindex="-1">
           <i class="fa-solid fa-chevron-down"></i>
-        </div>
+        </button>
       </template>
     </PTextbox>
   </div>
   <PPopup v-model:open="isOpen" :anchor="textbox" position="fill down">
-    <PBox class="padding-md"
-      >Test
-      <!-- <div class="p-select-options">
-        <template v-for="(option, index) in options" :key="index">
+    <PBox>
+      <div class="p-select-options">
+        <template v-for="(option, index) in filteredOptions" :key="index">
           <div
             :id="`${id}-${index}`"
             class="option"
-            :class="{ selected: selectedIndex == index }"
-            :aria-selected="selectedIndex == index"
+            :class="{ selected: isHighlighted(option) }"
+            :aria-selected="isHighlighted(option)"
             @click="select(option, true)"
             @mousedown.prevent
             role="option"
@@ -34,13 +47,23 @@
             {{ display(option) }}
           </div>
         </template>
-      </div> -->
+        <div class="option null" v-if="filteredOptions.length == 0">
+          No results found
+        </div>
+      </div>
     </PBox>
   </PPopup>
 </template>
 
 <script lang="ts">
-import { defineComponent, getCurrentInstance, ref, watch } from "vue";
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  PropType,
+  ref,
+  watch,
+} from "vue";
 import PBox from "../PBox/PBox.vue";
 import PPopup from "../PPopup/PPopup.vue";
 import PTextbox from "../PTextbox/PTextbox.vue";
@@ -54,7 +77,7 @@ export default defineComponent({
       required: false,
     },
     modelValue: {
-      type: String,
+      type: [String, Number, Object] as PropType<any>,
       required: true,
     },
     options: {
@@ -62,14 +85,17 @@ export default defineComponent({
       required: true,
     },
     display: {
-      type: Function,
-      default: (option: any) => option,
+      type: Function as PropType<(option: any) => string>,
+      default: (option: any): string => option,
     },
     value: {
-      type: Function,
-      default: (option: any) => option,
+      type: Function as PropType<(option: any) => any>,
+      default: (option: any): any => option,
     },
     placeholder: {
+      type: String,
+    },
+    autocomplete: {
       type: String,
     },
     disabled: {
@@ -82,171 +108,9 @@ export default defineComponent({
   },
   setup(props, context) {
     const id = `p-select-${getCurrentInstance()!.uid}`;
-    const value = ref("");
+    const textboxValue = ref("");
     const textbox = ref<HTMLElement>();
     const isOpen = ref(false);
-    const selectedIndex = 0;
-
-    watch(
-      () => props.modelValue,
-      () => {
-        value.value = props.modelValue;
-      },
-      { immediate: true }
-    );
-
-    function update(value: string): void {
-      context.emit("update:modelValue", value);
-    }
-
-    function select(option: unknown, close = false): void {
-      context.emit("update:modelValue", props.value(option));
-      if (close) isOpen.value = false;
-    }
-
-    return {
-      id,
-      value,
-      textbox,
-      isOpen,
-      selectedIndex,
-      update,
-      select,
-    };
-  },
-});
-</script>
-
-<!-- <template>
-  <div
-    class="p-select"
-    :class="{ disabled, error: error != undefined, open: isOpen }"
-    @focusout="focusOut"
-    @keydown.enter.exact.prevent.stop="toggle()"
-    @keydown.esc.exact.prevent.stop="close()"
-    @keydown.alt.down.prevent.stop="open()"
-    @keydown.alt.up.prevent.stop="close()"
-    @keydown.down.exact.prevent.stop="selectNextOption()"
-    @keydown.up.exact.prevent.stop="selectPreviousOption()"
-    @keypress.down.prevent.stop
-    @keypress.up.prevent.stop
-  >
-    <div class="wrapper" ref="anchor">
-      <div
-        class="input"
-        :id="id"
-        role="combobox"
-        :tabindex="disabled ? -1 : 0"
-        @click="toggle()"
-        aria-owns="quack"
-        :aria-expanded="isOpen"
-        :aria-active-item="selectedIndex != -1 && `${id}-${selectedIndex}`"
-      >
-        <input
-          :placeholder="placeholder"
-          autocomplete="address-level1"
-          :value="selectedOption && display(selectedOption)"
-          @change="autocomplete($event.target.value)"
-        />
-
-        <span class="placeholder" v-if="placeholder && !selectedOption">
-          {{ placeholder }}
-        </span>
-        <span v-else>
-          {{ display(selectedOption) }}
-        </span>
-        <div class="chevron"></div>
-      </div>
-      <label class="label" :for="id" v-if="label">{{ label }}</label>
-      <span class="error-text" v-if="error && !isOpen">{{ error }}</span>
-    </div>
-    <PPopup
-      v-if="anchor"
-      :anchor="anchor"
-      position="fill down"
-      ref="popup"
-      v-model:open="isOpen"
-    >
-      <PBox id="quack">
-        <div class="p-select-options">
-          <template v-for="(option, index) in options" :key="index">
-            <div
-              :id="`${id}-${index}`"
-              class="option"
-              :class="{ selected: selectedIndex == index }"
-              :aria-selected="selectedIndex == index"
-              @click="select(option, true)"
-              @mousedown.prevent
-              role="option"
-            >
-              {{ display(option) }}
-            </div>
-          </template>
-        </div>
-      </PBox>
-    </PPopup>
-  </div>
-</template> -->
-
-<!-- <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  nextTick,
-  ref,
-  watch,
-} from "vue";
-import PBox from "../PBox/PBox.vue";
-import PPopup from "../PPopup/PPopup.vue";
-
-export default defineComponent({
-  name: "p-select",
-  components: { PBox, PPopup },
-  props: {
-    label: {
-      type: String,
-      required: false,
-    },
-    modelValue: {
-      type: String,
-      required: true,
-    },
-    options: {
-      type: Array,
-      required: true,
-    },
-    display: {
-      type: Function,
-      default: (option: any) => option,
-    },
-    value: {
-      type: Function,
-      default: (option: any) => option,
-    },
-    placeholder: {
-      type: String,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    error: {
-      type: String,
-    },
-  },
-  setup(props, context) {
-    const id = `p-select-${getCurrentInstance()!.uid}`;
-    const anchor = ref<HTMLElement>();
-    const popup = ref<HTMLElement>();
-    const isOpen = ref(false);
-    const autocompleteValue = ref("");
-
-    const selectedOption = computed(() => {
-      if (selectedIndex.value != undefined) {
-        return props.options[selectedIndex.value];
-      }
-    });
 
     const selectedIndex = computed(() => {
       if (props.options) {
@@ -256,7 +120,46 @@ export default defineComponent({
       }
     });
 
-    watch(() => autocompleteValue.value, autocomplete);
+    const selectedOption = computed(() => {
+      if (selectedIndex.value != undefined) {
+        return props.options[selectedIndex.value];
+      }
+    });
+
+    const filteredOptions = computed(() => {
+      if (selectedOption.value || textboxValue.value == "") {
+        return props.options;
+      }
+
+      const options = props.options.filter((o) => {
+        const optionDisplay = props.display(o)?.toLowerCase();
+        return optionDisplay.startsWith(textboxValue.value?.toLowerCase());
+      });
+
+      return options;
+    });
+
+    watch(
+      () => props.modelValue,
+      () => update(props.modelValue),
+      { immediate: true }
+    );
+
+    function update(value: any): void {
+      if (value) {
+        for (const option of props.options) {
+          if (props.display(option) == value || props.value(option) == value) {
+            context.emit("update:modelValue", props.value(option));
+            textboxValue.value = props.display(option);
+            return;
+          }
+        }
+
+        context.emit("update:modelValue", undefined);
+        textboxValue.value = value;
+        textboxValue.value != "" && !isOpen.value && open();
+      }
+    }
 
     function select(option: unknown, close = false): void {
       context.emit("update:modelValue", props.value(option));
@@ -273,58 +176,46 @@ export default defineComponent({
       index >= 0 && select(props.options[index]);
     }
 
-    function autocomplete(value: String): void {
-      console.log("Autocomplete:", value);
-      console.log(props.options);
-
-      for (const option of props.options) {
-        console.log(option);
-        if (props.display(option) == value || props.value(option) == value) {
-          select(option);
-        }
+    function isHighlighted(option: unknown): boolean {
+      if (selectedOption.value) {
+        return props.display(option) == props.display(selectedOption.value);
       }
+
+      return props.display(filteredOptions.value[0]) == props.display(option);
     }
 
     function open(): void {
-      isOpen.value = true;
+      isOpen.value = true && !props.disabled;
     }
 
     function close(): void {
+      if (!selectedOption.value) {
+        select(filteredOptions.value[0] ?? props.options[0]);
+      }
       isOpen.value = false;
     }
 
     function toggle(): void {
-      isOpen.value = !isOpen.value;
-    }
-
-    function focusOut(event: FocusEvent): void {
-      nextTick(() => {
-        if (
-          anchor.value &&
-          !popup.value?.contains(event.relatedTarget as Node) &&
-          !anchor.value.contains(event.relatedTarget as Node)
-        ) {
-          isOpen.value = false;
-        }
-      });
+      isOpen.value ? close() : open();
     }
 
     return {
       id,
-      anchor,
-      popup,
+      textbox,
+      textboxValue,
       isOpen,
-      selectedOption,
       selectedIndex,
-      autocomplete,
+      selectedOption,
+      filteredOptions,
+      update,
       select,
-      selectNextOption,
       selectPreviousOption,
+      selectNextOption,
+      isHighlighted,
       open,
       close,
       toggle,
-      focusOut,
     };
   },
 });
-</script> -->
+</script>

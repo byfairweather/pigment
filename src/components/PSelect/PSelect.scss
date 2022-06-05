@@ -1,15 +1,46 @@
 @use "../../styles/utilities.scss" as *;
 
-.p-select {
-  & > .input {
-    cursor: pointer;
+$select-color: $form-control-color !default;
+$select-item-spacing: spacing("md") !default;
 
-    .chevron {
-      align-self: stretch;
-      align-items: center;
-      display: flex;
-      padding: 0 $form-control-padding;
-      transition: all $animation-duration-normal ease;
+$select-focus-color: $form-control-focus-color !default;
+$select-focus-background-color: $form-control-focus-background-color !default;
+
+.p-select {
+  & > .p-textbox {
+    & > .input {
+      cursor: pointer;
+
+      .chevron {
+        align-self: stretch;
+        align-items: center;
+        display: flex;
+        padding: 0 $form-control-padding;
+        transition: all $animation-duration-normal ease;
+      }
+    }
+  }
+}
+
+.p-select-options {
+  padding: calc($select-item-spacing / 2) 0;
+  position: relative;
+
+  .option {
+    color: $select-color;
+    cursor: pointer;
+    padding: calc($select-item-spacing / 2) $select-item-spacing;
+    outline: none;
+
+    &:hover,
+    &:focus-within,
+    &.selected {
+      background-color: $select-focus-background-color;
+      color: $select-focus-color;
+    }
+
+    &.null {
+      pointer-events: none;
     }
   }
 }

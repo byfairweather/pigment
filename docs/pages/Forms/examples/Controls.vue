@@ -105,7 +105,7 @@
         :options="options"
         :value="valueMapper"
         :display="displayMapper"
-        v-model="stringValue"
+        v-model="numberValue"
       />
     </p-grid-item>
     <p-grid-item>
@@ -116,7 +116,7 @@
         :options="options"
         :value="valueMapper"
         :display="displayMapper"
-        v-model="stringValue"
+        v-model="numberValue"
       />
     </p-grid-item>
     <p-grid-item></p-grid-item>
@@ -147,22 +147,22 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "Grid",
   setup() {
-    const stringValue = ref("");
+    const stringValue = ref("a");
     const numberValue = ref(1);
     const boolValue = ref(true);
     const options = [
       {
-        name: "a",
+        name: "Honda",
         value: 1,
         other: "ignore-me",
       },
       {
-        name: "b",
+        name: "Ford",
         value: 2,
         other: "ignore-me",
       },
       {
-        name: "c",
+        name: "General Motors",
         value: 3,
         other: "ignore-me",
       },

@@ -9,12 +9,12 @@
     :error="error"
   >
     <template #prefix>
-      <button class="decrease" @click="decrease()">
+      <button class="decrease" @click="decrease()" tabindex="-1">
         <i class="fa-solid fa-minus"></i>
       </button>
     </template>
     <template #suffix>
-      <button class="increase" @click="increase()">
+      <button class="increase" @click="increase()" tabindex="-1">
         <i class="fa-solid fa-plus"></i>
       </button>
     </template>
@@ -68,7 +68,7 @@ export default defineComponent({
     watch(
       () => props.modelValue,
       () => {
-        stringValue.value = props.modelValue.toString();
+        stringValue.value = props.modelValue?.toString();
       },
       { immediate: true }
     );
