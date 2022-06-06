@@ -76,5 +76,5 @@ $notification-danger-color: color("danger", "700") !default;
 .p-notification-leave-to {
   transform: scale(0.92);
   opacity: 0;
-  margin: 0;
+  margin: 0 !important;
 }

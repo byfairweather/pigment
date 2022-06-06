@@ -55,6 +55,7 @@ export default defineComponent({
     },
     autocomplete: {
       type: String,
+      default: "off",
     },
     disabled: {
       type: Boolean,

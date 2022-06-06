@@ -24,22 +24,6 @@ $box-scrollfade-animation-duration: $animation-duration-slow !default;
     overflow: hidden;
   }
 
-  &.top-border {
-    border-top: $box-border;
-  }
-
-  &.left-border {
-    border-left: $box-border;
-  }
-
-  &.right-border {
-    border-right: $box-border;
-  }
-
-  &.bottom-border {
-    border-left: $box-border;
-  }
-
   &::-webkit-scrollbar {
     width: calc($box-scrollbar-width + $box-scrollbar-margin * 2);
   }

@@ -22,6 +22,7 @@ $font-weight-normal: 400 !default;
 $font-weight-medium: 500 !default;
 $font-weight-bold: 700 !default;
 $font-weight-black: 900 !default;
+$font-header-color: color("primary", "500") !default;
 
 body {
   font-family: $font;
@@ -45,6 +46,7 @@ h3,
 h4,
 h5,
 h6 {
+  color: $font-header-color;
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -56,27 +58,27 @@ h6 {
 }
 
 h1 {
-  font-size: scale-font(6);
-  font-weight: 900;
-}
-
-h2 {
-  font-size: scale-font(5);
-  font-weight: 700;
-}
-
-h3 {
-  font-size: scale-font(4);
-  font-weight: 500;
-}
-
-h4 {
   font-size: scale-font(3);
   font-weight: 500;
 }
 
-h5 {
+h2 {
   font-size: scale-font(2);
+  font-weight: 500;
+}
+
+h3 {
+  font-size: scale-font(1);
+  font-weight: 500;
+}
+
+h4 {
+  font-size: scale-font(1);
+  font-weight: 500;
+}
+
+h5 {
+  font-size: scale-font(1);
   font-weight: 500;
 }
 
@@ -116,6 +118,14 @@ ol {
       font-size: scale-font(-1);
     }
   }
+}
+
+ul {
+  list-style: circle;
+}
+
+ol {
+  list-style: decimal;
 }
 
 .font-thin {
