@@ -87,6 +87,18 @@ h6 {
   font-weight: 500;
 }
 
+b {
+  font-weight: $font-weight-medium;
+}
+
+i {
+  font-style: italic;
+}
+
+u {
+  text-decoration: underline;
+}
+
 p,
 span,
 li {
@@ -103,7 +115,7 @@ ol {
 
 ul,
 ol {
-  margin-left: 1em;
+  margin-left: 1.75em;
 
   li {
     margin-bottom: 0.5em;
@@ -121,7 +133,7 @@ ol {
 }
 
 ul {
-  list-style: circle;
+  list-style: disc;
 }
 
 ol {

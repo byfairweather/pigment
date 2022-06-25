@@ -32,25 +32,27 @@
     </PTextbox>
   </div>
   <PPopup v-model:open="isOpen" :anchor="textbox" position="fill down">
-    <PBox>
-      <div class="p-select-options">
-        <template v-for="(option, index) in filteredOptions" :key="index">
-          <div
-            :id="`${id}-${index}`"
-            class="option"
-            :class="{ selected: isHighlighted(option) }"
-            :aria-selected="isHighlighted(option)"
-            @click="select(option, true)"
-            @mousedown.prevent
-            role="option"
-          >
-            {{ display(option) }}
+    <PBox class="p-select-dropdown">
+      <PScrollView>
+        <div class="p-select-options">
+          <template v-for="(option, index) in filteredOptions" :key="index">
+            <div
+              :id="`${id}-${index}`"
+              class="option"
+              :class="{ selected: isHighlighted(option) }"
+              :aria-selected="isHighlighted(option)"
+              @click="select(option, true)"
+              @mousedown.prevent
+              role="option"
+            >
+              {{ display(option) }}
+            </div>
+          </template>
+          <div class="option null" v-if="filteredOptions.length == 0">
+            No results found
           </div>
-        </template>
-        <div class="option null" v-if="filteredOptions.length == 0">
-          No results found
         </div>
-      </div>
+      </PScrollView>
     </PBox>
   </PPopup>
 </template>
@@ -66,11 +68,12 @@ import {
 } from "vue";
 import PBox from "../PBox/PBox.vue";
 import PPopup from "../PPopup/PPopup.vue";
+import PScrollView from "../PScrollView/PScrollView.vue";
 import PTextbox from "../PTextbox/PTextbox.vue";
 
 export default defineComponent({
   name: "p-select",
-  components: { PBox, PPopup, PTextbox },
+  components: { PBox, PPopup, PScrollView, PTextbox },
   props: {
     label: {
       type: String,
@@ -190,9 +193,9 @@ export default defineComponent({
 
     function close(): void {
       if (!selectedOption.value) {
-        select(filteredOptions.value[0] ?? props.options[0]);
+        //select(filteredOptions.value[0] ?? props.options[0]);
       }
-      isOpen.value = false;
+      // isOpen.value = false;
     }
 
     function toggle(): void {

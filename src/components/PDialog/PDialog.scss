@@ -9,16 +9,10 @@ $dialog-width-lg: 640px !default;
 $dialog-width-xl: 800px !default;
 
 .p-dialog {
+  display: flex;
+  flex-direction: column;
   max-height: 90vh;
   max-width: 90vw;
-
-  & > .wrapper {
-    padding: $dialog-padding;
-
-    @include layout("xs") {
-      padding: $dialog-padding-mobile;
-    }
-  }
 
   &.xs {
     width: $dialog-width-xs;
@@ -38,5 +32,13 @@ $dialog-width-xl: 800px !default;
 
   &.xl {
     width: $dialog-width-xl;
+  }
+
+  .p-dialog-content {
+    padding: $dialog-padding;
+
+    @include layout("xs") {
+      padding: $dialog-padding-mobile;
+    }
   }
 }

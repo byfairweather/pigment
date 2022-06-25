@@ -28,6 +28,7 @@ import PPanel from "./components/PPanel/PPanel.vue";
 import PPopup from "./components/PPopup/PPopup.vue";
 import PProgressBar from "./components/PProgressBar/PProgressBar.vue";
 import PProgressSpinner from "./components/PProgressSpinner/PProgressSpinner.vue";
+import PScrollView from "./components/PScrollView/PScrollView.vue";
 import PSelect from "./components/PSelect/PSelect.vue";
 import PTabView from "./components/PTabView/PTabView.vue";
 import PTab from "./components/PTabView/PTab.vue";
@@ -62,6 +63,7 @@ export default {
     app.component(PNumberbox.name, PNumberbox);
     app.component(PPanel.name, PPanel);
     app.component(PPopup.name, PPopup);
+    app.component(PScrollView.name, PScrollView);
     app.component(PSelect.name, PSelect);
     app.component(PProgressBar.name, PProgressBar);
     app.component(PProgressSpinner.name, PProgressSpinner);

@@ -1,0 +1,61 @@
+@use "../../styles/utilities.scss" as *;
+
+$scroll-view-background-color: color("grey", "100") !default;
+$scroll-view-scrollbar-color: color("grey", "500") !default;
+$scroll-view-scrollbar-hover-color: color("grey", "600") !default;
+$scroll-view-scrollbar-margin: 5px !default;
+$scroll-view-scrollbar-width: 6px !default;
+
+$scroll-view-scrollfade-size: 40px !default;
+$scroll-view-scrollfade-animation-duration: $animation-duration-slow !default;
+
+.p-scroll-view {
+  overflow: auto;
+  position: relative;
+  max-height: 100%;
+
+  & > .wrapper {
+    overflow: hidden;
+  }
+
+  &::-webkit-scrollbar {
+    width: calc(
+      $scroll-view-scrollbar-width + $scroll-view-scrollbar-margin * 2
+    );
+  }
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $scroll-view-scrollbar-color;
+    border-radius: 1000px;
+    border: $scroll-view-scrollbar-margin solid $scroll-view-background-color;
+
+    &:hover {
+      background-color: $scroll-view-scrollbar-hover-color;
+    }
+  }
+
+  & > .scroll-fade {
+    display: block;
+    height: $scroll-view-scrollfade-size;
+    position: sticky;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    transition: opacity $scroll-view-scrollfade-animation-duration ease;
+    z-index: 10;
+    height: 0px;
+    box-shadow: 0 0 $scroll-view-scrollfade-size $scroll-view-scrollfade-size
+      $scroll-view-background-color;
+
+    &.top {
+      top: -1px;
+    }
+
+    &.bottom {
+      bottom: -1px;
+    }
+  }
+}

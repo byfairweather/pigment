@@ -1,13 +1,20 @@
 <template>
-  <p-popup :open="open" @update:open="$emit('update:open', $event)" immersive>
-    <p-box class="shadow-lg p-dialog" v-bind="$attrs">
-      <slot></slot>
-    </p-box>
-  </p-popup>
+  <PPopup :open="open" @update:open="$emit('update:open', $event)">
+    <PBox class="p-dialog shadow-lg" v-bind="$attrs">
+      <PScrollView>
+        <div class="p-dialog-content">
+          <slot></slot>
+        </div>
+      </PScrollView>
+    </PBox>
+  </PPopup>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import PBox from "../PBox/PBox.vue";
+import PPopup from "../PPopup/PPopup.vue";
+import PScrollView from "../PScrollView/PScrollView.vue";
 
 export default defineComponent({
   props: {
@@ -16,6 +23,7 @@ export default defineComponent({
       required: true,
     },
   },
+  components: { PBox, PPopup, PScrollView },
   inheritAttrs: false,
   name: "p-dialog",
 });

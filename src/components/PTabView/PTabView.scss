@@ -60,7 +60,6 @@ $tab-view-slide-animation-distance: 1rem !default;
     & > .content {
       display: none;
       padding-top: $tab-view-content-spacing;
-      overflow: hidden;
 
       &.selected {
         display: block;
