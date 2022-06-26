@@ -1,0 +1,62 @@
+@use "../../styles/utilities.scss" as *;
+
+.p-messenger {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+
+  .messages {
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .message {
+      border-radius: $surface-border-radius;
+      margin: calc(spacing("md") / 2) spacing("md");
+      padding: spacing("sm");
+      box-shadow: 0px 1px 2px rgba(black, 0.2);
+      max-width: 80%;
+      white-space: pre-wrap;
+
+      &:first-of-type {
+        margin-top: spacing("md");
+      }
+
+      &:last-of-type {
+        margin-bottom: spacing("md");
+      }
+
+      &.received {
+        align-self: flex-start;
+        background-color: color("grey", "200");
+        border-bottom-left-radius: 0;
+      }
+
+      &.sent {
+        align-self: flex-end;
+        background-color: color("primary", "500");
+        border-bottom-right-radius: 0;
+        color: color("primary", "100");
+      }
+
+      .header {
+        display: flex;
+        font-size: 0.75rem;
+        opacity: 0.6;
+        margin-bottom: 6px;
+
+        .sender {
+          flex-grow: 1;
+          margin-right: spacing("md");
+        }
+      }
+    }
+  }
+
+  .message-input {
+    background-color: color("grey", "200");
+    border-top: 1px solid color("grey", "400");
+    padding: spacing("md");
+  }
+}
